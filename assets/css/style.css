@@ -1,0 +1,34 @@
+.jumbotron {
+	background: white;
+}
+
+#logo {
+	  width: 300px;
+      height: 300px;
+      display: block;
+      margin-left: auto;
+      margin-right: auto;
+}
+
+
+.display {
+	  margin-top: 50px;
+
+}
+
+.icon {
+	  /*display: block;
+      margin-left: auto;
+      margin-right: auto;*/
+  
+    text-align: justify;
+
+}
+
+
+
+
+
+#footer {
+			text-align: center;
+}
