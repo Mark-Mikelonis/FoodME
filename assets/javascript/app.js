@@ -1,69 +1,49 @@
-// This example requires the Places library. Include the libraries=places
-// parameter when you first load the API. For example:
-// <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&libraries=places">
+
+var restQuery = "https://maps.googleapis.com/maps/api/js?key=AIzaSyAC1wTUBSAAKhd2TdMwN0HEQ-Ni7T9fSy4&libraries=places&callback=initMap"
 
 var map;
+      var infowindow;
 
-function initMap() {
-  var pyrmont = {lat: -33.866, lng: 151.196};
-  console.log("pyrmont: " + pyrmont);
-  map = new google.maps.Map(document.getElementById('map'), {
-    center: pyrmont,
-    zoom: 17
-  });
-  console.log("map: " + map);
-}
-  var service = new google.maps.places.PlacesService(map);
-  service.nearbySearch({
-    location: pyrmont,
-    radius: 500,
-    type: ['store']
-  }, processResults);
-// $(window).load(initMap());
-// $("#map").html(map);
+      function initMap() {
+        var westOak = {lat: 37.811360, lng:  -122.282826};
 
-// function processResults(results, status, pagination) {
-//   if (status !== google.maps.places.PlacesServiceStatus.OK) {
-//     return;
-//   } else {
-//     createMarkers(results);
+        map = new google.maps.Map(document.getElementById('map'), {
+          center: westOak,
+          zoom: 15
+        });
 
-//     if (pagination.hasNextPage) {
-//       var moreButton = document.getElementById('more');
+        infowindow = new google.maps.InfoWindow();
+        var service = new google.maps.places.PlacesService(map);
+        service.nearbySearch({
+          location: westOak,
+          radius: 1500,
+          type: ['restaurant']
+        }, callback);
+      }
 
-//       moreButton.disabled = false;
+      function callback(results, status) {
+        if (status === google.maps.places.PlacesServiceStatus.OK) {
+          for (var i = 0; i < results.length; i++) {
+            createMarker(results[i]);
+          }
+        }
+      }
 
-//       moreButton.addEventListener('click', function() {
-//         moreButton.disabled = true;
-//         pagination.nextPage();
-//       });
-//     }
-//   }
-// }
+      function createMarker(place) {
+      	console.log(place);
+        var placeLoc = place.geometry.location;
+        var marker = new google.maps.Marker({
+          map: map,
+          placeId: place.place_id,
+          position: place.geometry.location
+          
+        });
 
-// function createMarkers(places) {
-//   var bounds = new google.maps.LatLngBounds();
-//   var placesList = document.getElementById('places');
-
-//   for (var i = 0, place; place = places[i]; i++) {
-//     var image = {
-//       url: place.icon,
-//       size: new google.maps.Size(71, 71),
-//       origin: new google.maps.Point(0, 0),
-//       anchor: new google.maps.Point(17, 34),
-//       scaledSize: new google.maps.Size(25, 25)
-//     };
-
-//     var marker = new google.maps.Marker({
-//       map: map,
-//       icon: image,
-//       title: place.name,
-//       position: place.geometry.location
-//     });
-
-//     placesList.innerHTML += '<li>' + place.name + '</li>';
-
-//     bounds.extend(place.geometry.location);
-//   }
-//   map.fitBounds(bounds);
-// }
+        google.maps.event.addListener(marker, 'click', function() {
+          infowindow.setContent(place.name);
+          console.log(place.place_id); 
+          console.log(place.name);
+          infowindow.open(map, this);
+          
+        });
+      }
