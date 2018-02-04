@@ -39,6 +39,8 @@ $("#makeit-img").on("click", function(){
 
 $(document).on("click", ".search-display", function(){
 
+	$("#search-results").empty();
+
 	var recipeId = $(this).attr("data-recipe-id");
 	var getUrl = "http://food2fork.com/api/get?key=" + apiKey + "&rId=" + recipeId;
 
@@ -55,6 +57,12 @@ $(document).on("click", ".search-display", function(){
 		newDiv.html('<img src="' + responseObject.recipe.image_url + '"><br><p>Title:<span class="response-text">' 
 	  		+ responseObject.recipe.title +'</span></p><br><br><p>URL: <span class="response-text">'
 	  		+ responseObject.recipe.source_url +'</span></p><br></div></div></div>');
+
+		responseObject.recipe.ingredients.forEach(function(ingredient){
+			var newItem = $("<p>");
+			newItem.text(ingredient); 
+			newDiv.append(newItem);
+		});
 
 	 	$("#search-results").append(newDiv);
 	});
