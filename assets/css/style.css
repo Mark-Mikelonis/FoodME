@@ -107,10 +107,7 @@
 }
 
 
-.imageHolder{
-      text-align: center;
 
-}
 
 
 #box {
@@ -120,8 +117,7 @@
 .image {
   width: 100px;
       height: 100px;
-      margin-left: 50px;
-      margin-right: 50px;
+   
   
 
 }
@@ -144,6 +140,9 @@
   background-color:red;
 }
 
+ .img1:hover {
+        background: url("../images/makeit_btn2.png") no-repeat;
+    }
 
 #footer {
 			text-align: center;

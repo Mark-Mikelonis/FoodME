@@ -23,7 +23,7 @@
 <div class="container">
 
 <!-- login button -->
-    <button class="btn btn-Danger" id="login" data-toggle="modal" data-target="#login-modal" >Login</button>
+    <button class="btn btn-Danger" id="login" data-toggle="modal" data-target="#login-modal">Login</button>
 
   
 	    <div class="roll">
@@ -34,21 +34,22 @@
      
             </div>
         </div>
-
+<!-- The search bar -->
  	    <div class="roll">
-            <div class="col-md-8 col-md-offset-2">
- 	             
+ 	        <div class="col-md-8 col-md-offset-2">     
                 <div class="form-group" >              
-                    <input type="text" name="searchEngine" size="90" id="searchTerm" class="form-control" placeholder="I have a craving for: "/> </div> <br>
-
-                        <div class="imageHolder">
-                            <img id="makeit-img"  class="image" src="assets/images/makeit-btn.png" data-toggle="modal" data-target="#exampleModalCenter" alt="makeit">
-                            <img id="findit-img" class="image" src="assets/images/findit-btn.png" alt="findit">
-                            <img id="deliverit-img"  class="image" src="assets/images/deliverit-btn.png" alt="deliverit">
-                        </div>
+                    <input type="text" name="searchEngine" size="90" id="searchTerm" class="form-control" placeholder="I have a craving for: "/> </div> 
             </div>
         </div>
 
+
+<!-- Three image buttons -->
+        <div class="roll">
+                <div class="col-sm-3 col-sm-offset-2"> <img id="makeit-img"  class="image" src="assets/images/makeit-btn.png" alt="makeit"></div>
+                <div class="col-sm-3"> <img id="findit-img" class="image" src="assets/images/findit-btn.png" data-toggle="modal" data-target="#contact" alt="findit"> </div>
+                <div class="col-sm-3"> <img id="deliverit-img"  class="image" src="assets/images/deliverit-btn.png" data-toggle="modal" data-target="#contact" alt="deliverit"></div>
+            </div>
+   
 
 <!-- To display the results. -->
 	    <div class="roll">
@@ -118,6 +119,80 @@
             </div>
     </div>
     
+<!-- Address modal  -->
+    <div class="modal fade" id="contact" tabindex="-1" role="dialog" aria-labelledby="contactLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="panel panel-primary">
+                    <div class="panel-heading">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                        <h4 class="panel-title" id="contactLabel"><span class="glyphicon glyphicon-info-sign"></span> Please input your address. </h4>
+                    </div>
+                    <form action="#" method="post" accept-charset="utf-8">
+                    <div class="modal-body" style="padding: 10px;">
+                        
+        
+
+         <!-- Text input-->
+            <div class="form-group">
+            <label class="col-sm-2 control-label" for="textinput">Line 1</label>
+            <div class="col-sm-10">
+            <input type="text" placeholder="Address Line 1" class="form-control">
+            </div>
+            </div>
+ 
+            <div class="form-group">
+             <label class="col-sm-2 control-label" for="textinput">Line 2</label>
+             <div class="col-sm-10">
+              <input type="text" placeholder="Address Line 2" class="form-control">
+             </div>
+            </div>
+                        
+            <div class="form-group">
+             <label class="col-sm-2 control-label" for="textinput">City</label>
+             <div class="col-sm-10">
+              <input type="text" placeholder="City" class="form-control">
+             </div>
+            </div>
+
+            <div class="form-group">
+            <label class="col-sm-2 control-label" for="textinput">State</label>
+            <div class="col-sm-4">
+              <input type="text" placeholder="State" class="form-control">
+            </div>
+            </div>
+
+            <div class="form-group">
+            <label class="col-sm-2 control-label" for="textinput">Postcode</label>
+            <div class="col-sm-4">
+              <input type="text" placeholder="Post Code" class="form-control">
+            </div>
+            </div>
+
+            <div class="form-group">
+            <label class="col-sm-2 control-label" for="textinput">Country</label>
+            <div class="col-sm-10">
+              <input type="text" placeholder="Country" class="form-control">
+            </div>
+            </div> 
+                        
+                        <div class="panel-footer" style="margin-bottom:-14px;">
+                            <input type="submit" class="btn btn-success" value="Send"/>
+                                <!--<span class="glyphicon glyphicon-ok"></span>-->
+                            <input type="reset" class="btn btn-danger" value="Clear" />
+                                <!--<span class="glyphicon glyphicon-remove"></span>-->
+                            <button style="float: right;" type="button" class="btn btn-default btn-close" data-dismiss="modal">Close</button>
+                        </div>
+
+                    </div>
+                    
+
+                </form>
+            </div>
+                </div>
+            </div>
+
+
+
 </div>
 
 
@@ -127,14 +202,13 @@
 	<p>&copy Copyright -  2018<p>
 </div>
 
-	<!-- Javascripts -->
-	<script src="assets/javascript/game.js"></script>
+
     <!-- jQuery CDN -->
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <!-- Bootstrap CDN -->
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
     <!-- Firebase -->
     <script src="https://www.gstatic.com/firebasejs/3.6.0/firebase.js"></script>
+    <!-- Javascripts -->
+    <script src="assets/javascript/game.js"></script>
 
 </body>
 </html>
