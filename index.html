@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 
 <html lang="en-us">
-<html>
 
 <head>
 	<meta charset="UTF-8">
@@ -23,7 +22,7 @@
 
 <div class="container">
 
-    <div><button class="btn btn-primary" id="login" data-toggle="modal" data-target="#login-modal“ >Login</div>
+   <div> <button class="btn btn-primary" id="login" data-toggle="modal" data-target="#login-modal" >Login</button></div>
 
   
 	    <div class="roll">
@@ -32,89 +31,22 @@
              <a href="https://github.com/ouyangtt"> 
              <img id="logo" class="logo" src="assets/images/logo.png" alt="logo"> </a>
      
-             </div>
+            </div>
         </div>
 
  	    <div class="roll">
             <div class="col-md-8 col-md-offset-2">
- 	            
+ 	             
+                <div class="form-group" >              
+                    <input type="text" name="searchEngine" size="90" id="searchTerm" class="form-control" placeholder="I have a craving for: "/> </div> <br>
 
-
-    <div class="form-group" >              
-        <input type="text" name="searchEngine" size="90" id="searchTerm" class="form-control" placeholder="I have a craving for: "/> </div> <br>
-
-        <div class="imageHolder">
- 
-        <img id="makeit-img"  class="image" src="assets/images/makeit-btn.png" data-toggle="modal" data-target="#exampleModalCenter" alt="makeit">
-
-  <!-- Modal -->
-<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        ...
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
-      </div>
-    </div>
-  </div>
-</div>
-  <img id="findit-img" class="image" src="assets/images/findit-btn.png" alt="findit">
-  <img id="deliverit-img"  class="image" src="assets/images/deliverit-btn.png" alt="deliverit">
-
-</div>
-<!-- <input type = "submit" value ="Make It!" class = "icon" size = "30"/> &nbsp <input type = "submit" value ="Find It!" class = "icon" size = "30"/> &nbsp <input type = "submit" value ="Deliver It!" class = "icon" size = "30"/>
- -->
-
-
-
-	           
+                        <div class="imageHolder">
+                            <img id="makeit-img"  class="image" src="assets/images/makeit-btn.png" data-toggle="modal" data-target="#exampleModalCenter" alt="makeit">
+                            <img id="findit-img" class="image" src="assets/images/findit-btn.png" alt="findit">
+                            <img id="deliverit-img"  class="image" src="assets/images/deliverit-btn.png" alt="deliverit">
+                        </div>
             </div>
         </div>
-
-        <div class="roll">
-            <div class="col-md-8 col-md-offset-2">
-
-          <!-- 
-            <form action="http://www.google.com/search" method="get">
-                <input type="text" name="q"/>	
-                <button type="button" class="btn btn-success" data-name="recipe">  <span class="glyphicon glyphicon-search" aria-hidden="true"></span> Make It!<img src="assets/images/git.png"/></button>
-                <button type="button" class="btn btn-success" data-name="restaurant">  <span class="glyphicon glyphicon-search" aria-hidden="true"></span> Reserve It!<img src="assets/images/git.png"/></button>
-                <button type="button" class="btn btn-success" data-name="deliver">  <span class="glyphicon glyphicon-search" aria-hidden="true"></span> Deliver It!<img src="assets/images/git.png"/></button>
- -->
-
-
-<!-- <form action="http://www.google.com/search" method="get">
-    <input type="text" name="q"/>
-    <input type="submit" value="search" />
-</form> -->
-
-<!-- <form action="http://www.google.com/search" method="get">
-    <input type="text" name="q"/>
-
-<button type="submit" name="sb" value="Make It!">
-<button type="submit" name="sb" value="Reserve It!">
-<button type="submit" name="sb" value="Deliver It!"> -->
-
-</div>
-</div>
-
-<!--    <div id="button"><img src="assets/images/git.png"/></div>
-   <div id="button"><img src="assets/images/link.png"/></div>
-   <div id="button"><img src="assets/images/stack.png"/></div> -->
-
-
-
-	
-
 
 
 <!-- To display the results. -->
@@ -130,43 +62,68 @@
         <p>Nullam imperdiet vehicula dolor eu consectetur. Vestibulum pulvinar lobortis accumsan. Phasellus lobortis pulvinar augue, eu ultrices dui. Donec ut est erat. In facilisis tellus nibh, eu consequat diam commodo a. Nam egestas sapien nunc, ullamcorper
         semper odio feugiat non. Duis et nisl leo. Aliquam consectetur vestibulum turpis. Vivamus non elit ut lorem mattis iaculis. Suspendisse ullamcorper ante orci, et condimentum nisi pharetra id. Praesent ut erat in eros mollis interdum quis ut nisi.
         Etiam ac risus in erat imperdiet sagittis eu sed metus. Etiam molestie ipsum sed vehicula efficitur. Cras eu metus in ex vehicula sodales.</p>
-						</tbody>
-					</table>
-				</div>
-			</div>
-
-
-                 </div>
+						    </tbody>
+					    </table>
+				    </div>
+			        </div>
+                </div>
             </div>
-         </div>
+        </div>
 
 
 
-</div>
-<br>
 
 
 
-<div class="modal fade" id="login-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
-          <div class="modal-dialog">
+<!-- Modals -->
+<!-- regular Modal -->
+    <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                </div>
+            <div class="modal-body">
+        ...
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Save changes</button>
+            </div>
+            </div>
+        </div>
+    </div>
+
+
+<!-- Login Modal -->
+    <div class="modal fade" id="login-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+            <div class="modal-dialog">
                 <div class="loginmodal-container">
                     <h1>Login to Your Account</h1><br>
-                  <form>
+                    <form>
                     <input type="text" name="user" placeholder="Username">
                     <input type="password" name="pass" placeholder="Password">
                     <input type="submit" name="login" class="login loginmodal-submit" value="Login">
-                  </form>
+                    </form>
                     
                   <div class="login-help">
                     <a href="#">Register</a> - <a href="#">Forgot Password</a>
                   </div>
                 </div>
             </div>
-          </div>
+    </div>
+    
+</div>
+
+
+
 
 <div id="footer">
-			<p>&copy Copyright -  2018<p>
-	</div>
+	<p>&copy Copyright -  2018<p>
+</div>
 
 	<!-- Javascripts -->
 	<script src="assets/javascript/game.js"></script>
