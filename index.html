@@ -43,7 +43,8 @@
 
         <div class="imageHolder">
  
-        <img id="makeit-img"  class="image" src="assets/images/makeit-btn.png" data-toggle="modal" data-target="#exampleModalCenter" alt="makeit">
+        <!-- <img id="makeit-img"  class="image" src="assets/images/makeit-btn.png" data-toggle="modal" data-target="#exampleModalCenter" alt="makeit"> -->
+        <img id="makeit-img"  class="image" src="assets/images/makeit-btn.png" alt="makeit">
 
   <!-- Modal -->
 <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
@@ -55,7 +56,7 @@
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
-      <div class="modal-body">
+      <div class="modal-body" id="search-results">
         ...
       </div>
       <div class="modal-footer">
@@ -120,25 +121,18 @@
             <div class="col-md-8 col-md-offset-2">
                 <div class="display">
                 	<div class="panel panel-default">
-                    <div class="panel-heading" id="header-one">Display</div>
-                    <div class="panel-body" id="display-table">
-                        <table class="table">
-                        	<tbody id="table-body">
-                            
-        <p>Nullam imperdiet vehicula dolor eu consectetur. Vestibulum pulvinar lobortis accumsan. Phasellus lobortis pulvinar augue, eu ultrices dui. Donec ut est erat. In facilisis tellus nibh, eu consequat diam commodo a. Nam egestas sapien nunc, ullamcorper
-        semper odio feugiat non. Duis et nisl leo. Aliquam consectetur vestibulum turpis. Vivamus non elit ut lorem mattis iaculis. Suspendisse ullamcorper ante orci, et condimentum nisi pharetra id. Praesent ut erat in eros mollis interdum quis ut nisi.
-        Etiam ac risus in erat imperdiet sagittis eu sed metus. Etiam molestie ipsum sed vehicula efficitur. Cras eu metus in ex vehicula sodales.</p>
-						</tbody>
-					</table>
-				</div>
-			</div>
+	                    <div class="panel-heading" id="header-one">Display</div>
+	                    <div class="panel-body" id="display-table">
+	                        <table class="table">
+	                        	<tbody id="table-body">
 
-
-                 </div>
+								</tbody>
+							</table>
+						</div>
+					</div>
+                </div>
             </div>
-         </div>
-
-
+        </div>
 
 </div>
 <br>
@@ -146,14 +140,14 @@
 			<p>&copy Copyright -  2018<p>
 	</div>
 
-	<!-- Javascripts -->
-	<script src="assets/javascript/game.js"></script>
     <!-- jQuery CDN -->
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <!-- Bootstrap CDN -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
     <!-- Firebase -->
     <script src="https://www.gstatic.com/firebasejs/3.6.0/firebase.js"></script>
+    <!-- Javascripts -->
+	<script src="assets/javascript/app.js"></script>
 
 </body>
 </html>
