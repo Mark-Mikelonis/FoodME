@@ -21,7 +21,7 @@ $("#make-it-submit-button").on("click", function(){
 	$("#table-body").empty();
 	
 	var query = $("#make-it-query").val(); 
-	var searchUrl = "http://food2fork.com/api/search?key=" + apiKey + "&q=" + query;
+	var searchUrl = "http://food2fork.com/api/search?key=" + recipeApiKey + "&q=" + query;
 
 	$.ajax({
       url: "https://cors-anywhere.herokuapp.com/" + searchUrl,
@@ -98,7 +98,7 @@ $(document).on("click", ".recipe-display", function(){
 	$("#search-results").empty();
 
 	var recipeId = $(this).attr("data-recipe-id");
-	var getUrl = "http://food2fork.com/api/get?key=" + apiKey + "&rId=" + recipeId;
+	var getUrl = "http://food2fork.com/api/get?key=" + recipeApiKey + "&rId=" + recipeId;
 
 	$.ajax({
       url: "https://cors-anywhere.herokuapp.com/" + getUrl,
@@ -126,7 +126,6 @@ $(document).on("click", ".recipe-display", function(){
 	});
 
 });
-
 
 
 ////Switches one display from another.
