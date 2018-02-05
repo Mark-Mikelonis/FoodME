@@ -1,5 +1,118 @@
 @import url(http://fonts.googleapis.com/css?family=Roboto);
 
+#logo {
+	    width: 300px;
+      height: 300px;
+      display: block;
+      margin-left: auto;
+      margin-right: auto;
+      margin-top:100px;
+}
+
+
+#box {
+    text-align: center;
+
+}
+
+.image {
+  width: 100px;
+      height: 100px;
+   
+  
+
+}
+.display {
+	  margin-top: 50px;
+
+}
+
+.icon {
+    text-align: justify;
+}
+
+#login {
+  float:right;
+  margin-top: 40px;
+  color:white;
+}
+
+.btn {
+  background-color:red;
+}
+
+
+
+#footer {
+			text-align: center;
+    }
+
+@media only screen and (max-width: 768px) {
+  
+  .roll {
+    max-width: 100%;
+  }
+
+  main {
+    overflow: auto;
+  }
+
+  .images {
+    /* Box-model */
+    width: 50%;
+
+    /* Positioning */
+    margin-bottom: 10px;
+  }
+
+
+
+ 
+
+}
+
+@media only screen and (max-width: 640px) {
+  #head-tab {
+
+    position: static;
+    margin-bottom: 20px;
+  }
+
+  header .container {
+    padding: 0;
+  }
+
+  main.container {
+    padding-top: 0;
+  }
+
+  #name,
+  .images,
+  .bio-image {
+    width: 100%;
+  }
+
+  nav {
+
+    width: 100%;
+
+    margin: 15px 0;
+
+    text-align: center;
+  }
+
+  nav a {
+  
+    width: 30%;
+    padding-left: 0;
+
+    margin-left: 0;
+  }
+}
+
+
+
+
 /****** LOGIN MODAL ******/
 .loginmodal-container {
   padding: 30px;
@@ -94,56 +207,3 @@
 .login-help{
   font-size: 12px;
 }
-
-
-
-#logo {
-	    width: 300px;
-      height: 300px;
-      display: block;
-      margin-left: auto;
-      margin-right: auto;
-      margin-top:100px;
-}
-
-
-
-
-
-#box {
-        text-align: center;
-
-}
-.image {
-  width: 100px;
-      height: 100px;
-   
-  
-
-}
-.display {
-	  margin-top: 50px;
-
-}
-
-.icon {
-    text-align: justify;
-}
-
-#login {
-  float:right;
-  margin-top: 40px;
-  color:white;
-}
-
-.btn {
-  background-color:red;
-}
-
- .img1:hover {
-        background: url("../images/makeit_btn2.png") no-repeat;
-    }
-
-#footer {
-			text-align: center;
-    }
