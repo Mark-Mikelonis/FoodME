@@ -37,8 +37,8 @@ $("#make-it-submit-button").on("click", function(){
 		      	else{
 					var newRow = $("<tr>");
 					var newDiv = $("<div>");
-					newDiv.attr("data-recipe-id", responseObject.recipes[i].recipe_id);
-					newDiv.html('<div class="card"><div class="card-body"><div class="search-display" data-toggle="modal" data-target="#exampleModalCenter" data-recipe-id="' + 
+					//newDiv.attr("data-recipe-id", responseObject.recipes[i].recipe_id);
+					newDiv.html('<div class="card"><div class="card-body"><div class="recipe-display" data-toggle="modal" data-target="#exampleModalCenter" data-recipe-id="' + 
 				  		responseObject.recipes[i].recipe_id + '"><img src="' + responseObject.recipes[i].image_url + '"><br><p>Title:<span class="response-text">' 
 				  		+ responseObject.recipes[i].title +'</span></p><br><br><p>URL: <span class="response-text">'
 				  		+ responseObject.recipes[i].source_url +'</span></p><br></div></div></div>');
@@ -68,13 +68,32 @@ $("#deliver-it-submit-button").on("click", function(){
       url: url,
       method: "GET" 
 	}).done(function(response) {
-	     
-	    console.log(response);
-		console.log(response.address.city);
+
+		console.log(response);
+
+		if (response.restaurants.length > 0) {
+	       for(var i = 0; i < response.restaurants.length; i++){
+		      	if (i >= 10){break;}
+		      	else{
+					var newRow = $("<tr>");
+					var newDiv = $("<div>");
+					//newDiv.attr("data-recipe-id", response.restaurants.recipe_id);
+					newDiv.html('<div class="card"><div class="card-body"><div class="delivery-display" data-toggle="modal" data-target="#exampleModalCenter"><img src="' 
+						+ response.restaurants[i].logoUrl + '"><br><p>Name:<span class="response-text">' 
+				  		+ response.restaurants[i].name +'</span></p><br><br><p>URL: <span class="response-text">'
+				  		+ response.restaurants[i].url+'</span></p><br></div></div></div>');
+				 	newRow.append(newDiv);
+				 	$("#table-body").append(newRow);
+				}
+		    } 
+		}
+		else{
+
+		}
 	});
 });
 
-$(document).on("click", ".search-display", function(){
+$(document).on("click", ".recipe-display", function(){
 
 	$("#search-results").empty();
 
@@ -107,6 +126,8 @@ $(document).on("click", ".search-display", function(){
 	});
 
 });
+
+
 
 ////Switches one display from another.
 /// If the question area is displayed, hide it and make result area displayed. (And Vice-Versa).
