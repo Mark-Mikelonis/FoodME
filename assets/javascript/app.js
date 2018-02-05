@@ -24,6 +24,7 @@ var geoAllowed = false;
       }
       function success(position){
         console.log("in success");
+        debugger;
       	currLoc = {lat:position.coords.latitude, lng: position.coords.longitude};
         // console.log(currLoc);
         initMap();
@@ -49,7 +50,7 @@ function initMap() {
     //     zoom: 15
     // });
     //infowindow = new google.maps.InfoWindow();
-    var service = new google.maps.places.PlacesService($("#map").get(0));
+    var service = new google.maps.places.PlacesService($("#table-body").get(0));
     service.nearbySearch({
         location: currLoc,
         radius: 3000,
@@ -59,7 +60,7 @@ function initMap() {
 }
 
 function getDetails() {
-    var service = new google.maps.places.PlacesService($("#map").get(0));
+    var service = new google.maps.places.PlacesService($("#table-body").get(0));
     service.getDetails({
         placeId: placeId
     }, function(place, status) {
@@ -89,7 +90,7 @@ function createPlaceList(place) {
         place.reviews.length + 
                 " reviews)<br>Price range: " + place.price_level + "<br>" + place.adr_address + "<br> Phone: " + place.formatted_phone_number + "<br><a href=" + 
                                     place.url + " target='_blank'>Open in Google Maps</a>") 
-    $("#map").append(newDiv);
+    $("#table-body").append(newDiv);
     // var placeLoc = place.geometry.location;
     // var marker = new google.maps.Marker({
     //     map: map,
@@ -108,6 +109,29 @@ function createPlaceList(place) {
     });
 
 }
+
+$("#makeit-img").mouseover( function(){
+   $(this).attr("src", "assets/images/make2.png");
+});
+$("#makeit-img").mouseout( function(){
+   $(this).attr("src", "assets/images/make.png");
+});
+
+$("#findit-img").mouseover( function(){
+   $(this).attr("src", "assets/images/find2.png");
+});
+$("#findit-img").mouseout( function(){
+   $(this).attr("src", "assets/images/find.png");
+});
+
+$("#deliverit-img").mouseover( function(){
+   $(this).attr("src", "assets/images/deliver2.png");
+});
+$("#deliverit-img").mouseout( function(){
+   $(this).attr("src", "assets/images/deliver.png");
+});
+
+
 // function getReservation(){
 //     $.ajax({
 //         url: opentableQuery,
