@@ -44,12 +44,12 @@ function initMap() {
     //     lat: 37.811360,
     //     lng: -122.282826
     // };
-    map = new google.maps.Map(document.getElementById('map'), {
-        center: currLoc,
-        zoom: 15
-    });
-    infowindow = new google.maps.InfoWindow();
-    var service = new google.maps.places.PlacesService(map);
+    // map = new google.maps.Map(document.getElementById('map'), {
+    //     center: currLoc,
+    //     zoom: 15
+    // });
+    //infowindow = new google.maps.InfoWindow();
+    var service = new google.maps.places.PlacesService($("#map").get(0));
     service.nearbySearch({
         location: currLoc,
         radius: 3000,
@@ -77,21 +77,28 @@ function getDetails() {
 function callback(results, status) {
     if (status === google.maps.places.PlacesServiceStatus.OK) {
         for (var i = 0; i < results.length; i++) {
-            createMarker(results[i]);
+            createPlaceList(results[i]);
+            console.log(results[i]);
         }
     }
 }
 
-function createMarker(place) {
+function createPlaceList(place) {
     console.log(place);
-    var placeLoc = place.geometry.location;
-    var marker = new google.maps.Marker({
-        map: map,
-        placeId: place.place_id,
-        position: place.geometry.location
-    });
+    var newDiv = $("<div>");
+    newDiv.append(place.name + "<br>" + "Rating: " + place.rating + "(" + 
+        // place.reviews.length + 
+                " reviews)<br>Price range: " + place.price_level + "<br>" + place.adr_address + "<br> Phone: " + place.formatted_phone_number + "<br><a href=" + 
+                                    place.url + " target='_blank'>Open in Google Maps</a>") 
+    $("#map").append(newDiv);
+    // var placeLoc = place.geometry.location;
+    // var marker = new google.maps.Marker({
+    //     map: map,
+    //     placeId: place.place_id,
+    //     position: place.geometry.location
+    // });
     
-    google.maps.event.addListener(marker, 'click', function() {
+    google.maps.event.addListener(newDiv, 'click', function() {
         infowindow.setContent(place.name);
         // getGeo();
         console.log(place.place_id);
