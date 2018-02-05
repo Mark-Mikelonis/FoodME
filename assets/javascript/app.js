@@ -1,6 +1,6 @@
 var restQuery = "https://maps.googleapis.com/maps/api/js?key=AIzaSyAC1wTUBSAAKhd2TdMwN0HEQ-Ni7T9fSy4&libraries=places&callback=initMap";
 var detailQuery = "https://maps.googleapis.com/maps/api/place/details/json?" + "key=AIzaSyAC1wTUBSAAKhd2TdMwN0HEQ-Ni7T9fSy4&libraries=places&placeid=" + placeId;
-var opentableQuery  ="https://opentable.herokuapp.com/api/restaurants/json?&id=107257";
+var opentableQuery  ="https://opentable.herokuapp.com/api/restaurants?name=";
 var placeId;
 
 var searchTerm;
@@ -51,7 +51,8 @@ function getDetails() {
         placeId: placeId
     }, function(place, status) {
         if (status === google.maps.places.PlacesServiceStatus.OK) {
-            // console.log("in getDetails");
+            console.log("in getDetails");
+            console.log(place);
             createPlaceList(place);
         }
     });
@@ -74,14 +75,25 @@ function createPlaceList(place) {
     if (place.price_level){
         dollarSigns = priceLevel.repeat(place.price_level);
     } 
-    
+    var restName = place.name;
+    var reserveUrl = getReservation(restName);
+    console.log(reserveUrl);
     var newDiv = $("<div>");
     var newImg = $("<img>");
-    newImg.attr("src", )
-    newDiv.append("<h4>"+ place.name + "</h4>" + "Rating: " + place.rating + " (" + 
+    if (reserveUrl){
+        console.log("in reserveUrl");
+        newDiv.append("<h4>"+ place.name + "</h4>" + "Rating: " + place.rating + " (" + 
         place.reviews.length + 
                 " reviews)<br>Price range: " + dollarSigns + "<br>" + place.adr_address + "<br> Phone: " + place.formatted_phone_number + "<br><a href=" + 
-                                    place.url + " target='_blank'>Open in Google Places</a><hr>") 
+                                    place.url + " target='_blank'>Open in Google Places</a><br><a href="+reserveUrl+">Reserve a Table</a><hr>"); 
+    } else {
+        console.log("in no reserveUrl");
+        newDiv.append("<h4>"+ place.name + "</h4>" + "Rating: " + place.rating + " (" + 
+        place.reviews.length + 
+                " reviews)<br>Price range: " + dollarSigns + "<br>" + place.adr_address + "<br> Phone: " + place.formatted_phone_number + "<br><a href=" + 
+                                    place.url + " target='_blank'>Open in Google Places</a><hr>"); 
+    }    // newImg.attr("src", );
+    
     $("#table-body").append(newDiv);
    
 
@@ -123,17 +135,24 @@ $("#findit-img").on("click", function(){
     
 });
 
-// function getReservation(){
-//     $.ajax({
-//         url: opentableQuery,
-//         method: "GET"
-//     }).done(function(response){
-//         response = JSON.parse(response);
-//         console.log("in getReservation");
-//         console.log(response);
-//     }); 
-
-// getReservation();
+function getReservation(name){
+    name = name.replace(" ", "+");
+    $.ajax({
+        url: opentableQuery + name,
+        method: "GET"
+    }).done(function(response){
+        // response = JSON.parse(response);
+        console.log("in getReservation");
+        console.log(response);
+        if (!response.restaurants.reserve_url){
+            return null;
+        } else {
+            return response.restaurants.reserve_url;
+        }
+        
+    }); 
+}
+// getReservation("Strega Bistro");
 
 // var apiKey = "67804766f0ca2e3a";
 //  var url = 'https://api.eatstreet.com/publicapi/v1/restaurant/search?method=delivery&search=chinese&street-address=94607&access-token=' + apiKey;
