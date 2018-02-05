@@ -25,7 +25,7 @@ var geoAllowed = false;
       function success(position){
         console.log("in success");
       	currLoc = {lat:position.coords.latitude, lng: position.coords.longitude};
-        console.log(currLoc);
+        // console.log(currLoc);
         initMap();
       }
       function error(errorObj){
@@ -53,23 +53,19 @@ function initMap() {
     service.nearbySearch({
         location: currLoc,
         radius: 3000,
-        type: ['restaurant']//,
-        // keyword: 'thai food'
+        type: ['restaurant'],
+        keyword: 'sushi'
     }, callback);
 }
 
 function getDetails() {
-    var service = new google.maps.places.PlacesService(map);
+    var service = new google.maps.places.PlacesService($("#map").get(0));
     service.getDetails({
         placeId: placeId
     }, function(place, status) {
         if (status === google.maps.places.PlacesServiceStatus.OK) {
             console.log("in getDetails");
-            console.log(place);
-            infowindow.setContent(infowindow.getContent() + "<br>" + "Rating: " + place.rating + "(" + place.reviews.length + 
-                " reviews)<br>Price range: " + place.price_level + "<br>" + place.adr_address + "<br> Phone: " + place.formatted_phone_number + "<br><a href=" + 
-                                    place.url + " target='_blank'>Open in Google Maps</a>");
-            infowindow.open(map, this);
+            createPlaceList(place);
         }
     });
 }
@@ -77,7 +73,8 @@ function getDetails() {
 function callback(results, status) {
     if (status === google.maps.places.PlacesServiceStatus.OK) {
         for (var i = 0; i < results.length; i++) {
-            createPlaceList(results[i]);
+            placeId = results[i].place_id;
+            getDetails();
             console.log(results[i]);
         }
     }
@@ -86,8 +83,10 @@ function callback(results, status) {
 function createPlaceList(place) {
     console.log(place);
     var newDiv = $("<div>");
-    newDiv.append(place.name + "<br>" + "Rating: " + place.rating + "(" + 
-        // place.reviews.length + 
+    var newImg = $("<img>");
+    newImg.attr("src", )
+    newDiv.append("<h4>"+ place.name + "</h4>" + "Rating: " + place.rating + " (" + 
+        place.reviews.length + 
                 " reviews)<br>Price range: " + place.price_level + "<br>" + place.adr_address + "<br> Phone: " + place.formatted_phone_number + "<br><a href=" + 
                                     place.url + " target='_blank'>Open in Google Maps</a>") 
     $("#map").append(newDiv);
