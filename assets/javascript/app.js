@@ -2,16 +2,11 @@ var restQuery = "https://maps.googleapis.com/maps/api/js?key=AIzaSyAC1wTUBSAAKhd
 var detailQuery = "https://maps.googleapis.com/maps/api/place/details/json?" + "key=AIzaSyAC1wTUBSAAKhd2TdMwN0HEQ-Ni7T9fSy4&libraries=places&placeid=" + placeId;
 var opentableQuery  ="https://opentable.herokuapp.com/api/restaurants/json?&id=107257";
 var placeId;
-var map;
-var infowindow;
+
 var searchTerm;
 var currLoc;
 var geoAllowed = false;
 
-
-// navigator.geolocation.getCurrentPosition(function(position) {
-//   do_something(position.coords.latitude, position.coords.longitude);
-// });
 
  function getGeo(){
  	<!-- getting the user location -->
@@ -41,16 +36,6 @@ var geoAllowed = false;
 function initMap() {
 
 
-     
-    // var westOak = {
-    //     lat: 37.811360,
-    //     lng: -122.282826
-    // };
-    // map = new google.maps.Map(document.getElementById('map'), {
-    //     center: currLoc,
-    //     zoom: 15
-    // });
-    //infowindow = new google.maps.InfoWindow();
     var service = new google.maps.places.PlacesService($("#table-body").get(0));
     service.nearbySearch({
         location: currLoc,
@@ -66,7 +51,7 @@ function getDetails() {
         placeId: placeId
     }, function(place, status) {
         if (status === google.maps.places.PlacesServiceStatus.OK) {
-            console.log("in getDetails");
+            // console.log("in getDetails");
             createPlaceList(place);
         }
     });
@@ -77,20 +62,26 @@ function callback(results, status) {
         for (var i = 0; i < results.length; i++) {
             placeId = results[i].place_id;
             getDetails();
-            console.log(results[i]);
+            // console.log(results[i]);
         }
     }
 }
 
 function createPlaceList(place) {
-    console.log(place);
+    // console.log(place);
+    var priceLevel = "$";
+    var dollarSigns = "Unknown";
+    if (place.price_level){
+        dollarSigns = priceLevel.repeat(place.price_level);
+    } 
+    
     var newDiv = $("<div>");
     var newImg = $("<img>");
     newImg.attr("src", )
     newDiv.append("<h4>"+ place.name + "</h4>" + "Rating: " + place.rating + " (" + 
         place.reviews.length + 
-                " reviews)<br>Price range: " + place.price_level + "<br>" + place.adr_address + "<br> Phone: " + place.formatted_phone_number + "<br><a href=" + 
-                                    place.url + " target='_blank'>Open in Google Maps</a>") 
+                " reviews)<br>Price range: " + dollarSigns + "<br>" + place.adr_address + "<br> Phone: " + place.formatted_phone_number + "<br><a href=" + 
+                                    place.url + " target='_blank'>Open in Google Places</a><hr>") 
     $("#table-body").append(newDiv);
    
 
@@ -125,7 +116,10 @@ $("#findit-img").on("click", function(){
     }
     console.log(searchTerm);
     
-    setTimeout(initMap(), 3000);
+    setTimeout(function() {
+         initMap();
+    }, 3000);
+    $("#header-one").text("NOTE: These results are not formatted yet")
     
 });
 
