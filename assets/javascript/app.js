@@ -1,8 +1,10 @@
 var restQuery = "https://maps.googleapis.com/maps/api/js?key=AIzaSyAC1wTUBSAAKhd2TdMwN0HEQ-Ni7T9fSy4&libraries=places&callback=initMap";
 var detailQuery = "https://maps.googleapis.com/maps/api/place/details/json?" + "key=AIzaSyAC1wTUBSAAKhd2TdMwN0HEQ-Ni7T9fSy4&libraries=places&placeid=" + placeId;
 var opentableQuery  ="https://opentable.herokuapp.com/api/restaurants?name=";
+var grubHubUrl = "https://www.grubhub.com/search?orderMethod=delivery&locationMode=DELIVERY&queryText=";
+var grubTerm;
 var placeId;
-
+var grubSearch = false;
 var searchTerm;
 var currLoc;
 var geoAllowed = false;
@@ -68,6 +70,8 @@ function callback(results, status) {
     }
 }
 
+
+
 function createPlaceList(place) {
     // console.log(place);
     var priceLevel = "$";
@@ -80,7 +84,13 @@ function createPlaceList(place) {
     console.log(reserveUrl);
     var newDiv = $("<div>");
     var newImg = $("<img>");
-    if (reserveUrl){
+    if(grubSearch && !reserveUrl){
+        var url = grubHubUrl + restName.replace(/ /g, "+") + "&latitude=" + currLoc.lat + "&longitude=" + currLoc.lng;
+        console.log(url);
+        newDiv.append("<h4>"+ place.name + "</h4>" + "Rating: " + place.rating + " (" + 
+        place.reviews.length + " reviews)<br>Price range: " + dollarSigns + "<br>" + place.adr_address + "<br> Phone: " + place.formatted_phone_number + 
+                "<br><a href="+url+" target='_blank'>Deliver through Grubhub</a><hr>"); 
+    } else if (reserveUrl){
         console.log("in reserveUrl");
         newDiv.append("<h4>"+ place.name + "</h4>" + "Rating: " + place.rating + " (" + 
         place.reviews.length + 
@@ -92,10 +102,12 @@ function createPlaceList(place) {
         place.reviews.length + 
                 " reviews)<br>Price range: " + dollarSigns + "<br>" + place.adr_address + "<br> Phone: " + place.formatted_phone_number + "<br><a href=" + 
                                     place.url + " target='_blank'>Open in Google Places</a><hr>"); 
-    }    // newImg.attr("src", );
-    
+    }    
+
     $("#table-body").append(newDiv);
    
+   // https://www.grubhub.com/search?orderMethod=delivery&locationMode=DELIVERY&queryText=East+Bay
+   // https://www.grubhub.com/search?orderMethod=delivery&locationMode=DELIVERY&queryText=Berkeley+City+Club&latitude=37.8727543&longitude=-122.25946220000002
 
 }
 
@@ -131,9 +143,24 @@ $("#findit-img").on("click", function(){
     setTimeout(function() {
          initMap();
     }, 3000);
+});    
+$("#deliverit-img").on("click", function(){
+    grubTerm = $("#searchTerm").val().trim();
+    $("#searchTerm").val("");
+    grubSearch = true;
+    console.log("in deliverit-img on click");
+    if (!currLoc){
+        getGeo();
+    }
+    console.log(grubTerm);
+    // grubHubUrl += grubTerm;
+    setTimeout(function() {
+         initMap();
+    }, 3000);
+});    
     $("#header-one").text("NOTE: These results are not formatted yet")
     
-});
+
 
 function getReservation(name){
     name = name.replace(" ", "+");
@@ -143,14 +170,19 @@ function getReservation(name){
     }).done(function(response){
         // response = JSON.parse(response);
         console.log("in getReservation");
-        console.log(response);
-        if (!response.restaurants.reserve_url){
+        var responseObj = JSON.parse(response);
+        console.log(responseObj);
+        if (responseObj.restaurants.reserve_url = null){
             return null;
         } else {
-            return response.restaurants.reserve_url;
+            return responseObj.restaurants.reserve_url;
         }
         
     }); 
+}
+
+function deliverIt(){
+    
 }
 // getReservation("Strega Bistro");
 
