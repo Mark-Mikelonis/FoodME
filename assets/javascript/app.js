@@ -20,7 +20,7 @@ $("#make-it-submit-button").on("click", function(){
 
 	$("#table-body").empty();
 	
-	var query = $("#make-it-query").val(); 
+	var query = $("#make-it-query").val().trim(); 
 	var searchUrl = "http://food2fork.com/api/search?key=" + recipeApiKey + "&q=" + query;
 
 	$.ajax({
@@ -48,7 +48,7 @@ $("#make-it-submit-button").on("click", function(){
 		    } 
 		  }
 		  else {
-		  	$("#search-results").text("We did not find any results for that search");
+		  	console.log("We did not find any results for that search");
 		  }
 	});
 });
@@ -59,8 +59,8 @@ $("#deliver-it-submit-button").on("click", function(){
 
 	$("#table-body").empty();
 
-	var deliveryQuery = $("#deliver-it-query").val();
-	var zipCode = $("#zip-code-input").val();
+	var deliveryQuery = $("#deliver-it-query").val().trim();
+	var zipCode = $("#zip-code-input").val().trim();
 
 	var url = 'https://api.eatstreet.com/publicapi/v1/restaurant/search?method=delivery&search=' + deliveryQuery + '&street-address=' + zipCode + '&access-token=' + eatStreetApiKey;
 
@@ -78,17 +78,20 @@ $("#deliver-it-submit-button").on("click", function(){
 					var newRow = $("<tr>");
 					var newDiv = $("<div>");
 					//newDiv.attr("data-recipe-id", response.restaurants.recipe_id);
-					newDiv.html('<div class="card"><div class="card-body"><div class="delivery-display" data-toggle="modal" data-target="#exampleModalCenter"><img src="' 
+					newDiv.html('<div class="card"><div class="card-body"><div class="delivery-display" data-toggle="modal" data-target="#exampleModalCenter" data-identifier="' 
+						+ response.restaurants[i].apiKey + '"><img src="' 
 						+ response.restaurants[i].logoUrl + '"><br><p>Name:<span class="response-text">' 
 				  		+ response.restaurants[i].name +'</span></p><br><br><p>URL: <span class="response-text">'
 				  		+ response.restaurants[i].url+'</span></p><br></div></div></div>');
 				 	newRow.append(newDiv);
 				 	$("#table-body").append(newRow);
+
+				 	sessionStorage.setItem(response.restaurants[i].apiKey, JSON.stringify(response.restaurants[i]));
 				}
 		    } 
 		}
 		else{
-
+			console.log("We did not find any results for that search");
 		}
 	});
 });
@@ -106,8 +109,6 @@ $(document).on("click", ".recipe-display", function(){
     }).done(function(response) {
 
     	var responseObject = JSON.parse(response);
-    	console.log(responseObject);
-
 		var newDiv = $("<div>");
 
 		newDiv.html('<img src="' + responseObject.recipe.image_url + '"><br><p>Title:<span class="response-text">' 
@@ -127,6 +128,28 @@ $(document).on("click", ".recipe-display", function(){
 
 });
 
+$(document).on("click", ".delivery-display", function(){
+
+	$("#search-results").empty();
+
+	var deliveryApiKey = $(this).attr("data-identifier");
+
+	var restaurantObject = JSON.parse(sessionStorage.getItem(deliveryApiKey));
+	console.log(restaurantObject);
+
+	var newDiv = $("<div>");
+
+	newDiv.html('<img src="' + restaurantObject.logoUrl + '"><br><p>Name:<span class="response-text">' 
+  		+ restaurantObject.name +'</span></p><br><br><p>Street Address: <span class="response-text">'
+  		+ restaurantObject.streetAddress +'</span></p><br><p>City: <span class="response-text">'
+  		+ restaurantObject.city +'</span></p><br><p>State: <span class="response-text">'
+  		+ restaurantObject.state +'</span></p><br><p>URL: <span class="response-text">'
+  		+ restaurantObject.url +'</span></p><br></div></div></div>');
+
+	$("#search-results").append(newDiv);
+
+
+});
 
 ////Switches one display from another.
 /// If the question area is displayed, hide it and make result area displayed. (And Vice-Versa).
