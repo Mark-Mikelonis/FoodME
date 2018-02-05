@@ -12,9 +12,9 @@ $("#deliverit-img").mouseout( function(){
    $(this).attr("src", "assets/images/deliver.png");
 });
 
-// $("#findit-img").mouseover( function(){
-//    $(this).attr("src", "assets/images/find2.png");
-// });
-// $("#findit-img").mouseout( function(){
-//    $(this).attr("src", "assets/images/find.png");
-// });
+$("#findit-img").mouseover( function(){
+   $(this).attr("src", "assets/images/find2.png");
+});
+$("#findit-img").mouseout( function(){
+   $(this).attr("src", "assets/images/find.png");
+});
