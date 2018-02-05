@@ -16,41 +16,53 @@ $("#deliverit-img").on("click", function(){
 
 $("#make-it-submit-button").on("click", function(){
 
-	$("#make-it-form").addClass("hidden-content");
+	var parsleyInstance = $("#make-it-query").parsley();
 
-	$("#table-body").empty();
-	
-	var query = $("#make-it-query").val().trim(); 
-	var searchUrl = "http://food2fork.com/api/search?key=" + recipeApiKey + "&q=" + query;
+	if(parsleyInstance.isValid()){
 
-	$.ajax({
-      url: "https://cors-anywhere.herokuapp.com/" + searchUrl,
-      method: "GET", 
-    }).done(function(response) {
-      
-	      var responseObject = JSON.parse(response);
+		$("#bad-input").addClass("hidden-content");
 
-	      if (responseObject.recipes.length > 0) {
+		$("#make-it-form").addClass("hidden-content");
 
-		    for(var i = 0; i < responseObject.recipes.length; i++){
-		      	if (i >= 10){break;}
-		      	else{
-					var newRow = $("<tr>");
-					var newDiv = $("<div>");
-					//newDiv.attr("data-recipe-id", responseObject.recipes[i].recipe_id);
-					newDiv.html('<div class="card"><div class="card-body"><div class="recipe-display" data-toggle="modal" data-target="#exampleModalCenter" data-recipe-id="' + 
-				  		responseObject.recipes[i].recipe_id + '"><img src="' + responseObject.recipes[i].image_url + '"><br><p>Title:<span class="response-text">' 
-				  		+ responseObject.recipes[i].title +'</span></p><br><br><p>URL: <span class="response-text">'
-				  		+ responseObject.recipes[i].source_url +'</span></p><br></div></div></div>');
-				 	newRow.append(newDiv);
-				 	$("#table-body").append(newRow);
-				}
-		    } 
-		  }
-		  else {
-		  	console.log("We did not find any results for that search");
-		  }
-	});
+		$("#table-body").empty();
+		
+		var query = $("#make-it-query").val().trim(); 
+		var searchUrl = "http://food2fork.com/api/search?key=" + recipeApiKey + "&q=" + query;
+
+		$.ajax({
+	      url: "https://cors-anywhere.herokuapp.com/" + searchUrl,
+	      method: "GET", 
+	    }).done(function(response) {
+	      
+		      var responseObject = JSON.parse(response);
+
+		      if (responseObject.recipes.length > 0) {
+
+			    for(var i = 0; i < responseObject.recipes.length; i++){
+			      	if (i >= 10){break;}
+			      	else{
+						var newRow = $("<tr>");
+						var newDiv = $("<div>");
+						//newDiv.attr("data-recipe-id", responseObject.recipes[i].recipe_id);
+						newDiv.html('<div class="card"><div class="card-body"><div class="recipe-display" data-toggle="modal" data-target="#exampleModalCenter" data-recipe-id="' + 
+					  		responseObject.recipes[i].recipe_id + '"><img src="' + responseObject.recipes[i].image_url + '"><br><p>Title:<span class="response-text">' 
+					  		+ responseObject.recipes[i].title +'</span></p><br><br><p>URL: <span class="response-text">'
+					  		+ responseObject.recipes[i].source_url +'</span></p><br></div></div></div>');
+					 	newRow.append(newDiv);
+					 	$("#table-body").append(newRow);
+					}
+			    } 
+			  }
+			  else {
+			  	console.log("We did not find any results for that search");
+			  }
+		});
+	}
+	else{
+		console.log("You did not enter good input");
+		$("#bad-input").removeClass("hidden-content");
+	}
+
 });
 
 $("#deliver-it-submit-button").on("click", function(){

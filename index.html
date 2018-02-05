@@ -27,10 +27,10 @@
 
      	<div class="roll">
         <div class="col-md-8 col-md-offset-2">
-
+          <p id="bad-input" class="hidden-content"> You entered Incorrect Input!!</p>
           <div class="hidden-content" id="make-it-form">
        	    <div class="form-group">              
-              <input type="text" name="searchEngine" size="90" id="make-it-query" class="form-control" placeholder="I have a craving for: "/> 
+              <input type="text" name="searchEngine" size="90" id="make-it-query" data-parsley-pattern="/^[a-zA-Z ]+$/g" class="form-control" placeholder="I have a craving for: "/> 
               <button type="button" class="btn btn-danger" id="make-it-submit-button">Make It</button>
             </div> 
           </div>
@@ -107,13 +107,14 @@
     <div id="footer">
     			<p>&copy Copyright -  2018<p>
     </div>
-
+    
     <!-- jQuery CDN -->
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <!-- Bootstrap CDN -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
     <!-- Firebase -->
     <script src="https://www.gstatic.com/firebasejs/3.6.0/firebase.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/parsley.js/2.8.1/parsley.min.js"></script>
     <!-- Javascripts -->
     <script src="assets/javascript/app.js"></script>
 
