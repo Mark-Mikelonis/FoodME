@@ -24,22 +24,24 @@
 
 <!-- login button -->
         <div class="row">
-            <button class="btn btn-Danger" id="login" data-toggle="modal" data-target="#login-modal">Login</button>
+            <div class="col-md-12 ">    
+                <button class="btn btn-Danger" id="login" data-toggle="modal" data-target="#login-modal">Login</button>
+            </div>
         </div>
-  
-	    <div class="row">
-            <div class="col-md-12 ">
-<!-- Logo point to main page, put my github for now	 -->
-                <a href="https://github.com/ouyangtt"> 
-                <img id="logo" class="logo" src="assets/images/logo.png" alt="logo"> </a>
-     
+
+<!-- Logo point to main page, put my github for now     -->
+	    <div class="row" >
+            <div class="mx-auto">
+                    <a href="https://github.com/ouyangtt"> 
+                        <img src="assets/images/logo.png" id="logo" alt="logo"> 
+                    </a>
             </div>
         </div>
 <!-- The search bar -->
  	    <div class="row">
  	        <div class="col-md-12 ">     
-                <div class="form-group" >              
-                    <input type="text" name="searchEngine" size="90" id="searchTerm" class="form-control" placeholder="I have a craving for: "/> 
+                <div class="form-group">
+                    <input class="form-control form-control-lg" type="text" placeholder="I have a craving for: " >
                 </div> 
             </div>
         </div>
@@ -47,32 +49,31 @@
 
 <!-- Three image buttons -->
         <div class="row">
-            <div class="col-xs-3 mx-auto"> <img id="makeit-img"  class="image" src="assets/images/make.png" alt="makeit"></div>
-            <div class="col-xs-3 mx-auto"> <img id="findit-img" class="image" src="assets/images/find.png" data-toggle="modal" data-target="#address-modal" alt="findit"> </div>
-            <div class="col-xs-3 mx-auto"> <img id="deliverit-img"  class="image" src="assets/images/deliver.png" data-toggle="modal" data-target="#address-modal" alt="deliverit"></div>
+            <div class="col-xs-3 mx-auto"> 
+                <img id="makeit-img"  class="image" src="assets/images/make.png" alt="makeit">
+            </div>
+            <div class="col-xs-3 mx-auto"> <img id="findit-img" class="image" src="assets/images/find.png" data-toggle="modal" data-target="#address-modal" alt="findit"> 
+            </div>
+            <div class="col-xs-3 mx-auto"> <img id="deliverit-img"  class="image" src="assets/images/deliver.png" data-toggle="modal" data-target="#address-modal" alt="deliverit">
+            </div>
         </div>
    
 
 <!-- To display the results. -->
 	    <div class="row">
             <div class="col-md-12">
-                <div class="display">
-                	<div class="panel panel-default">
-                    <div class="panel-heading" id="header-one">Display</div>
-                    <div class="panel-body" id="display-table">
-                        <table class="table">
-                        	<tbody id="table-body">
-                            
-        <p>Nullam imperdiet vehicula dolor eu consectetur. Vestibulum pulvinar lobortis accumsan. Phasellus lobortis pulvinar augue, eu ultrices dui. Donec ut est erat. In facilisis tellus nibh, eu consequat diam commodo a. Nam egestas sapien nunc, ullamcorper
-        semper odio feugiat non. Duis et nisl leo. Aliquam consectetur vestibulum turpis. Vivamus non elit ut lorem mattis iaculis. Suspendisse ullamcorper ante orci, et condimentum nisi pharetra id. Praesent ut erat in eros mollis interdum quis ut nisi.
-        Etiam ac risus in erat imperdiet sagittis eu sed metus. Etiam molestie ipsum sed vehicula efficitur. Cras eu metus in ex vehicula sodales.</p>
-						    </tbody>
-					    </table>
-				    </div>
-			        </div>
+                <div class="card border-danger mb-3" style="max-width: 100rem;">
+                    <div class="card-header">Header</div>
+                        <div class="card-body text-danger">
+                                <h5 class="card-title">Danger card title</h5>
+                                     <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                        </div>
                 </div>
             </div>
         </div>
+        
+				   
+</div>
 
 
 

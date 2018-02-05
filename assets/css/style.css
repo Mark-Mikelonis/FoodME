@@ -3,10 +3,10 @@
 #logo {
 	    width: 300px;
       height: 300px;
-      display: block;
-      margin-left: auto;
-      margin-right: auto;
-      margin-top:100px;
+      /*display: block;*/
+      /*margin-left: auto;*/
+      /*margin-right: auto;*/
+      margin-top:40px;
 }
 
 
@@ -41,8 +41,22 @@
 }
 
 
+.card {
+  margin-top:30px;
+}
+
+.form-group{
+  border-color:red;
+}
+
+input[type="text"]:focus {
+  border-color: red;
+  box-shadow: 1px 1px 1px red inset,1px 1px 1px red;
+
+}
 
 #footer {
+  margin-top:20px;
 			text-align: center;
     }
 
