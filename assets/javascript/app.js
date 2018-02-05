@@ -134,3 +134,14 @@ $("#findit-img").on("click", function(){
 //     }); 
 
 // getReservation();
+
+// var apiKey = "67804766f0ca2e3a";
+//  var url = 'https://api.eatstreet.com/publicapi/v1/restaurant/search?method=delivery&search=chinese&street-address=94607&access-token=' + apiKey;
+// $.ajax({
+//       url: url,
+//       method: "GET" 
+// }).done(function(response) {
+     
+//     console.log(response);
+//     console.log(response.address.city);
+// });
