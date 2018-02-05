@@ -4,6 +4,7 @@ var opentableQuery  ="https://opentable.herokuapp.com/api/restaurants/json?&id=1
 var placeId;
 var map;
 var infowindow;
+var searchTerm;
 var currLoc;
 var geoAllowed = false;
 
@@ -24,7 +25,7 @@ var geoAllowed = false;
       }
       function success(position){
         console.log("in success");
-        debugger;
+      
       	currLoc = {lat:position.coords.latitude, lng: position.coords.longitude};
         // console.log(currLoc);
         initMap();
@@ -34,7 +35,7 @@ var geoAllowed = false;
       }
  }
 
-getGeo();
+
 
 
 function initMap() {
@@ -55,7 +56,7 @@ function initMap() {
         location: currLoc,
         radius: 3000,
         type: ['restaurant'],
-        keyword: 'sushi'
+        keyword: searchTerm
     }, callback);
 }
 
@@ -91,22 +92,7 @@ function createPlaceList(place) {
                 " reviews)<br>Price range: " + place.price_level + "<br>" + place.adr_address + "<br> Phone: " + place.formatted_phone_number + "<br><a href=" + 
                                     place.url + " target='_blank'>Open in Google Maps</a>") 
     $("#table-body").append(newDiv);
-    // var placeLoc = place.geometry.location;
-    // var marker = new google.maps.Marker({
-    //     map: map,
-    //     placeId: place.place_id,
-    //     position: place.geometry.location
-    // });
-    
-    google.maps.event.addListener(newDiv, 'click', function() {
-        infowindow.setContent(place.name);
-        // getGeo();
-        console.log(place.place_id);
-        console.log(place.name);
-        placeId = place.place_id;
-        getDetails();
-        infowindow.open(map, this);
-    });
+   
 
 }
 
@@ -131,6 +117,17 @@ $("#deliverit-img").mouseout( function(){
    $(this).attr("src", "assets/images/deliver.png");
 });
 
+$("#findit-img").on("click", function(){
+    searchTerm = $("#searchTerm").val().trim();
+    $("#searchTerm").val("");
+    if (!currLoc){
+        getGeo();
+    }
+    console.log(searchTerm);
+    
+    setTimeout(initMap(), 3000);
+    
+});
 
 // function getReservation(){
 //     $.ajax({
