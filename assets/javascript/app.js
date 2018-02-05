@@ -148,6 +148,7 @@ $(document).on("click", ".delivery-display", function(){
 
 	$("#search-results").append(newDiv);
 
+	sessionStorage.clear();
 
 });
 
