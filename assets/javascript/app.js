@@ -1,44 +1,60 @@
 var restQuery = "https://maps.googleapis.com/maps/api/js?key=AIzaSyAC1wTUBSAAKhd2TdMwN0HEQ-Ni7T9fSy4&libraries=places&callback=initMap";
 var detailQuery = "https://maps.googleapis.com/maps/api/place/details/json?" + "key=AIzaSyAC1wTUBSAAKhd2TdMwN0HEQ-Ni7T9fSy4&libraries=places&placeid=" + placeId;
+var opentableQuery  ="https://opentable.herokuapp.com/api/restaurants/json?&id=107257";
 var placeId;
 var map;
 var infowindow;
 var currLoc;
-var geoAllowed = true;
+var geoAllowed = false;
+
+
+// navigator.geolocation.getCurrentPosition(function(position) {
+//   do_something(position.coords.latitude, position.coords.longitude);
+// });
+
  function getGeo(){
  	<!-- getting the user location -->
       if (navigator.geolocation) {
-          navigator.geolocation.getCurrentPosition(success);
-          debugger;
-          geoAllowed =true;
+          navigator.geolocation.getCurrentPosition(success, error);//{
+           
+          geoAllowed = true;
       } else {
           alert('geolocation not supported');
           geoAllowed = false;
       }
       function success(position){
+        console.log("in success");
       	currLoc = {lat:position.coords.latitude, lng: position.coords.longitude};
-
+        console.log(currLoc);
+        initMap();
+      }
+      function error(errorObj){
+        console("in error:" + errorObj);
       }
  }
+
+getGeo();
+
+
 function initMap() {
 
 
-    console.log(currLoc);  
-    var westOak = {
-        lat: 37.811360,
-        lng: -122.282826
-    };
+     
+    // var westOak = {
+    //     lat: 37.811360,
+    //     lng: -122.282826
+    // };
     map = new google.maps.Map(document.getElementById('map'), {
-        center: westOak,
+        center: currLoc,
         zoom: 15
     });
     infowindow = new google.maps.InfoWindow();
     var service = new google.maps.places.PlacesService(map);
     service.nearbySearch({
-        location: westOak,
+        location: currLoc,
         radius: 3000,
-        type: ['restaurant'],
-        keyword: 'thai food'
+        type: ['restaurant']//,
+        // keyword: 'thai food'
     }, callback);
 }
 
@@ -86,3 +102,14 @@ function createMarker(place) {
     });
 
 }
+// function getReservation(){
+//     $.ajax({
+//         url: opentableQuery,
+//         method: "GET"
+//     }).done(function(response){
+//         response = JSON.parse(response);
+//         console.log("in getReservation");
+//         console.log(response);
+//     }); 
+
+// getReservation();
