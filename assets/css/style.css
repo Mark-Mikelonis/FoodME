@@ -27,6 +27,14 @@
 .response-text {
   color: black;
 }
+
+.displayed-content{
+  display: block;
+}
+
+.hidden-content{
+  display: none;
+}
 /* End of Table Search Display*/
 
 .body {

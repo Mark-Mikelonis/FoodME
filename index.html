@@ -2,121 +2,89 @@
 
 <html lang="en-us">
 <html>
+  <head>
+  	<meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta http-equiv="X-UA-Compatible" content="ie=edge">
+      <!-- Boostrap Stylesheet -->
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+      <!-- Optional theme -->
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css">
+      <!-- Our own css style sheet -->
+      <link rel="stylesheet" href="assets/css/style.css" media="screen">
+      <title>Food Me</title> 
+  </head>
+  <body>
+    <div class="container">
 
-<head>
-	<meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <!-- Boostrap Stylesheet -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-    <!-- Optional theme -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css">
-    <!-- Our own css style sheet -->
-    <link rel="stylesheet" href="assets/css/style.css" media="screen">
-
-    <title>Food Me</title> 
-
-</head>
-<body>
-
-
-
-<div class="container">
-
-  
-	    <div class="roll">
-            <div class="col-md-8 col-md-offset-2">
-	
-             <a href="https://github.com/ouyangtt"> 
-             <img id="logo" class="logo" src="assets/images/logo.png" alt="logo"> </a>
-     
-             </div>
+    	<div class="roll">
+        <div class="col-md-8 col-md-offset-2">
+          <a href="https://github.com/ouyangtt"> 
+            <img id="logo" class="logo" src="assets/images/logo.png" alt="logo"> 
+          </a>
         </div>
-
- 	    <div class="roll">
-            <div class="col-md-8 col-md-offset-2">
- 	            
-
-
-    <div class="form-group" >              
-        <input type="text" name="searchEngine" size="90" id="searchTerm" class="form-control" placeholder="I have a craving for: "/> </div> <br>
-
-        <div class="imageHolder">
- 
-        <!-- <img id="makeit-img"  class="image" src="assets/images/makeit-btn.png" data-toggle="modal" data-target="#exampleModalCenter" alt="makeit"> -->
-        <img id="makeit-img"  class="image" src="assets/images/makeit-btn.png" alt="makeit">
-
-  <!-- Modal -->
-<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
       </div>
-      <div class="modal-body" id="search-results">
-        ...
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
-      </div>
-    </div>
-  </div>
-</div>
-  <img id="findit-img" class="image" src="assets/images/findit-btn.png" alt="findit">
-  <img id="deliverit-img"  class="image" src="assets/images/deliverit-btn.png" alt="deliverit">
 
-</div>
-<!-- <input type = "submit" value ="Make It!" class = "icon" size = "30"/> &nbsp <input type = "submit" value ="Find It!" class = "icon" size = "30"/> &nbsp <input type = "submit" value ="Deliver It!" class = "icon" size = "30"/>
- -->
+     	<div class="roll">
+        <div class="col-md-8 col-md-offset-2">
 
+          <div class="hidden-content" id="make-it-form">
+       	    <div class="form-group">              
+              <input type="text" name="searchEngine" size="90" id="make-it-query" class="form-control" placeholder="I have a craving for: "/> 
+              <button type="button" class="btn btn-danger" id="make-it-submit-button">Make It</button>
+            </div> 
+          </div>
 
+          <div class="hidden-content" id="deliver-it-form">
+            <div class="form-group">              
+              <input type="text" name="searchEngine" size="90" id="deliver-it-query" class="form-control" placeholder="I have a craving for: "/>
+              <input type="text" name="searchEngine" size="90" id="zip-code-input" class="form-control" placeholder="Enter Your Zipcode: "/>
+              <button type="button" class="btn btn-danger" id="deliver-it-submit-button">Deliver It</button>
+            </div> 
+          </div>
 
-	           
+          <br>
+          <div class="imageHolder">
+            <img id="makeit-img"  class="image" src="assets/images/makeit-btn.png" alt="makeit">
+            <img id="findit-img" class="image" src="assets/images/findit-btn.png" alt="findit">
+            <img id="deliverit-img"  class="image" src="assets/images/deliverit-btn.png" alt="deliverit">
+            <!-- Modal -->
+            <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+              <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>
+                  <div class="modal-body" id="search-results">
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Save changes</button>
+                  </div>
+                </div>
+              </div>
             </div>
+          </div>         
         </div>
-
+      </div>
+      
+      <div class="hidden-content">
         <div class="roll">
-            <div class="col-md-8 col-md-offset-2">
+          <div class="col-md-8 col-md-offset-2">
+            <div class="form-group">              
+              <input type="text" name="searchEngine" size="90" id="searchTerm" class="form-control" placeholder="I have a craving for: "/>
+              <input type="text" name="searchEngine" size="90" id="zip-code-input" class="form-control" placeholder="Enter Your Zipcode: "/>
+              <div class="imageHolder">
+              </div> 
+            </div> 
+          </div>
+        </div>
+      </div>
 
-          <!-- 
-            <form action="http://www.google.com/search" method="get">
-                <input type="text" name="q"/>	
-                <button type="button" class="btn btn-success" data-name="recipe">  <span class="glyphicon glyphicon-search" aria-hidden="true"></span> Make It!<img src="assets/images/git.png"/></button>
-                <button type="button" class="btn btn-success" data-name="restaurant">  <span class="glyphicon glyphicon-search" aria-hidden="true"></span> Reserve It!<img src="assets/images/git.png"/></button>
-                <button type="button" class="btn btn-success" data-name="deliver">  <span class="glyphicon glyphicon-search" aria-hidden="true"></span> Deliver It!<img src="assets/images/git.png"/></button>
- -->
-
-
-<!-- <form action="http://www.google.com/search" method="get">
-    <input type="text" name="q"/>
-    <input type="submit" value="search" />
-</form> -->
-
-<!-- <form action="http://www.google.com/search" method="get">
-    <input type="text" name="q"/>
-
-<button type="submit" name="sb" value="Make It!">
-<button type="submit" name="sb" value="Reserve It!">
-<button type="submit" name="sb" value="Deliver It!"> -->
-
-</div>
-</div>
-
-<!--    <div id="button"><img src="assets/images/git.png"/></div>
-   <div id="button"><img src="assets/images/link.png"/></div>
-   <div id="button"><img src="assets/images/stack.png"/></div> -->
-
-
-
-	
-
-
-
-<!-- To display the results. -->
+      <!-- To display the results. -->
       <div class="roll">
           <div class="col-md-8 col-md-offset-2">
               <div class="display">
@@ -125,19 +93,20 @@
                     <div class="panel-body" id="display-table">
                         <table class="table">
                         	<tbody id="table-body">
-							            </tbody>
-						             </table>
-					          </div>
-				         </div>
+    					            </tbody>
+    				             </table>
+    			          </div>
+    		         </div>
               </div>
           </div>
       </div>
 
-</div>
-<br>
-<div id="footer">
-			<p>&copy Copyright -  2018<p>
-	</div>
+    </div>
+    <br>
+
+    <div id="footer">
+    			<p>&copy Copyright -  2018<p>
+    </div>
 
     <!-- jQuery CDN -->
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
@@ -146,9 +115,9 @@
     <!-- Firebase -->
     <script src="https://www.gstatic.com/firebasejs/3.6.0/firebase.js"></script>
     <!-- Javascripts -->
-	<script src="assets/javascript/app.js"></script>
+    <script src="assets/javascript/app.js"></script>
 
-</body>
+  </body>
 </html>
 
 
