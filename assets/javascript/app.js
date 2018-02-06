@@ -4,7 +4,7 @@ var opentableQuery = "https://opentable.herokuapp.com/api/restaurants?name=";
 var grubHubUrl = "https://www.grubhub.com/search?orderMethod=delivery&locationMode=DELIVERY&queryText=";
 var grubTerm;
 var placeId;
-var grubSearch = false;
+var isGrub;
 var searchTerm;
 var currLoc;
 var geoAllowed = false;
@@ -44,7 +44,8 @@ function initMap() {
     }, callback);
 }
 
-function getDetails() { // look into the service
+function getDetails(placeId) { // look into the service
+    // debugger;
     var service = new google.maps.places.PlacesService($("#table-body").get(0));
     service.getDetails({
         placeId: placeId
@@ -52,22 +53,29 @@ function getDetails() { // look into the service
         if (status === google.maps.places.PlacesServiceStatus.OK) {
             console.log("in getDetails");
             // console.log(place);
+            console.log("isgrub: " + isGrub);
             createPlaceList(place);
         }
     });
 }
 
 function callback(results, status) {
+    var places = [];
     if (status === google.maps.places.PlacesServiceStatus.OK) {
+        
         for (var i = 0; i < results.length; i++) {
-            placeId = results[i].place_id;
-            getDetails();
-            // console.log(results[i]);
+            console.log("isgrub: " + isGrub);
+            places.push(results[i].place_id);
+            
         }
-        // 
+              
     }
-}
+    
+    for (var i=0;i<places.length;i++){
+            getDetails(places[i]);
+    }
 
+}
 function createPlaceList(place) {
     // console.log(place);
     var priceLevel = "$";
@@ -75,16 +83,25 @@ function createPlaceList(place) {
     if (place.price_level) {
         dollarSigns = priceLevel.repeat(place.price_level);
     }
-    var isGrub = grubSearch;
+    
     console.log("isGrub: " + isGrub);
     var restName = place.name.replace(/ /g, "+");
-    var reserveUrl = getReservation(restName);
-    console.log("reserveUrl: " + reserveUrl);
+    // var reserveUrl = getReservation(restName);
+    
     var newDiv = $("<div>");
     var newImg = $("<img>");
-    if (!isGrub && reserveUrl != "") {
-        console.log("in reserveUrl");
-        newDiv.append("<h4>" + place.name + "</h4>" + "Rating: " + place.rating + " (" + place.reviews.length + " reviews)<br>Price range: " + dollarSigns + "<br>" + place.adr_address + "<br> Phone: " + place.formatted_phone_number + "<br><a href=" + place.url + " target='_blank'>Open in Google Places</a><br><a href=" + reserveUrl + ">Reserve a Table</a><hr>");
+    if (!isGrub) {
+        var reserveUrl = getReservation(restName);
+        debugger;
+        console.log("reserveUrl: " + reserveUrl);
+        if (reserveUrl){
+            console.log("in reserveUrl");
+            newDiv.append("<h4>" + place.name + "</h4>" + "Rating: " + place.rating + " (" + place.reviews.length + " reviews)<br>Price range: " + dollarSigns + "<br>" + place.adr_address + "<br> Phone: " + place.formatted_phone_number + "<br><a href=" + place.url + " target='_blank'>Open in Google Places</a><br><a href=" + reserveUrl + ">Reserve a Table</a><hr>");
+        } else {
+             console.log("in reserveUrl");
+             newDiv.append("<h4>" + place.name + "</h4>" + "Rating: " + place.rating + " (" + place.reviews.length + " reviews)<br>Price range: " + dollarSigns + "<br>" + place.adr_address + "<br> Phone: " + place.formatted_phone_number + "<br><a href=" + place.url + " target='_blank'>Open in Google Places</a>");
+   
+        }
     } else if (isGrub) {
         console.log("in isGrub");
         var url = grubHubUrl + restName + "&latitude=" + currLoc.lat + "&longitude=" + currLoc.lng;
@@ -92,10 +109,10 @@ function createPlaceList(place) {
         var newImg = $("<img>");
         newImg.attr("src", "assets/images/grubHubLogo.jpg");
         newImg.css("width", "150px");
-        // newImg.css("height", "150px");
+       
         newDiv.append(newImg);
         newDiv.append("<h4>" + place.name + "</h4><a href=" + url + " target='_blank'>Deliver through Grubhub</a><hr>");
-        isGrub = false;
+        
     } else {
         console.log("in no reserveUrl");
         console.log(place);
@@ -122,6 +139,7 @@ $("#deliverit-img").mouseout(function() {
     $(this).attr("src", "assets/images/deliver.png");
 });
 $("#findit-img").on("click", function() {
+    isGrub = false;
     $("#table-body").empty();
     searchTerm = $("#searchTerm").val().trim();
     $("#searchTerm").val("");
@@ -137,9 +155,11 @@ $("#deliverit-img").on("click", function() {
     $("#table-body").empty();
     grubTerm = $("#searchTerm").val().trim();
     $("#searchTerm").val("");
-    grubSearch = true;
-    isGrub = grubSearch;
+    
+    isGrub = true;
+    // debugger;
     console.log("in deliverit-img on click");
+    console.log("isgrub: " + isGrub);
     if (!currLoc) {
         getGeo();
     }
@@ -161,12 +181,12 @@ function getReservation(name) {
         if (response.restaurants.length !== 0) {
             console.log("in length !== 0")
             console.log(response);
+            debugger;
             // return false;
             var url = response.restaurants[0].reserve_url;
             return url;
             console.log(response.restaurants[0].reserve_url);
-        } else {
-           return "";
-        }
+        } 
+
     });
 }
