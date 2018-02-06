@@ -12,25 +12,30 @@ var geoAllowed = false;
 function getGeo() {
     <!-- getting the user location -->
     if (navigator.geolocation) {
+
         navigator.geolocation.getCurrentPosition(success, error); //{
-        geoAllowed = true;
+        
     } else {
         alert('geolocation not supported');
-        geoAllowed = false;
+        // geoAllowed = false;
     }
 
     function success(position) {
+        geoAllowed = true;
         console.log("in success");
         currLoc = {
             lat: position.coords.latitude,
             lng: position.coords.longitude
         };
-        // console.log(currLoc);
-        initMap();
+        // console.log(if(currLoc){
+            initMap();
+      
     }
 
     function error(errorObj) {
         console.log("in error:" + errorObj);
+        $("#modalAddressForm").modal("show");
+        geoAllowed = false;
     }
 }
 
@@ -92,23 +97,23 @@ function createPlaceList(place) {
     var newImg = $("<img>");
     if (!isGrub) {
         var reserveUrl = getReservation(restName);
-        debugger;
+        
         console.log("reserveUrl: " + reserveUrl);
         if (reserveUrl){
             console.log("in reserveUrl");
             newDiv.append("<h4>" + place.name + "</h4>" + "Rating: " + place.rating + " (" + place.reviews.length + " reviews)<br>Price range: " + dollarSigns + "<br>" + place.adr_address + "<br> Phone: " + place.formatted_phone_number + "<br><a href=" + place.url + " target='_blank'>Open in Google Places</a><br><a href=" + reserveUrl + ">Reserve a Table</a><hr>");
         } else {
              console.log("in reserveUrl");
-             newDiv.append("<h4>" + place.name + "</h4>" + "Rating: " + place.rating + " (" + place.reviews.length + " reviews)<br>Price range: " + dollarSigns + "<br>" + place.adr_address + "<br> Phone: " + place.formatted_phone_number + "<br><a href=" + place.url + " target='_blank'>Open in Google Places</a>");
+             newDiv.append("<h4>" + place.name + "</h4>" + "Rating: " + place.rating + " (" + place.reviews.length + " reviews)<br>Price range: " + dollarSigns + "<br>" + place.adr_address + "<br> Phone: " + place.formatted_phone_number + "<br><a href=" + place.url + " target='_blank'>Open in Google Places</a><hr>");
    
         }
     } else if (isGrub) {
         console.log("in isGrub");
-        var url = grubHubUrl + restName + "&latitude=" + currLoc.lat + "&longitude=" + currLoc.lng;
+        var url = grubHubUrl + grubTerm + restName + "&latitude=" + currLoc.lat + "&longitude=" + currLoc.lng;
         console.log(url);
         var newImg = $("<img>");
-        newImg.attr("src", "assets/images/grubHubLogo.jpg");
-        newImg.css("width", "150px");
+        newImg.attr("src", "assets/images/deliveryicon.png");
+        newImg.css("width", "100px");
        
         newDiv.append(newImg);
         newDiv.append("<h4>" + place.name + "</h4><a href=" + url + " target='_blank'>Deliver through Grubhub</a><hr>");
@@ -142,7 +147,7 @@ $("#findit-img").on("click", function() {
     isGrub = false;
     $("#table-body").empty();
     searchTerm = $("#searchTerm").val().trim();
-    $("#searchTerm").val("");
+    // $("#searchTerm").val("");
     if (!currLoc) {
         getGeo();
     }
@@ -154,7 +159,7 @@ $("#findit-img").on("click", function() {
 $("#deliverit-img").on("click", function() {
     $("#table-body").empty();
     grubTerm = $("#searchTerm").val().trim();
-    $("#searchTerm").val("");
+    // $("#searchTerm").val("");
     
     isGrub = true;
     // debugger;
@@ -164,7 +169,7 @@ $("#deliverit-img").on("click", function() {
         getGeo();
     }
     console.log(grubTerm);
-    // grubHubUrl += grubTerm;
+    
     setTimeout(function() {
         initMap();
     }, 3000);
@@ -181,7 +186,7 @@ function getReservation(name) {
         if (response.restaurants.length !== 0) {
             console.log("in length !== 0")
             console.log(response);
-            debugger;
+           
             // return false;
             var url = response.restaurants[0].reserve_url;
             return url;
