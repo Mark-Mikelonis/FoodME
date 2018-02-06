@@ -168,7 +168,7 @@
             <div class="modal-body mx-3">
                 <div class="md-form">
                     <i class="fa fa-envelope prefix grey-text"></i>
-                    <input type="text" id="addressInput" class="form-control validate">
+                    <input type="text" id="addressInput" onFocus="geolocate()" class="form-control validate">
                     <label data-error="wrong" data-success="right" for="defaultForm-email">Your Address</label>
                 </div>
 
@@ -207,9 +207,12 @@
     <script type="text/javascript" src="assets/javascript/app.js"></script>
     <!-- Google API -->
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAC1wTUBSAAKhd2TdMwN0HEQ-Ni7T9fSy4&libraries=places&callback=initMap" async defer></script>
+    <!-- Google autofill API -->
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAC1wTUBSAAKhd2TdMwN0HEQ-Ni7T9fSy4&libraries=places&callback=initAutocomplete"
+        async defer></script>
 
-  <script src="https://maps.googleapis.com/maps/api/place/autocomplete/json?key=AIzaSyAC1wTUBSAAKhd2TdMwN0HEQ-Ni7T9fSy4"></script>
-
+<!--     <script src="https://maps.googleapis.com/maps/api/place/autocomplete/json?key=AIzaSyAC1wTUBSAAKhd2TdMwN0HEQ-Ni7T9fSy4"></script>
+ -->
 
 
 </body>
