@@ -6,22 +6,17 @@
       margin-top:40px;
 }
 
-
 #box {
     text-align: center;
-
 }
 
 .image {
   width: 100px;
   height: 100px;
-   
-  
-
 }
+
 .display {
 	  margin-top: 50px;
-
 }
 
 .icon {
@@ -54,8 +49,8 @@ input[type="text"]:focus {
 
 #footer {
   margin-top:20px;
-			text-align: center;
-    }
+  text-align: center;
+}
 
 
 
