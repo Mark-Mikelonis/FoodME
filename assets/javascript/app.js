@@ -1,3 +1,5 @@
+
+///////////Google Places, OpenTable and Grubhub Variables 
 var restQuery = "https://maps.googleapis.com/maps/api/js?key=AIzaSyAC1wTUBSAAKhd2TdMwN0HEQ-Ni7T9fSy4&libraries=places&callback=initMap";
 var detailQuery = "https://maps.googleapis.com/maps/api/place/details/json?" + "key=AIzaSyAC1wTUBSAAKhd2TdMwN0HEQ-Ni7T9fSy4&libraries=places&placeid=" + placeId;
 var opentableQuery  ="https://opentable.herokuapp.com/api/restaurants?name=";
@@ -9,34 +11,29 @@ var searchTerm;
 var currLoc;
 var geoAllowed = false;
 
+
+//////////////////// Recipe (Food 2 Fork) API Variables and functions //////////////////////////////////
+
 var recipeApiKey = "ea22f20d6e490ba43d99d8705330edc7";
 var eatStreetApiKey = "67804766f0ca2e3a";
  
+ ///When The user clicks on make it image 
+ ///Clear the table. Validate their input with parsley 
+ ///If the input is good. Hide the badInput div. 
+ ///Empty the table 
+ ///Grab the value Do Ajax call to Food 2 Fork 
+ ///Make Row put Div in Row add info to div append to table 
 $("#makeit-img").on("click", function(){
-	$("#table-body").empty();
-	$("#deliver-it-form").addClass("hidden-content");
-	$("#make-it-form").removeClass("hidden-content");
-});
 
-$("#deliverit-img").on("click", function(){
-	$("#table-body").empty();
-	$("#make-it-form").addClass("hidden-content");
-	$("#deliver-it-form").removeClass("hidden-content");
-});
-
-$("#make-it-submit-button").on("click", function(){
-
-	var parsleyInstance = $("#make-it-query").parsley();
+	var parsleyInstance = $("#searchTerm").parsley();
 
 	if(parsleyInstance.isValid()){
 
 		$("#bad-input").addClass("hidden-content");
 
-		$("#make-it-form").addClass("hidden-content");
-
 		$("#table-body").empty();
 		
-		var query = $("#make-it-query").val().trim(); 
+		var query = $("#searchTerm").val().trim(); 
 		var searchUrl = "http://food2fork.com/api/search?key=" + recipeApiKey + "&q=" + query;
 
 		$.ajax({
@@ -64,6 +61,7 @@ $("#make-it-submit-button").on("click", function(){
 			    } 
 			  }
 			  else {
+          $("#contact").modal("show");
 			  	console.log("We did not find any results for that search");
 			  }
 		});
@@ -75,49 +73,8 @@ $("#make-it-submit-button").on("click", function(){
 
 });
 
-$("#deliver-it-submit-button").on("click", function(){
-
-	$("#deliver-it-form").addClass("hidden-content");
-
-	$("#table-body").empty();
-
-	var deliveryQuery = $("#deliver-it-query").val().trim();
-	var zipCode = $("#zip-code-input").val().trim();
-
-	var url = 'https://api.eatstreet.com/publicapi/v1/restaurant/search?method=delivery&search=' + deliveryQuery + '&street-address=' + zipCode + '&access-token=' + eatStreetApiKey;
-
-	$.ajax({
-      url: url,
-      method: "GET" 
-	}).done(function(response) {
-
-		console.log(response);
-
-		if (response.restaurants.length > 0) {
-	       for(var i = 0; i < response.restaurants.length; i++){
-		      	if (i >= 10){break;}
-		      	else{
-					var newRow = $("<tr>");
-					var newDiv = $("<div>");
-					//newDiv.attr("data-recipe-id", response.restaurants.recipe_id);
-					newDiv.html('<div class="card"><div class="card-body"><div class="delivery-display" data-toggle="modal" data-target="#exampleModalCenter" data-identifier="' 
-						+ response.restaurants[i].apiKey + '"><img src="' 
-						+ response.restaurants[i].logoUrl + '"><br><p>Name:<span class="response-text">' 
-				  		+ response.restaurants[i].name +'</span></p><br><br><p>URL: <span class="response-text">'
-				  		+ response.restaurants[i].url+'</span></p><br></div></div></div>');
-				 	newRow.append(newDiv);
-				 	$("#table-body").append(newRow);
-
-				 	sessionStorage.setItem(response.restaurants[i].apiKey, JSON.stringify(response.restaurants[i]));
-				}
-		    } 
-		}
-		else{
-			console.log("We did not find any results for that search");
-		}
-	});
-});
-
+////If a user clicks on the recipe rows It should do an ajax call on the 
+////Recipe ID Then Display info in the modal. 
 $(document).on("click", ".recipe-display", function(){
 
 	$("#search-results").empty();
@@ -147,44 +104,10 @@ $(document).on("click", ".recipe-display", function(){
 		newDiv.append(newList);
 	 	$("#search-results").append(newDiv);
 	});
-
 });
 
-$(document).on("click", ".delivery-display", function(){
+///////////////////// End of Food 2 Fork API functions ////////////////////////////////////////////
 
-	$("#search-results").empty();
-
-	var deliveryApiKey = $(this).attr("data-identifier");
-
-	var restaurantObject = JSON.parse(sessionStorage.getItem(deliveryApiKey));
-	console.log(restaurantObject);
-
-	var newDiv = $("<div>");
-
-	newDiv.html('<img src="' + restaurantObject.logoUrl + '"><br><p>Name:<span class="response-text">' 
-  		+ restaurantObject.name +'</span></p><br><br><p>Street Address: <span class="response-text">'
-  		+ restaurantObject.streetAddress +'</span></p><br><p>City: <span class="response-text">'
-  		+ restaurantObject.city +'</span></p><br><p>State: <span class="response-text">'
-  		+ restaurantObject.state +'</span></p><br><p>URL: <span class="response-text">'
-  		+ restaurantObject.url +'</span></p><br></div></div></div>');
-
-	$("#search-results").append(newDiv);
-
-	sessionStorage.clear();
-
-});
-
-////Switches one display from another.
-/// If the question area is displayed, hide it and make result area displayed. (And Vice-Versa).
-function switchDisplays(displayed, hidden){
-
-	$(hidden).removeClass("displayed-Content");
-	$(hidden).addClass("hidden-content");
-	//Displayed area becomes unhidden and displays it's content.
-	$(displayed).removeClass("hidden-content");
-	$(displayed).addClass("displayed-content");
-
-}
 
 /////////////////////Google Places Functions /////////////////////////////
 

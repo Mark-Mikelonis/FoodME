@@ -2,72 +2,6 @@
 
 <html lang="en-us">
 <html>
-<!--
-  <head>
-  	<meta charset="UTF-8">
-      <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      <meta http-equiv="X-UA-Compatible" content="ie=edge">
-      <!-- Boostrap Stylesheet -->
-      <!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-      <!-- Optional theme -->
-      <!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css">
-      <!-- Our own css style sheet -->
-      <!--<link rel="stylesheet" href="assets/css/style.css" media="screen">
-      <title>Food Me</title> 
-  </head>
-  <body>
-    <div class="container">
-
-    	<div class="roll">
-        <div class="col-md-8 col-md-offset-2">
-          <a href="https://github.com/ouyangtt"> 
-            <img id="logo" class="logo" src="assets/images/logo.png" alt="logo"> 
-          </a>
-        </div>
-      </div>
-
-     	<div class="roll">
-        <div class="col-md-8 col-md-offset-2">
-          <p id="bad-input" class="hidden-content"> You entered Incorrect Input!!</p>
-          <div class="hidden-content" id="make-it-form">
-       	    <div class="form-group">              
-              <input type="text" name="searchEngine" size="90" id="make-it-query" data-parsley-pattern="/^[a-zA-Z ]+$/g" class="form-control" placeholder="I have a craving for: "/> 
-              <button type="button" class="btn btn-danger" id="make-it-submit-button">Make It</button>
-            </div> 
-          </div>
-
-          <div class="hidden-content" id="deliver-it-form">
-            <div class="form-group">              
-              <input type="text" name="searchEngine" size="90" id="deliver-it-query" class="form-control" placeholder="I have a craving for: "/>
-              <input type="text" name="searchEngine" size="90" id="zip-code-input" class="form-control" placeholder="Enter Your Zipcode: "/>
-              <button type="button" class="btn btn-danger" id="deliver-it-submit-button">Deliver It</button>
-            </div> 
-          </div>
-
-          <br>
-          <div class="imageHolder">
-            <img id="makeit-img"  class="image" src="assets/images/makeit-btn.png" alt="makeit">
-            <img id="findit-img" class="image" src="assets/images/findit-btn.png" alt="findit">
-            <img id="deliverit-img"  class="image" src="assets/images/deliverit-btn.png" alt="deliverit">
-            <!-- Modal -->
-            <!--<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-              <div class="modal-dialog modal-dialog-centered" role="document">
-                <div class="modal-content">
-                  <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                      <span aria-hidden="true">&times;</span>
-                    </button>
-                  </div>
-                  <div class="modal-body" id="search-results">
-                  </div>
-                  <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary">Save changes</button>
-                  </div>
-                </div>
-              </div>
-
 <!-- Fixed Stuff -->
 
 <head>
@@ -86,115 +20,59 @@
 </head>
 <body>
 
+    <div class="container">
 
-<!--
-<div class="container">
 
-<!-- login button -->
+    <!-- login button -->
     <button class="btn btn-Danger" id="login" data-toggle="modal" data-target="#login-modal">Login</button>
-
-<!--
-      <div class="roll">
-            <div class="col-md-8 col-md-offset-2">
-<!-- Logo point to main page, put my github for now  -->
- <!--            
-             <img id="logo" class="logo" src="assets/images/logo.png" alt="logo">
-     
-            </div>
-        </div>
-<!-- The search bar -->
- <!--     <div class="roll">
-          <div class="col-md-8 col-md-offset-2">     
-                <div class="form-group" >              
-                    <input type="text" name="searchEngine" size="90" id="searchTerm" class="form-control" placeholder="I have a craving for: "/> </div> 
-            </div>
-          </div>         
-        </div>
-
+    <div class="roll">
+      <div class="col-md-8 col-md-offset-2">
+        <a href="https://github.com/ouyangtt"> 
+          <img id="logo" class="logo" src="assets/images/logo.png" alt="logo"> 
+        </a>
       </div>
-      
-      <div class="hidden-content">
-        <div class="roll">
-          <div class="col-md-8 col-md-offset-2">
-            <div class="form-group">              
-              <input type="text" name="searchEngine" size="90" id="searchTerm" class="form-control" placeholder="I have a craving for: "/>
-              <input type="text" name="searchEngine" size="90" id="zip-code-input" class="form-control" placeholder="Enter Your Zipcode: "/>
-              <div class="imageHolder">
-              </div> 
-            </div> 
-          </div>
-        </div>
-      </div>
-
-      <!-- To display the results. -->
- <!--     <div class="roll">
-          <div class="col-md-8 col-md-offset-2">
-              <div class="display">
-              	<div class="panel panel-default">
-                    <div class="panel-heading" id="header-one">Display</div>
-                    <div class="panel-body" id="display-table">
-                        <table class="table">
-                        	<tbody id="table-body">
-    					            </tbody>
-    				             </table>
-    			          </div>
-    		         </div>
-              </div>
-          </div>
-      </div>
-
     </div>
-    <br>
 
-    <div id="footer">
-    			<p>&copy Copyright -  2018<p>
-    </div>
-    
-    <!-- jQuery CDN -->
-<!--    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <!-- Bootstrap CDN -->
-<!--    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
-    <!-- Firebase -->
-<!--    <script src="https://www.gstatic.com/firebasejs/3.6.0/firebase.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/parsley.js/2.8.1/parsley.min.js"></script>
-    <!-- Javascripts -->
-<!--    <script src="assets/javascript/app.js"></script>
-
-  </body>
-</html>
+    <!-- The search bar -->
+    <div class="roll">
+      <div class="col-md-8 col-md-offset-2">     
+        <div class="form-group" > 
+            <p id="bad-input" class="hidden-content"> You entered Incorrect Input!!</p>             
+            <input type="text" name="searchEngine" size="90" id="searchTerm" class="form-control" data-parsley-pattern="/^[a-zA-Z ]+$/g" placeholder="I have a craving for: "/> 
+        </div> 
+      </div>
+    </div>         
 
 
 <!-- Three image buttons -->
-        <div class="roll">
-                <div class="col-sm-3 col-sm-offset-2"> <img id="makeit-img"  class="image" src="assets/images/make.png" alt="makeit"></div>
-                <div class="col-sm-3"> <img id="findit-img" class="image" src="assets/images/find.png" data-toggle="modal" data-target="#contact" alt="findit"> </div>
-                <div class="col-sm-3"> <img id="deliverit-img"  class="image" src="assets/images/deliver.png" data-toggle="modal" data-target="#contact" alt="deliverit"></div>
-            </div>
+    <div class="roll">
+      <div class="col-sm-3 col-sm-offset-2"> 
+        <img id="makeit-img"  class="image" src="assets/images/make.png" alt="makeit">
+      </div>
+      <div class="col-sm-3"> 
+        <img id="findit-img" class="image" src="assets/images/find.png" data-toggle="modal" data-target="#contact" alt="findit"> 
+      </div>
+      <div class="col-sm-3"> 
+        <img id="deliverit-img"  class="image" src="assets/images/deliver.png" data-toggle="modal" data-target="#contact" alt="deliverit">
+      </div>
+    </div>
    
-
 <!-- To display the results. -->
-      <div class="roll">
-            <div class="col-md-8 col-md-offset-2">
-                <div class="display">
-                  <div class="panel panel-default">
-                    <div class="panel-heading" id="header-one">Display</div>
-                    <div class="panel-body" id="display-table">
-                        <table class="table">
-                          <tbody id="table-body">
-                            
-      
+    <div class="roll">
+      <div class="col-md-8 col-md-offset-2">
+        <div class="display">
+          <div class="panel panel-default">
+            <div class="panel-heading" id="header-one">Display</div>
+            <div class="panel-body" id="display-table">
+              <table class="table">
+                <tbody id="table-body">
                 </tbody>
               </table>
             </div>
-              </div>
-                </div>
-            </div>
+          </div>
         </div>
-
-
-
-
-
+      </div>
+    </div>
 
 <!-- Modals -->
 
@@ -203,18 +81,17 @@
         <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
+                  <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
                 </div>
-            <div class="modal-body">
-        ...
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Save changes</button>
-            </div>
+                <div class="modal-body">
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                  <button type="button" class="btn btn-primary">Save changes</button>
+                </div>
             </div>
         </div>
     </div>
@@ -222,95 +99,85 @@
 
 <!-- Login Modal -->
     <div class="modal fade" id="login-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
-            <div class="modal-dialog">
-                <div class="loginmodal-container">
-                    <h1>Login to Your Account</h1><br>
-                    <form>
-                    <input type="text" name="user" placeholder="Username">
-                    <input type="password" name="pass" placeholder="Password">
-                    <input type="submit" name="login" class="login loginmodal-submit" value="Login">
-                    </form>
-                    
-                  <div class="login-help">
-                    <a href="#">Register</a> - <a href="#">Forgot Password</a>
-                  </div>
-                </div>
-            </div>
+      <div class="modal-dialog">
+        <div class="loginmodal-container">
+          <h1>Login to Your Account</h1><br>
+            <form>
+              <input type="text" name="user" placeholder="Username">
+              <input type="password" name="pass" placeholder="Password">
+              <input type="submit" name="login" class="login loginmodal-submit" value="Login">
+            </form>
+        <div class="login-help">
+          <a href="#">Register</a> - <a href="#">Forgot Password</a>
+        </div>
+        </div>
+      </div>
     </div>
     
 <!-- Address modal  -->
     <div class="modal fade" id="contact" tabindex="-1" role="dialog" aria-labelledby="contactLabel" aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="panel panel-primary">
-                    <div class="panel-heading">
-                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                        <h4 class="panel-title" id="contactLabel"><span class="glyphicon glyphicon-info-sign"></span> Please input your address. </h4>
-                    </div>
-                    <form action="#" method="post" accept-charset="utf-8">
-                    <div class="modal-body" style="padding: 5px;">
-                        
-
-                    <!-- Input address info -->
-                    <div class="row">
-                            <div class="col-lg-12 col-md-12 col-sm-12" style="padding-bottom: 10px;">
-                            <input class="form-control" name="Line 1" placeholder="Address Line 1" type="text" required autofocus />
-                            </div>
-                          
-                    </div>   
-                    <div class="row">
-                            <div class="col-lg-12 col-md-12 col-sm-12" style="padding-bottom: 10px;">
-                            <input class="form-control" name="Line 2" placeholder="Address Line 2" type="text" required autofocus />
-                            </div>
-                    </div>
-                    <div class="row">
-                            <div class="col-lg-12 col-md-12 col-sm-12" style="padding-bottom: 10px;">
-                            <input class="form-control" name="City" placeholder="City" type="text" required autofocus />
-                            </div>
-                    </div>
-                    <div class="row">
-                            <div class="col-lg-12 col-md-12 col-sm-12" style="padding-bottom: 10px;">
-                            <input class="form-control" name="State" placeholder="Sate" type="text" required autofocus />
-                            </div>
-                    </div>      
-                    <div class="row">
-                            <div class="col-lg-12 col-md-12 col-sm-12" style="padding-bottom: 10px;">
-                            <input class="form-control" name="Postcode" placeholder="Post Code" type="text" required autofocus />
-                            </div>
-                            </div>
-                    <div class="row">
-                            <div class="col-lg-12 col-md-12 col-sm-12" style="padding-bottom: 10px;">
-                            <input class="form-control" name="Country" placeholder="Country" type="text" required autofocus/>
-                            </div> 
-                    </div>    
-                    <!-- Footer buttons -->
-                        <div class="panel-footer" style="margin-bottom:14px;">
-                            <input type="submit" class="btn btn-success" value="Send"/>
-                                <!--<span class="glyphicon glyphicon-ok"></span>-->
-                            <input type="reset" class="btn btn-danger" value="Clear" />
-                                <!--<span class="glyphicon glyphicon-remove"></span>-->
-                            <button style="float: right;" type="button" class="btn btn-default btn-close" data-dismiss="modal">Close</button>
+      <div class="modal-dialog">
+          <div class="panel panel-primary">
+              <div class="panel-heading">
+                  <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                  <h4 class="panel-title" id="contactLabel"><span class="glyphicon glyphicon-info-sign"></span> Please input your address. </h4>
+              </div>
+              <form action="#" method="post" accept-charset="utf-8">
+                <div class="modal-body" style="padding: 5px;">
+                <!-- Input address info -->
+                <div class="row">
+                        <div class="col-lg-12 col-md-12 col-sm-12" style="padding-bottom: 10px;">
+                        <input class="form-control" name="Line 1" placeholder="Address Line 1" type="text" required autofocus />
                         </div>
-
-                    </div>
-                    
-
-                </form>
+                      
+                </div>   
+                <div class="row">
+                        <div class="col-lg-12 col-md-12 col-sm-12" style="padding-bottom: 10px;">
+                        <input class="form-control" name="Line 2" placeholder="Address Line 2" type="text" required autofocus />
+                        </div>
                 </div>
-            </div>
+                <div class="row">
+                        <div class="col-lg-12 col-md-12 col-sm-12" style="padding-bottom: 10px;">
+                        <input class="form-control" name="City" placeholder="City" type="text" required autofocus />
+                        </div>
+                </div>
+                <div class="row">
+                        <div class="col-lg-12 col-md-12 col-sm-12" style="padding-bottom: 10px;">
+                        <input class="form-control" name="State" placeholder="Sate" type="text" required autofocus />
+                        </div>
+                </div>      
+                <div class="row">
+                        <div class="col-lg-12 col-md-12 col-sm-12" style="padding-bottom: 10px;">
+                        <input class="form-control" name="Postcode" placeholder="Post Code" type="text" required autofocus />
+                        </div>
+                        </div>
+                <div class="row">
+                        <div class="col-lg-12 col-md-12 col-sm-12" style="padding-bottom: 10px;">
+                        <input class="form-control" name="Country" placeholder="Country" type="text" required autofocus/>
+                        </div> 
+                </div>    
+                <!-- Footer buttons -->
+                <div class="panel-footer" style="margin-bottom:14px;">
+                    <input type="submit" class="btn btn-success" value="Send"/>
+                        <!--<span class="glyphicon glyphicon-ok"></span>-->
+                    <input type="reset" class="btn btn-danger" value="Clear" />
+                        <!--<span class="glyphicon glyphicon-remove"></span>-->
+                    <button style="float: right;" type="button" class="btn btn-default btn-close" data-dismiss="modal">Close</button>
+                </div>
+                </div>
+              </form>
+          </div>
+      </div>
     </div>
 
 </div>
 
-
-
-
 <div id="footer">
   <p>&copy Copyright -  2018<p>
 </div>
-
-    
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAC1wTUBSAAKhd2TdMwN0HEQ-Ni7T9fSy4&libraries=places" async defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/parsley.js/2.8.1/parsley.min.js"></script>
     <script type="text/javascript" src="assets/javascript/app.js"></script>
   </body>
 </html>
