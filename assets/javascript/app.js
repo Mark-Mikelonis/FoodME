@@ -35,10 +35,14 @@ var geoAllowed = false;
     // Capture Button Click
     $("#login-btn").on("click", function(event) {
       event.preventDefault();
-
+      $("#login").text("Logout");
       // Grabbed values from text boxes
       username = $("#usernameInput").val().trim();
       password = $("#defaultForm-pass").val().trim();
+
+      $("#usernameInput").val("");
+      $("#defaultForm-pass").val("");
+
 
       // Code for handling the push
       database.ref('/users').push({
