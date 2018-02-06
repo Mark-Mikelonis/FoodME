@@ -9,6 +9,7 @@ var grubSearch = false;
 var searchTerm;
 var currLoc;
 var geoAllowed = false;
+
 //////////Tung Tung - firebase/////////
 // Initialize Firebase
   var config = {
@@ -43,6 +44,8 @@ var geoAllowed = false;
         password: password,
         dateAdded: firebase.database.ServerValue.TIMESTAMP
       });
+
+      // $('#modalLoginForm').modal('hide');
 
     });
 
