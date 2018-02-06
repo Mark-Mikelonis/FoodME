@@ -29,6 +29,8 @@ var geoAllowed = false;
     // Initial Values
     var username = "";
     var password = "";
+    var userRef = database.ref("/users");
+
 
     // Capture Button Click
     $("#login-btn").on("click", function(event) {
@@ -39,13 +41,15 @@ var geoAllowed = false;
       password = $("#defaultForm-pass").val().trim();
 
       // Code for handling the push
-      database.ref().push({
+      database.ref('/users').push({
         username: username,
         password: password,
         dateAdded: firebase.database.ServerValue.TIMESTAMP
       });
 
       // $('#modalLoginForm').modal('hide');
+              $("#login-btn").trigger("reset");
+              // $("#myform")[0].reset();
 
     });
 
@@ -69,6 +73,21 @@ var geoAllowed = false;
     }, function(errorObject) {
       console.log("Errors handled: " + errorObject.code);
     });
+
+// Auth users
+//     firebase.auth().signInWithCustomToken(token).catch(function(error) {
+//   // Handle Errors here.
+//   var errorCode = error.code;
+//   var errorMessage = error.message;
+//   // ...
+// });
+
+// // Sign out
+// firebase.auth().signOut().then(function() {
+//   // Sign-out successful.
+// }).catch(function(error) {
+//   // An error happened.
+// });
 
 
 
