@@ -1,5 +1,58 @@
 @import url(http://fonts.googleapis.com/css?family=Roboto);
 
+
+/* Used For Table Search Display*/
+/*.card-body img{
+  margin-top: 30px;
+  height: 70%;
+  margin-right: 10px;
+  float: left;
+  line-height: 200px; 
+  vertical-align: middle; 
+  border-right: 2px solid #B31E1E;
+  padding: 0 10px;
+}
+
+.card-body p{
+  margin-top: 30px;
+  float: left;
+  color: #B31E1E;
+}
+
+.recipe-display {
+  overflow: auto;
+  height: 200px;
+  margin: 10px 0;
+  border-top: 2px solid #B31E1E;
+  border-bottom: 2px solid #B31E1E;;
+}
+
+.delivery-display {
+  overflow: auto;
+  height: 200px;
+  margin: 10px 0;
+  border-top: 2px solid #B31E1E;
+  border-bottom: 2px solid #B31E1E;;
+}
+
+.response-text {
+  color: black;
+}
+
+.displayed-content{
+  display: block;
+}
+
+.hidden-content{
+  display: none;
+}
+/* End of Table Search Display*/
+
+#logo {
+  width: 300px;
+  height: 300px;
+  margin-top:40px;
+}
 #logo {
 	    width: 300px;
       height: 300px;
@@ -8,16 +61,22 @@
 
 
 #box {
-    text-align: center;
+  text-align: center;
+  text-align: center;
 
 }
 
 .image {
   width: 100px;
   height: 100px;
-   
-  
+}
 
+.display {
+  margin-top: 50px;
+}
+
+.icon {
+  text-align: justify;
 }
 .display {
 	  margin-top: 50px;
@@ -25,7 +84,8 @@
 }
 
 .icon {
-    text-align: justify;
+  text-align: justify;
+
 }
 
 #login {
@@ -49,15 +109,29 @@
 input[type="text"]:focus {
   border-color: red;
   box-shadow: 1px 1px 1px red inset,1px 1px 1px red;
-
 }
 
 #footer {
   margin-top:20px;
+  text-align: center;
+}
+
+
+.btn {
+  background-color:red;
+}
+
+ .img1:hover {
+  background: url("../images/makeit_btn2.png") no-repeat;
+}
+
+#footer {
 			text-align: center;
-    }
+}
+/*
+			text-align: center;
+}
 
-
-
+*/
 
 
