@@ -9,13 +9,67 @@ var grubSearch = false;
 var searchTerm;
 var currLoc;
 var geoAllowed = false;
-////////////////////////mark's js/////////
+//////////Tung Tung - firebase/////////
+// Initialize Firebase
+  var config = {
+    apiKey: "AIzaSyBqXH2dyl-dMJagS_0_FPDw7hmGhJhoibQ",
+    authDomain: "foodme-51ff9.firebaseapp.com",
+    databaseURL: "https://foodme-51ff9.firebaseio.com",
+    projectId: "foodme-51ff9",
+    storageBucket: "foodme-51ff9.appspot.com",
+    messagingSenderId: "105401566238"
+  };
+  firebase.initializeApp(config);
 
 
-////Pedram///
+    // Create a variable to reference the database.
+    var database = firebase.database();
+
+    // Initial Values
+    var username = "";
+    var password = "";
+
+    // Capture Button Click
+    $("#login-btn").on("click", function(event) {
+      event.preventDefault();
+
+      // Grabbed values from text boxes
+      username = $("#usernameInput").val().trim();
+      password = $("#defaultForm-pass").val().trim();
+
+      // Code for handling the push
+      database.ref().push({
+        username: username,
+        password: password,
+        dateAdded: firebase.database.ServerValue.TIMESTAMP
+      });
+
+    });
+
+    // Firebase watcher + initial loader + order/limit HINT: .on("child_added"
+    database.ref().orderByChild("dateAdded").limitToLast(1).on("child_added", function(snapshot) {
+      // storing the snapshot.val() in a variable for convenience
+      var sv = snapshot.val();
+
+      // Console.loging the last user's data
+      console.log(sv.username);
+      console.log(sv.password);
+
+
+      // Change the HTML to reflect
+      $("#name-display").text(sv.name);
+      $("#email-display").text(sv.email);
+      $("#age-display").text(sv.age);
+      $("#comment-display").text(sv.comment);
+
+      // Handle the errors
+    }, function(errorObject) {
+      console.log("Errors handled: " + errorObject.code);
+    });
 
 
 
+//////////////Pedram//////////
 //////////////////// Recipe (Food 2 Fork) API Variables and functions //////////////////////////////////
 
 var recipeApiKey = "ea22f20d6e490ba43d99d8705330edc7";
