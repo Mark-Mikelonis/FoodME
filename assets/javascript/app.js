@@ -202,6 +202,7 @@ function createPlaceList(place) {
         var newImg = $("<img>");
         newImg.attr("src", "assets/images/grubHubLogo.jpg");
         newImg.css("width", "150px");
+        newDiv.addClass("delivery-display");
         newDiv.append(newImg);
         newDiv.append("<h4>"+ place.name +"</h4><a href="+url+" target='_blank'>Deliver through Grubhub</a><hr>"); 
         isGrub = false;
