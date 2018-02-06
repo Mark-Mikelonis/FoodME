@@ -52,6 +52,35 @@ input[type="text"]:focus {
 
 }
 
+
+.recipe-display {
+  overflow: auto;
+  height: 200px;
+  margin: 10px 0;
+  border-top: 2px solid #B31E1E;
+  border-bottom: 2px solid #B31E1E;
+ }
+
+ .recipe-display img{
+    margin-top: 20px;
+    line-height: 200px;
+    vertical-align: middle;
+    float: left;
+    width: 200px;
+    height: 200px;
+    height: 80%;
+    padding-right: 15px;
+ }
+
+.response-text{
+  color: black;
+}
+
+.recipe-display p:first-child{
+  margin-top: 40px;
+}
+
+
 #footer {
   margin-top:20px;
 			text-align: center;
