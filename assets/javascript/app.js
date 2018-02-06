@@ -134,9 +134,9 @@ $("#makeit-img").on("click", function(){
                         var newDiv = $("<div>");
                         //newDiv.attr("data-recipe-id", responseObject.recipes[i].recipe_id);
                         newDiv.html('<div class="card"><div class="card-body"><div class="recipe-display" data-toggle="modal" data-target="#exampleModalCenter" data-recipe-id="' + 
-                            responseObject.recipes[i].recipe_id + '"><img src="' + responseObject.recipes[i].image_url + '"><br><p>Title:<span class="response-text">' 
-                            + responseObject.recipes[i].title +'</span></p><br><br><p>URL: <span class="response-text">'
-                            + responseObject.recipes[i].source_url +'</span></p><br></div></div></div>');
+                            responseObject.recipes[i].recipe_id + '"><img src="' + responseObject.recipes[i].image_url + '"><br><h3>' 
+                            + responseObject.recipes[i].title +'</h3><p>Recipe Brought To You By: <span class="response-text">'
+                            + responseObject.recipes[i].publisher +'</span></p><br></div></div></div>');
                         newRow.append(newDiv);
                         $("#table-body").append(newRow);
                     }
