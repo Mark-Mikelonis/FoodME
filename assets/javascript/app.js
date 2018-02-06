@@ -9,7 +9,113 @@ var grubSearch = false;
 var searchTerm;
 var currLoc;
 var geoAllowed = false;
+////////////////////////mark's js/////////
 
+
+////Pedram///
+
+
+
+//////////////////// Recipe (Food 2 Fork) API Variables and functions //////////////////////////////////
+
+var recipeApiKey = "ea22f20d6e490ba43d99d8705330edc7";
+var eatStreetApiKey = "67804766f0ca2e3a";
+ 
+ ///When The user clicks on make it image 
+ ///Clear the table. Validate their input with parsley 
+ ///If the input is good. Hide the badInput div. 
+ ///Empty the table 
+ ///Grab the value Do Ajax call to Food 2 Fork 
+ ///Make Row put Div in Row add info to div append to table 
+$("#makeit-img").on("click", function(){
+
+    var parsleyInstance = $("#searchTerm").parsley();
+
+    if(parsleyInstance.isValid()){
+
+        $("#bad-input").addClass("hidden-content");
+
+        $("#table-body").empty();
+        
+        var query = $("#searchTerm").val().trim(); 
+        var searchUrl = "http://food2fork.com/api/search?key=" + recipeApiKey + "&q=" + query;
+
+        $.ajax({
+          url: "https://cors-anywhere.herokuapp.com/" + searchUrl,
+          method: "GET", 
+        }).done(function(response) {
+          
+              var responseObject = JSON.parse(response);
+
+              if (responseObject.recipes.length > 0) {
+
+                for(var i = 0; i < responseObject.recipes.length; i++){
+                    if (i >= 10){break;}
+                    else{
+                        var newRow = $("<tr>");
+                        var newDiv = $("<div>");
+                        //newDiv.attr("data-recipe-id", responseObject.recipes[i].recipe_id);
+                        newDiv.html('<div class="card"><div class="card-body"><div class="recipe-display" data-toggle="modal" data-target="#exampleModalCenter" data-recipe-id="' + 
+                            responseObject.recipes[i].recipe_id + '"><img src="' + responseObject.recipes[i].image_url + '"><br><p>Title:<span class="response-text">' 
+                            + responseObject.recipes[i].title +'</span></p><br><br><p>URL: <span class="response-text">'
+                            + responseObject.recipes[i].source_url +'</span></p><br></div></div></div>');
+                        newRow.append(newDiv);
+                        $("#table-body").append(newRow);
+                    }
+                } 
+              }
+              else {
+          $("#contact").modal("show");
+                console.log("We did not find any results for that search");
+              }
+        });
+    }
+    else{
+        console.log("You did not enter good input");
+        $("#bad-input").removeClass("hidden-content");
+    }
+
+});
+
+////If a user clicks on the recipe rows It should do an ajax call on the 
+////Recipe ID Then Display info in the modal. 
+$(document).on("click", ".recipe-display", function(){
+
+    $("#search-results").empty();
+
+    var recipeId = $(this).attr("data-recipe-id");
+    var getUrl = "http://food2fork.com/api/get?key=" + recipeApiKey + "&rId=" + recipeId;
+
+    $.ajax({
+      url: "https://cors-anywhere.herokuapp.com/" + getUrl,
+      method: "GET", 
+    }).done(function(response) {
+
+        var responseObject = JSON.parse(response);
+        var newDiv = $("<div>");
+
+        newDiv.html('<img src="' + responseObject.recipe.image_url + '"><br><p>Title:<span class="response-text">' 
+            + responseObject.recipe.title +'</span></p><br><br><p>URL: <span class="response-text">'
+            + responseObject.recipe.source_url +'</span></p><br></div></div></div>');
+
+        var newList = $("<ul>");
+
+        responseObject.recipe.ingredients.forEach(function(ingredient){
+            var newItem = $("<li>");
+            newItem.text(ingredient); 
+            newList.append(newItem);
+        });
+        newDiv.append(newList);
+        $("#search-results").append(newDiv);
+    });
+});
+
+
+
+
+
+
+///////////////////// Mark's js Google API//////////////////
 
  function getGeo(){
  	<!-- getting the user location -->

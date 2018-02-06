@@ -42,7 +42,8 @@
  	    <div class="row">
  	        <div class="col-md-12 ">     
                 <div class="form-group">
-                    <input class="form-control form-control-lg" id="searchTerm" type="text" placeholder="I have a craving for: " >
+                     <p id="bad-input" class="hidden-content"> You entered Incorrect Input!!</p>   
+                    <input class="form-control form-control-lg" id="searchTerm" type="text" data-parsley-pattern="/^[a-zA-Z ]+$/g"  placeholder="I have a craving for: "/>
                 </div> 
             </div>
         </div>
@@ -192,13 +193,15 @@
  
     <!-- jQuery CDN -->
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <!-- Parsley -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/parsley.js/2.8.1/parsley.min.js"></script>
     <!-- Firebase -->
     <script src="https://www.gstatic.com/firebasejs/3.6.0/firebase.js"></script>
     <!-- Javascripts -->
-    <script src="assets/javascript/temp.js"></script>
 
      <div id="map"></div>
     <script type="text/javascript" src="assets/javascript/app.js"></script>
+    <!-- Google API -->
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAC1wTUBSAAKhd2TdMwN0HEQ-Ni7T9fSy4&libraries=places&callback=initMap" async defer></script>
 
 </body>
