@@ -1,7 +1,8 @@
 @import url(http://fonts.googleapis.com/css?family=Roboto);
 
+
 /* Used For Table Search Display*/
-.card-body img{
+/*.card-body img{
   margin-top: 30px;
   height: 70%;
   margin-right: 10px;
@@ -52,10 +53,17 @@
   height: 300px;
   margin-top:40px;
 }
+#logo {
+	    width: 300px;
+      height: 300px;
+      margin-top:40px;
+}
 
 
 #box {
   text-align: center;
+  text-align: center;
+
 }
 
 .image {
@@ -69,6 +77,15 @@
 
 .icon {
   text-align: justify;
+}
+.display {
+	  margin-top: 50px;
+
+}
+
+.icon {
+  text-align: justify;
+
 }
 
 #login {
@@ -111,3 +128,10 @@ input[type="text"]:focus {
 #footer {
 			text-align: center;
 }
+/*
+			text-align: center;
+}
+
+*/
+
+
