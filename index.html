@@ -42,8 +42,9 @@
                 <div class="form-group">
                      <p id="bad-input" class="hidden-content"> You entered Incorrect Input!!</p>   
                     <input class="form-control form-control-lg" id="searchTerm" type="text" data-parsley-pattern="/^[a-zA-Z ]+$/g"  placeholder="I have a craving for: "/>
+                    
                     <div id="locationField">
-                    <input id="autocomplete" placeholder="Enter your address" onFocus="geolocate()" type="text"></input>
+                    <input class="form-control form-control-lg" id="autocomplete" placeholder="Please enter your address:" onFocus="geolocate()" type="text"></input>
                     </div>
 
                 </div> 
@@ -158,7 +159,7 @@
 
     
 <!-- Address modal  -->
-<div class="modal fade" id="modalAddressForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+<!-- <div class="modal fade" id="modalAddressForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header text-center">
@@ -180,7 +181,7 @@
             </div>
         </div>
     </div>
-</div>
+</div> -->
 
 
 </div>
