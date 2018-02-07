@@ -254,6 +254,9 @@ function getDetails(placeId) { // look into the service
 }
 
 function callback(results, status) {
+    if(results.length === 0){
+        $("#header-one").text("No results. Please try another search term.");
+    }
     var places = [];
     if (status === google.maps.places.PlacesServiceStatus.OK) {
         
@@ -320,21 +323,37 @@ function createPlaceList(place) {
 $("#makeit-img").mouseover(function() {
     $(this).attr("src", "assets/images/make2.png");
 });
+
 $("#makeit-img").mouseout(function() {
     $(this).attr("src", "assets/images/make.png");
 });
 $("#findit-img").mouseover(function() {
     $(this).attr("src", "assets/images/find2.png");
 });
+
 $("#findit-img").mouseout(function() {
     $(this).attr("src", "assets/images/find.png");
 });
 $("#deliverit-img").mouseover(function() {
     $(this).attr("src", "assets/images/deliver2.png");
 });
+
 $("#deliverit-img").mouseout(function() {
     $(this).attr("src", "assets/images/deliver.png");
 });
+/// Override mouseover for touch devices
+
+$("#makeit-img").on("click", function() {
+    $(this).attr("src", "assets/images/make.png");
+});    
+$("#findit-img").on("click", function() {
+    $(this).attr("src", "assets/images/find.png");
+});
+$("#deliverit-img").on("click", function() {
+    $(this).attr("src", "assets/images/find.png");
+});
+
+
 $("#findit-img").on("click", function() {
     isGrub = false;
     $("#table-body").empty();
