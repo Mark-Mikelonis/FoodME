@@ -34,6 +34,11 @@ var geoAllowed = false;
     var validUser = false; 
 
 
+///Golbal
+
+var validUserName = "";
+var validPW = "";
+
 
     // Capture Button Click
     $("#sign-up-btn").on("click", function(event) {
@@ -54,22 +59,59 @@ var geoAllowed = false;
         dateAdded: firebase.database.ServerValue.TIMESTAMP
       });
         // $("#login-btn").trigger("reset");
-
+   
     });
+
+
+// Capture Button Click for Logging In 
+$("#login-btn").on("click", function(event) {
+  event.preventDefault();
+
+  validUser = false; 
+  var user = "";
+  var pass = "";
+
+  // Grabbed values from text boxes
+   userNameInput = $("#username-login-input").val().trim();
+   passWordInput = $("#pass-login-input").val().trim();
+
+  console.log("The userName input is "+ userNameInput);
+  userRef.orderByChild("username").equalTo(userNameInput).on("child_added", function(snapshot) {
+    console.log("The username was in the database");
+    user = snapshot.val().username; 
+    pass = snapshot.val().password; 
+
+    if (passWordInput == pass){
+      validUser = true; 
+      validUserName = user;
+      validPW = pass;
+      console.log("Valid User");
+    }else{
+      console.log("Invalid User");
+    }
+
+
+
+  });
+
+});
+
 
     // Firebase watcher + initial loader + order/limit HINT: .on("child_added"
-    database.ref().orderByChild("dateAdded").limitToLast(1).on("child_added", function(snapshot) {
+    // database.ref().orderByChild("dateAdded").limitToLast(1).on("child_added", function(snapshot) {
       // storing the snapshot.val() in a variable for convenience
-      var sv = snapshot.val();
+      // var sv = snapshot.val();
 
       // Console.loging the last user's data
-      console.log(sv.username);
-      console.log(sv.password);
+      // console.log(sv.username);
+      // console.log(sv.password);
 
       // Handle the errors
-    }, function(errorObject) {
-      console.log("Errors handled: " + errorObject.code);
-    });
+    // }, function(errorObject) {
+    //   console.log("Errors handled: " + errorObject.code);
+    // });
+
+
 
     // Hide the location search bar first
       $("#locationField").hide();
@@ -123,6 +165,7 @@ function fillInAddress() {
         }
     }
 }
+
 // Bias the autocomplete object to the user's geographical location,
 // as supplied by the browser's 'navigator.geolocation' object.
 function geolocate() {
@@ -143,55 +186,9 @@ function geolocate() {
 
 
 
-// Capture Button Click For Signing Up
-$("#sign-up-btn").on("click", function(event) {
-  event.preventDefault();
-
-  // Grabbed values from text boxes
-  username = $("#username-signup-input").val().trim();
-  password = $("#pass-signup-input").val().trim();
-
-  $("#usernameInput").val("");
-  $("#defaultForm-pass").val("");
-
-  // Code for handling the push
-  database.ref('/users').push({
-    username: username,
-    password: password,
-    dateAdded: firebase.database.ServerValue.TIMESTAMP
-  });
-
-});
 
 
-// Capture Button Click for Logging In 
-$("#login-btn").on("click", function(event) {
-  event.preventDefault();
 
-  validUser = false; 
-  var user = "";
-  var pass = "";
-
-  // Grabbed values from text boxes
-  userNameInput = $("#username-login-input").val().trim();
-  passWordInput = $("#pass-login-input").val().trim();
-
-  console.log("The userName input is "+ userNameInput);
-  userRef.orderByChild("username").equalTo(userNameInput).on("child_added", function(snapshot) {
-    console.log("The username was in the database");
-    user = snapshot.val().username; 
-    pass = snapshot.val().password; 
-
-    if (passWordInput == pass){
-      validUser = true; 
-      console.log("Valid User");
-    }else{
-      console.log("Invalid User");
-    }
-
-  });
-
-});
 
 
 function getLatLng(){
