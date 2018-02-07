@@ -30,16 +30,18 @@ var geoAllowed = false;
     var username = "";
     var password = "";
     var userRef = database.ref("/users");
-    var recipeRef = database.ref("/users/recipes");
+    // var recipeRef = database.ref("/users/recipes");
+    var validUser = false; 
+
 
 
     // Capture Button Click
-    $("#login-btn").on("click", function(event) {
+    $("#sign-up-btn").on("click", function(event) {
       event.preventDefault();
-      $("#login").text("Logout");
+      // $("#login").text("Logout");
       // Grabbed values from text boxes
-      username = $("#usernameInput").val().trim();
-      password = $("#defaultForm-pass").val().trim();
+      username = $("#username-signup-input").val().trim();
+      password = $("#pass-signup-input").val().trim();
 
       $("#usernameInput").val("");
       $("#defaultForm-pass").val("");
@@ -51,7 +53,7 @@ var geoAllowed = false;
         password: password,
         dateAdded: firebase.database.ServerValue.TIMESTAMP
       });
-        $("#login-btn").trigger("reset");
+        // $("#login-btn").trigger("reset");
 
     });
 

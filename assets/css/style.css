@@ -70,6 +70,8 @@ hr.red-rule {
       margin-top:40px;
 }
 
+
+
 #box {
     text-align: center;
 }
@@ -88,6 +90,12 @@ hr.red-rule {
 }
 
 #login {
+  margin-top: 40px;
+  color:white;
+}
+
+#sign-up{
+  margin-left: 40px;
   margin-top: 40px;
   color:white;
 }
