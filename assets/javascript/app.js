@@ -83,14 +83,13 @@ $("#locationField").hide();
 $("#address").hide();
 //////// Google autofill ////////////
 var placeSearch, autocomplete;
-var componentForm = {
-    street_number: 'short_name',
-    route: 'long_name',
-    locality: 'long_name',
-    administrative_area_level_1: 'short_name',
-    country: 'long_name',
-    postal_code: 'short_name'
-};
+// var componentForm = {
+//     route: 'long_name',
+//     locality: 'long_name',
+//     administrative_area_level_1: 'short_name',
+//     country: 'long_name',
+//     postal_code: 'short_name'
+// };
 
 function initialize() {
     initAutocomplete();
@@ -113,20 +112,21 @@ function initAutocomplete() {
 function fillInAddress() {
     // Get the place details from the autocomplete object.
     var autoplace = autocomplete.getPlace();
-    for (var component in componentForm) {
-        console.log(component);
-        document.getElementById(component).value = '';
-        document.getElementById(component).disabled = false;
-    }
-    // Get each component of the address from the autoplace details place
-    // and fill the corresponding field on the form.
-    for (var i = 0; i < autoplace.address_components.length; i++) {
-        var addressType = autoplace.address_components[i].types[0];
-        if (componentForm[addressType]) {
-            var val = autoplace.address_components[i][componentForm[addressType]];
-            document.getElementById(addressType).value = val;
-        }
-    }
+    console.log(autoplace);
+    // for (var component in componentForm) {
+    //     console.log(component);
+    //     document.getElementById(component).value = '';
+    //     document.getElementById(component).disabled = false;
+    // }
+    // // Get each component of the address from the autoplace details place
+    // // and fill the corresponding field on the form.
+    // for (var i = 0; i < autoplace.address_components.length; i++) {
+    //     var addressType = autoplace.address_components[i].types[0];
+    //     if (componentForm[addressType]) {
+    //         var val = autoplace.address_components[i][componentForm[addressType]];
+    //         document.getElementById(addressType).value = val;
+    //     }
+    // }
 }
 // Pull the user's lat, long by address
 // 
@@ -199,9 +199,6 @@ $("#login-btn").on("click", function(event) {
 });
 
 
-function getLatLng(){
-    
-}
 //////////////Pedram//////////
 //////////////////// Recipe (Food 2 Fork) API Variables and functions //////////////////////////////////
 var recipeApiKey = "ea22f20d6e490ba43d99d8705330edc7";
@@ -226,6 +223,7 @@ $("#makeit-img").on("click", function() {
             method: "GET",
         }).done(function(response) {
             var responseObject = JSON.parse(response);
+            $("#display").text("Recipes");
             if (responseObject.recipes.length > 0) {
                 for (var i = 0; i < responseObject.recipes.length; i++) {
                     if (i >= 10) {
@@ -368,7 +366,7 @@ function createPlaceList(place) {
     var newImg = $("<img>");
     if (!isGrub) {
         var reserveUrl = getReservation(restName);
-        $("#header-one").text(searchTerm + " Restaurants");
+        $("#display").text("Restaurants");
         console.log("reserveUrl: " + reserveUrl);
         if (reserveUrl) {
             console.log("in reserveUrl");
@@ -378,7 +376,7 @@ function createPlaceList(place) {
             newDiv.append("<h4>" + place.name + "</h4>" + "Rating: " + place.rating + " (" + place.reviews.length + " reviews)<br>Price range: " + dollarSigns + "<br>" + place.adr_address + "<br> Phone: " + place.formatted_phone_number + "<br><a href=" + place.url + " target='_bla nk'>Open in Google Places</a><hr>");
         }
     } else if (isGrub) {
-        $("#header-one").text(searchTerm + " Restaurants that deliver to you");
+        $("#display").text("Restaurants that deliver to you");
         var url = grubHubUrl + restName + "&latitude=" + currLoc.lat + "&longitude=" + currLoc.lng;
         var newImg = $("<img>");
         newImg.attr("src", "assets/images/deliveryicon.png");
@@ -387,7 +385,7 @@ function createPlaceList(place) {
         newDiv.append("<h4>" + place.name + "</h4><a href=" + url + " target='_blank'>Deliver through Grubhub</a><hr>");
     } else {
         console.log("in no reserveUrl");
-        $("#header-one").text(searchTerm + " Restaurants");
+        $("#display").text("Restaurants");
         console.log(place);
         newDiv.append("<h4>" + place.name + "</h4>" + "Rating: " + place.rating + " (" + place.reviews.length + " reviews)<br>Price range: " + dollarSigns + "<br>" + place.adr_address + "<br> Phone: " + place.formatted_phone_number + "<br><a href=" + place.url + " target='_blank'>Open in Google Places</a><hr>");
     }
@@ -422,7 +420,7 @@ $("#deliverit-img").on("click", function() {
     $(this).attr("src", "assets/images/find.png");
 });
 $("#gobutton").on("click", function() {
-    if (isGrub !=="") {
+    if (isGrub) {
         $("#table-body").empty();
         address = $("#searchTerm").val().trim();
         console.log(searchTerm);
@@ -430,7 +428,7 @@ $("#gobutton").on("click", function() {
         setTimeout(function() {
             initMap();
         }, 1000);
-    } else if (!isgrub){
+    } else if (!isGrub){
         $("#table-body").empty();
     address = $("#searchTerm").val().trim();
     isGrub = true;
