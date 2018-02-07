@@ -69,12 +69,9 @@ var geoAllowed = false;
       console.log("Errors handled: " + errorObject.code);
     });
 
+        // Hide the location search bar first
+        $("#locationField").hide();
 
-
-
-$("#searchclear").click(function(){
-    $("#autocomplete").val('');
-});
        //////// Google autofill ////////////
 
       var placeSearch, autocomplete;
@@ -95,7 +92,7 @@ $("#searchclear").click(function(){
        initAutocomplete();
        initMap();
      }
-     
+
       function initAutocomplete() {
         // Create the autocomplete object, restricting the search to geographical
         // location types.
@@ -260,7 +257,7 @@ $(document).on("click", ".recipe-display", function(){
 ///////////////////// Mark's js Google API//////////////////
 
  function getGeo() {
-    <!-- getting the user location -->
+    // <!-- getting the user location -->
     if (navigator.geolocation) {
 
         navigator.geolocation.getCurrentPosition(success, error); //{
@@ -268,6 +265,8 @@ $(document).on("click", ".recipe-display", function(){
     } else {
         alert('geolocation not supported');
         // geoAllowed = false;
+        console.log("geolocation not supported")
+        $("#locationField").show();
     }
 
     function success(position) {

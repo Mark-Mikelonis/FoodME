@@ -40,25 +40,28 @@
  	    <div class="row">
  	        <div class="col-md-12 ">     
                 <div class="form-group">
-                     <p id="bad-input" class="hidden-content"> You entered Incorrect Input!!</p>   
-                    <input class="form-control form-control-lg" id="searchTerm" type="text" data-parsley-pattern="/^[a-zA-Z ]+$/g"  placeholder="I have a craving for: "/>
-                    
-             <div id="locationField">
+                     <!-- <p id="bad-input" class="hidden-content"> You entered Incorrect Input!!</p>    -->
+                    <div class="input-group"> 
+                    <input class="form-control form-control-md" id="searchTerm" type="text" data-parsley-pattern="/^[a-zA-Z ]+$/g"  placeholder="I have a craving for: ">
+                            <span class="input-group-btn">
+                                 <button class="btn btn-secondary" type="button" onclick="document.getElementById('searchTerm').value = ''">X</button>
+                            </span>
+                    </div>
+               
+
+                            
+                    <div id="locationField">
                      <div class="input-group">
                     <input class="form-control form-control-md" id="autocomplete" placeholder="Please enter your address:" onFocus="geolocate()" type="text">  
                             <span class="input-group-btn">
-                                 <button id="locationButton" class="btn btn-secondary" type="button">Go!</button>
-                             </span>
-                               
-
+                                 <button class="btn btn-secondary" id="gobutton" type="button">Go!</button>
+                            </span>
                     </div>
 
-                </div> 
+                    </div> 
+                </div>
             </div>
         </div>
-
-
-  </div>
 
 
 
@@ -165,6 +168,8 @@
             </div>
             <div class="modal-footer d-flex justify-content-center">
                 <button id="login-btn" data-dismiss="modal" class="btn btn-default" >Login</button>
+                <button id="signup-btn" data-dismiss="modal" class="btn btn-default" >Sign Up</button>
+
             </div>
         </div>
     </div>
