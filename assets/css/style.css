@@ -77,6 +77,12 @@ hr.red-rule {
   margin-top:10px;
 }
 
+
+
+.input-group-btn{
+  margin-top:10px;
+}
+
 .image {
   width: 100px;
   height: 100px;
@@ -94,6 +100,7 @@ hr.red-rule {
   margin-top: 40px;
   color:white;
 }
+
 
 .btn {
   background-color:red;
@@ -115,10 +122,10 @@ input[type="text"]:focus {
 }
 
 
-
+/*
  input[type="text"]::-webkit-search-cancel-button {
     -webkit-appearance: searchfield-cancel-button;
-}
+}*/
 
 
 

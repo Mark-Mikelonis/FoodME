@@ -36,28 +36,33 @@
                     </a>
             </div>
         </div>
-<!-- The search bar -->
+<!-- The search bars -->
  	    <div class="row">
  	        <div class="col-md-12 ">     
                 <div class="form-group">
                      <p id="bad-input" class="hidden-content"> You entered Incorrect Input!!</p>   
-                    <input class="form-control form-control-lg" id="searchTerm" class="clearable" type="text" data-parsley-pattern="/^[a-zA-Z ]+$/g"  placeholder="I have a craving for: "/>
+                    <input class="form-control form-control-lg" id="searchTerm" type="text" data-parsley-pattern="/^[a-zA-Z ]+$/g"  placeholder="I have a craving for: "/>
                     
-                    <div id="locationField">
-
-
-                <div class="btn-group">
-  
-
-                    <input class="form-control form-control-lg" class="clearable" id="autocomplete" placeholder="Please enter your address:" onFocus="geolocate()" type="text"></input>
-                    <span id="searchclear" class="glyphicon glyphicon-remove-circle"></span>
-                </div>
+             <div id="locationField">
+                     <div class="input-group">
+                    <input class="form-control form-control-md" id="autocomplete" placeholder="Please enter your address:" onFocus="geolocate()" type="text">  
+                            <span class="input-group-btn">
+                                 <button id="locationButton" class="btn btn-secondary" type="button">Go!</button>
+                             </span>
+                               
 
                     </div>
 
                 </div> 
             </div>
         </div>
+
+
+  </div>
+
+
+
+
 
 
 <!-- Three image buttons -->
@@ -217,10 +222,12 @@
     <!-- Javascripts -->
     <script type="text/javascript" src="assets/javascript/app.js"></script>
     <!-- Google API -->
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAC1wTUBSAAKhd2TdMwN0HEQ-Ni7T9fSy4&libraries=places&callback=initMap" async defer></script>
+   <!--  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAC1wTUBSAAKhd2TdMwN0HEQ-Ni7T9fSy4&libraries=places&callback=initMap" async defer></script> -->
     <!-- Google autofill API -->
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAC1wTUBSAAKhd2TdMwN0HEQ-Ni7T9fSy4&libraries=places&callback=initAutocomplete"
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAC1wTUBSAAKhd2TdMwN0HEQ-Ni7T9fSy4&libraries=places&callback=initialize"
         async defer></script>
+        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAC1wTUBSAAKhd2TdMwN0HEQ-Ni7T9fSy4&libraries=places&callback=initialize"
+       async defer></script>
 
 <!--     <script src="https://maps.googleapis.com/maps/api/place/autocomplete/json?key=AIzaSyAC1wTUBSAAKhd2TdMwN0HEQ-Ni7T9fSy4"></script>
  -->
