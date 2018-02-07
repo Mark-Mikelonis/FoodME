@@ -11,11 +11,7 @@
 
  .recipe-display img{
     margin-top: 20px;
-    line-height: 200px;
-    vertical-align: middle;
     float: left;
-    width: 200px;
-    height: 200px;
     height: 80%;
     padding-right: 15px;
  }
@@ -119,6 +115,31 @@ input[type="text"]:focus {
 }
 
 
+/*Media Queries */
 
+@media only screen and (max-width: 640px) {
+  
+.recipe-display {
+  height: 300px;
+  overflow: auto;
+ }
+
+ .recipe-display img{
+    display: block;
+    height: 50%;
+    margin: auto;
+    margin-top: 10px;
+    float: none;
+ }
+
+ .recipe-display h3{
+  font-size: 1.2em;
+ }
+
+ .recipe-display p{
+  font-size: 0.8em;
+ }
+
+}
 
 
