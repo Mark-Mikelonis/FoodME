@@ -80,6 +80,7 @@ database.ref().orderByChild("dateAdded").limitToLast(1).on("child_added", functi
 // });
 // Hide the location search bar first
 $("#locationField").hide();
+$("#address").hide();
 //////// Google autofill ////////////
 var placeSearch, autocomplete;
 var componentForm = {
@@ -132,7 +133,7 @@ function fillInAddress() {
 function geolocate(address) {
     var geocoder = new google.maps.Geocoder();
     // var address = address;
-    geocoder.geocode({ "address" : adress}, function(results, status){
+    geocoder.geocode({ "address" : address}, function(results, status){
         if (status === google.maps.GeocoderStatus.OK){
             var latitude = results[0].geometry.location.lat();
             var longitiude = results[0].geometry.location.lng();
@@ -171,7 +172,7 @@ $("#sign-up-btn").on("click", function(event) {
 // Capture Button Click for Logging In 
 $("#login-btn").on("click", function(event) {
   event.preventDefault();
-
+  debugger;
   validUser = false; 
   var user = "";
   var pass = "";
@@ -421,7 +422,7 @@ $("#deliverit-img").on("click", function() {
     $(this).attr("src", "assets/images/find.png");
 });
 $("#gobutton").on("click", function() {
-    if (isgrub !=="") {
+    if (isGrub !=="") {
         $("#table-body").empty();
         address = $("#searchTerm").val().trim();
         console.log(searchTerm);
