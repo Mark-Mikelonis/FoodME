@@ -47,14 +47,51 @@
             </div>
 
       <div id="locationField">
-                     <div class="input-group">
-                    <input class="form-control form-control-md" id="autocomplete" placeholder="Please enter your address:" type="text">  
+                    <div class="input-group">
+                    <input class="form-control form-control-md" id="autocomplete" placeholder="Please enter your address:" type="text">
+
                             <span class="input-group-btn">
                                  <button class="btn btn-secondary" id="gobutton" type="button">Go!</button>
                             </span>
                     </div>
       </div>
+		
+		<!-- Hiden table for google autofill functional -->
+                <table id="address">
+                     <tr>
+                 <td class="label">Street address</td>
+                     <td class="slimField"><input class="field" id="street_number"
+              disabled="true"></input></td>
+                     <td class="wideField" colspan="2"><input class="field" id="route"
+              disabled="true"></input></td>
+                      </tr>
+                           <tr>
+                 <td class="label">City</td>
+        <!-- Note: Selection of address components in this example is typical.
+             You may need to adjust it for the locations relevant to your app. See
+             https://developers.google.com/maps/documentation/javascript/examples/places-autocomplete-addressform
+        -->
+                     <td class="wideField" colspan="3"><input class="field" id="locality"
+              disabled="true"></input></td>
+      </tr>
+      <tr>
+        <td class="label">State</td>
+        <td class="slimField"><input class="field"
+              id="administrative_area_level_1" disabled="true"></input></td>
+        <td class="label">Zip code</td>
+        <td class="wideField"><input class="field" id="postal_code"
+              disabled="true"></input></td>
+      </tr>
+      <tr>
+        <td class="label">Country</td>
+        <td class="wideField" colspan="3"><input class="field"
+              id="country" disabled="true"></input></td>
+                 </tr>
+                </table>
 
+                </div>
+            </div>
+        </div>	
             <!-- Three image buttons -->
             <div class="row">
                 <div class="col-xs-3 mx-auto"> 
@@ -221,8 +258,10 @@
     <!-- Firebase -->
     <script src="https://www.gstatic.com/firebasejs/3.6.0/firebase.js"></script>
     <!-- Javascripts -->
+    <!--Bootstrap JS file --> 
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>  
+         
 
-     <div id="map"></div>
     <script type="text/javascript" src="assets/javascript/app.js"></script>
     <!-- Google API -->
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAC1wTUBSAAKhd2TdMwN0HEQ-Ni7T9fSy4&libraries=places&callback=initAutocomplete" async defer></script>

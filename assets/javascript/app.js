@@ -4,7 +4,7 @@ var opentableQuery = "https://opentable.herokuapp.com/api/restaurants?name=";
 var grubHubUrl = "https://www.grubhub.com/search?orderMethod=delivery&locationMode=DELIVERY&queryText=";
 var grubTerm;
 var placeId;
-var isGrub;
+var isGrub = false;
 var searchTerm;
 var currLoc;
 var geoAllowed = false;
@@ -80,6 +80,7 @@ database.ref().orderByChild("dateAdded").limitToLast(1).on("child_added", functi
 // });
 // Hide the location search bar first
 $("#locationField").hide();
+$("#address").hide();
 //////// Google autofill ////////////
 var placeSearch, autocomplete;
 var componentForm = {
@@ -113,6 +114,7 @@ function fillInAddress() {
     // Get the place details from the autocomplete object.
     var autoplace = autocomplete.getPlace();
     for (var component in componentForm) {
+        console.log(component);
         document.getElementById(component).value = '';
         document.getElementById(component).disabled = false;
     }
@@ -126,22 +128,22 @@ function fillInAddress() {
         }
     }
 }
-// Bias the autocomplete object to the user's geographical location,
-// as supplied by the browser's 'navigator.geolocation' object.
-function geolocate() {
-    if (navigator.geolocation) {
-        navigator.geolocation.getCurrentPosition(function(position) {
-            var geolocation = {
-                lat: position.coords.latitude,
-                lng: position.coords.longitude
-            };
-            var circle = new google.maps.Circle({
-                center: geolocation,
-                radius: position.coords.accuracy
-            });
-            autocomplete.setBounds(circle.getBounds());
-        });
-    }
+// Pull the user's lat, long by address
+// 
+function geolocate(address) {
+    var geocoder = new google.maps.Geocoder();
+    // var address = address;
+    geocoder.geocode({ "address" : address}, function(results, status){
+        if (status === google.maps.GeocoderStatus.OK){
+            var latitude = results[0].geometry.location.lat();
+            var longitiude = results[0].geometry.location.lng();
+            currLoc = {
+            lat: latitude,
+            lng: longitude
+            }
+        }
+        
+    });
 }
 
 
@@ -170,7 +172,7 @@ $("#sign-up-btn").on("click", function(event) {
 // Capture Button Click for Logging In 
 $("#login-btn").on("click", function(event) {
   event.preventDefault();
-
+  debugger;
   validUser = false; 
   var user = "";
   var pass = "";
@@ -420,26 +422,22 @@ $("#deliverit-img").on("click", function() {
     $(this).attr("src", "assets/images/find.png");
 });
 $("#gobutton").on("click", function() {
-    if (isgrub) {
+    if (isGrub !=="") {
         $("#table-body").empty();
-        searchTerm = $("#searchTerm").val().trim();
-        if (!currLoc) {
-            getGeo();
-        }
+        address = $("#searchTerm").val().trim();
         console.log(searchTerm);
+        geolocate(address);
         setTimeout(function() {
             initMap();
-        }, 3000);
+        }, 1000);
     } else if (!isgrub){
         $("#table-body").empty();
-    grubTerm = $("#searchTerm").val().trim();
+    address = $("#searchTerm").val().trim();
     isGrub = true;
-    if (!currLoc) {
-        getGeo();
-    }
+    geolocate(address);
     setTimeout(function() {
         initMap();
-    }, 3000);
+    }, 1000);
     }
 });
 $("#findit-img").on("click", function() {
