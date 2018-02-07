@@ -41,10 +41,18 @@
  	        <div class="col-md-12 ">     
                 <div class="form-group">
                      <p id="bad-input" class="hidden-content"> You entered Incorrect Input!!</p>   
-                    <input class="form-control form-control-lg" id="searchTerm" type="text" data-parsley-pattern="/^[a-zA-Z ]+$/g"  placeholder="I have a craving for: "/>
+                    <input class="form-control form-control-lg" id="searchTerm" class="clearable" type="text" data-parsley-pattern="/^[a-zA-Z ]+$/g"  placeholder="I have a craving for: "/>
                     
                     <div id="locationField">
-                    <input class="form-control form-control-lg" id="autocomplete" placeholder="Please enter your address:" onFocus="geolocate()" type="text"></input>
+
+
+                <div class="btn-group">
+  
+
+                    <input class="form-control form-control-lg" class="clearable" id="autocomplete" placeholder="Please enter your address:" onFocus="geolocate()" type="text"></input>
+                    <span id="searchclear" class="glyphicon glyphicon-remove-circle"></span>
+                </div>
+
                     </div>
 
                 </div> 

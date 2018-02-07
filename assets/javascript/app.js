@@ -30,6 +30,7 @@ var geoAllowed = false;
     var username = "";
     var password = "";
     var userRef = database.ref("/users");
+    var recipeRef = database.ref("/users/recipes");
 
 
     // Capture Button Click
@@ -68,27 +69,11 @@ var geoAllowed = false;
       console.log("Errors handled: " + errorObject.code);
     });
 
-// Auth users
-//     firebase.auth().signInWithCustomToken(token).catch(function(error) {
-//   // Handle Errors here.
-//   var errorCode = error.code;
-//   var errorMessage = error.message;
-//   // ...
-// });
 
-// // Sign out
-// firebase.auth().signOut().then(function() {
-//   // Sign-out successful.
-// }).catch(function(error) {
-//   // An error happened.
-// });
-       // Google autofill
-// This example displays an address form, using the autocomplete feature
-      // of the Google Places API to help users fill in the information.
-
-      // This example requires the Places library. Include the libraries=places
-      // parameter when you first load the API. For example:
-      // <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&libraries=places">
+$("#searchclear").click(function(){
+    $("#autocomplete").val('');
+});
+       //////// Google autofill ////////////
 
       var placeSearch, autocomplete;
       var componentForm = {
