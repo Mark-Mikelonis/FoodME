@@ -202,6 +202,14 @@ $("#save-recipe-button").on("click", function(){
 
 ///////////////////// Mark's js Google API//////////////////
 
+function initialize(){
+    initializeGoogleApp();
+    initMap();
+}
+function initializeGoogleApp(){
+    
+}
+
  function getGeo() {
     <!-- getting the user location -->
     if (navigator.geolocation) {
@@ -226,7 +234,7 @@ $("#save-recipe-button").on("click", function(){
 
     function error(errorObj) {
         console.log("in error:" + errorObj);
-        $("#modalAddressForm").modal("show");
+        // $("#modalAddressForm").modal("show");
         geoAllowed = false;
     }
 }
