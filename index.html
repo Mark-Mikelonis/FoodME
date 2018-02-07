@@ -40,9 +40,10 @@
  	    <div class="row">
  	        <div class="col-md-12 ">     
                 <div class="form-group">
-                     <p id="bad-input" class="hidden-content"> You entered Incorrect Input!!</p>   
+                     <p id="search-input" class="hidden-content invalid-error"> You entered Incorrect Input!!</p>   
                     <div class="input-group"> 
-                    <input class="form-control form-control-md" id="searchTerm" type="text" data-parsley-pattern="/^[a-zA-Z ]+$/g"  placeholder="I have a craving for: ">
+                    <input class="form-control form-control-md" id="searchTerm" type="text" data-parsley-minLength="3" 
+                    data-parssley-maxLength="50" data-parsley-pattern="/^[a-zA-Z ]+$/g"  placeholder="I have a craving for: ">
                             <span class="input-group-btn">
                                  <button class="btn btn-secondary" type="button" onclick="document.getElementById('searchTerm').value = ''">X</button>
                             </span>

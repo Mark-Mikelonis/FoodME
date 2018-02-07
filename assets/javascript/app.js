@@ -208,7 +208,7 @@ $("#makeit-img").on("click", function() {
     var parsleyInstance = $("#searchTerm").parsley();
 
     if (parsleyInstance.isValid()) {
-        $("#bad-input").addClass("hidden-content");
+        $("#search-input").addClass("hidden-content");
 
         $("#table-body").empty();
         var query = $("#searchTerm").val().trim();
@@ -235,8 +235,8 @@ $("#makeit-img").on("click", function() {
                 }
             } else {
                 $("#contact").modal("show");
-b
-                console.log("We did not find any results for that search");
+
+                $("#display").text("We did not find any results for that search");
             }
         });
     } else {
@@ -436,27 +436,43 @@ $("#gobutton").on("click", function() {
     // $("#searchTerm").val("");
 });
 $("#findit-img").on("click", function() {
-    isGrub = false;
-    $("#table-body").empty();
-    searchTerm = $("#searchTerm").val().trim();
-    if (!currLoc) {
-        getGeo();
-    }
-    console.log(searchTerm);
-    setTimeout(function() {
-        initMap();
-    }, 3000);
+    var parsleyInstance = $("#searchTerm").parsley();
+
+    if (parsleyInstance.isValid()) {
+        $("#search-input").addClass("hidden-content");
+        isGrub = false;
+        $("#table-body").empty();
+        searchTerm = $("#searchTerm").val().trim();
+        if (!currLoc) {
+            getGeo();
+        }
+        console.log(searchTerm);
+        setTimeout(function() {
+            initMap();
+        }, 3000);
+     } else {
+        console.log("You did not enter good input");
+        $("#search-input").removeClass("hidden-content");
+    }   
 });
 $("#deliverit-img").on("click", function() {
-    $("#table-body").empty();
-    grubTerm = $("#searchTerm").val().trim();
-    isGrub = true;
-    if (!currLoc) {
-        getGeo();
+   var parsleyInstance = $("#searchTerm").parsley();
+
+    if (parsleyInstance.isValid()) {
+        $("#search-input").addClass("hidden-content");
+        $("#table-body").empty();
+        grubTerm = $("#searchTerm").val().trim();
+        isGrub = true;
+        if (!currLoc) {
+            getGeo();
+        }
+        setTimeout(function() {
+            initMap();
+        }, 3000);
+    } else {
+        console.log("You did not enter good input");
+        $("#search-input").removeClass("hidden-content");
     }
-    setTimeout(function() {
-        initMap();
-    }, 3000);
 });
 
 function getReservation(name) {
