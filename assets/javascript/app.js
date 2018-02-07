@@ -69,8 +69,10 @@ var geoAllowed = false;
       console.log("Errors handled: " + errorObject.code);
     });
 
-       // Hide the location search bar first
-$("#locationField").hide();
+    // Hide the location search bar first
+      $("#locationField").hide();
+
+
 //////// Google autofill ////////////
 var placeSearch, autocomplete;
 var componentForm = {
@@ -87,6 +89,8 @@ function initialize() {
     initMap();
 }
 
+
+$("#address").hide();
 function initAutocomplete() {
     // Create the autocomplete object, restricting the search to geographical
     // location types.
