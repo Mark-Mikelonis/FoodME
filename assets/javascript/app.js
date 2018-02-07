@@ -199,6 +199,14 @@ $(document).on("click", ".recipe-display", function(){
 
 ///////////////////// Mark's js Google API//////////////////
 
+function initialize(){
+    initializeGoogleApp();
+    initMap();
+}
+function initializeGoogleApp(){
+    
+}
+
  function getGeo() {
     <!-- getting the user location -->
     if (navigator.geolocation) {
