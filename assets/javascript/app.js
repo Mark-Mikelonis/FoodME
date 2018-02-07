@@ -11,20 +11,28 @@ var geoAllowed = false;
 //////////Tung Tung - firebase/////////
 // Initialize Firebase
 var config = {
-    apiKey: "AIzaSyBqXH2dyl-dMJagS_0_FPDw7hmGhJhoibQ",
-    authDomain: "foodme-51ff9.firebaseapp.com",
-    databaseURL: "https://foodme-51ff9.firebaseio.com",
-    projectId: "foodme-51ff9",
-    storageBucket: "foodme-51ff9.appspot.com",
-    messagingSenderId: "105401566238"
+
+  apiKey: "AIzaSyBqXH2dyl-dMJagS_0_FPDw7hmGhJhoibQ",
+  authDomain: "foodme-51ff9.firebaseapp.com",
+  databaseURL: "https://foodme-51ff9.firebaseio.com",
+  projectId: "foodme-51ff9",
+  storageBucket: "foodme-51ff9.appspot.com",
+  messagingSenderId: "105401566238"
 };
+
+var validUser = false; 
+
 firebase.initializeApp(config);
+
+
 // Create a variable to reference the database.
 var database = firebase.database();
+
+
 // Initial Values
 var username = "";
 var password = "";
-var userRef = database.ref("/users");
+
 // Capture Button Click
 $("#login-btn").on("click", function(event) {
     event.preventDefault();
@@ -136,6 +144,59 @@ function geolocate() {
     }
 }
 
+
+
+// Capture Button Click For Signing Up
+$("#sign-up-btn").on("click", function(event) {
+  event.preventDefault();
+
+  // Grabbed values from text boxes
+  username = $("#username-signup-input").val().trim();
+  password = $("#pass-signup-input").val().trim();
+
+  $("#usernameInput").val("");
+  $("#defaultForm-pass").val("");
+
+  // Code for handling the push
+  database.ref('/users').push({
+    username: username,
+    password: password,
+    dateAdded: firebase.database.ServerValue.TIMESTAMP
+  });
+
+});
+
+
+// Capture Button Click for Logging In 
+$("#login-btn").on("click", function(event) {
+  event.preventDefault();
+
+  validUser = false; 
+  var user = "";
+  var pass = "";
+
+  // Grabbed values from text boxes
+  userNameInput = $("#username-login-input").val().trim();
+  passWordInput = $("#pass-login-input").val().trim();
+
+  console.log("The userName input is "+ userNameInput);
+  userRef.orderByChild("username").equalTo(userNameInput).on("child_added", function(snapshot) {
+    console.log("The username was in the database");
+    user = snapshot.val().username; 
+    pass = snapshot.val().password; 
+
+    if (passWordInput == pass){
+      validUser = true; 
+      console.log("Valid User");
+    }else{
+      console.log("Invalid User");
+    }
+
+  });
+
+});
+
+
 function getLatLng(){
     
 }
@@ -151,8 +212,10 @@ var eatStreetApiKey = "67804766f0ca2e3a";
 ///Make Row put Div in Row add info to div append to table 
 $("#makeit-img").on("click", function() {
     var parsleyInstance = $("#searchTerm").parsley();
+
     if (parsleyInstance.isValid()) {
         $("#bad-input").addClass("hidden-content");
+
         $("#table-body").empty();
         var query = $("#searchTerm").val().trim();
         var searchUrl = "http://food2fork.com/api/search?key=" + recipeApiKey + "&q=" + query;
@@ -173,15 +236,17 @@ $("#makeit-img").on("click", function() {
                         newRow.append(newDiv);
                         $("#table-body").append(newRow);
                     }
+
                 }
             } else {
                 $("#contact").modal("show");
+b
                 console.log("We did not find any results for that search");
             }
         });
     } else {
         console.log("You did not enter good input");
-        $("#bad-input").removeClass("hidden-content");
+        $("#search-input").removeClass("hidden-content");
     }
 });
 ////If a user clicks on the recipe rows It should do an ajax call on the 
@@ -205,10 +270,30 @@ $(document).on("click", ".recipe-display", function() {
             newList.append(newItem);
         });
         newDiv.append(newList);
-        newDiv.append('<p>See Whole Recipe at: <span class="response-text"><a href="' + responseObject.recipe.source_url + '">' + responseObject.recipe.source_url + '</a></span></p>')
+
+        newDiv.append('<p>See Whole Recipe at: <span class="response-text"><a href="' 
+          + responseObject.recipe.source_url + '" target="_blank">' 
+          + responseObject.recipe.source_url +'</a></span></p>')
         $("#recipe-results").append(newDiv);
     });
 });
+
+
+$("#save-recipe-button").on("click", function(){
+  console.log("Save button was pressed");
+  //console.log(database.ref().child("users").val);
+  userRef.orderByChild("username").equalTo("Shrimp").on("child_added", function(snapshot) {
+    console.log();
+    console.log("The user name is ", snapshot.val().username); // here's your data object
+  });
+  //orderByChild('username').equalTo(username);;
+});
+
+
+
+
+
+
 ///////////////////// Mark's js Google API//////////////////
 function initialize() {
     initializeGoogleApp();
