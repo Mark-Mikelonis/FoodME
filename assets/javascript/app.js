@@ -457,18 +457,7 @@ function getReservation(name) {
     });
 }
 
-        // console.log(responseObj);
-        // console.log(responseObj.restaurants[0].reserve_url);
-        if (responseObj.restaurants.length === 0){
-            return false;
-        } else {
-            reserevUrl = responseObj.restaurants[0].reserve_url;
-            console.log(responseObj.restaurants[0].reserve_url);
-            return true;
 
-        }
-        
-    }); 
 }
 
 
