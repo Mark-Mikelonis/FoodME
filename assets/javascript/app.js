@@ -97,6 +97,25 @@ $("#login-btn").on("click", function(event) {
 });
 
 
+
+// $("#save-recipe-button").on("click", function(){
+//   console.log("Save button was pressed");
+
+
+//   //console.log(database.ref().child("users").val);
+//   userRef.orderByChild("username").equalTo("Shrimp").on("child_added", function(snapshot) {
+//     console.log();
+//     console.log("The user name is ", snapshot.val().username); // here's your data object
+  
+
+
+//   });
+
+
+  //orderByChild('username').equalTo(username);;
+// });
+
+
     // Firebase watcher + initial loader + order/limit HINT: .on("child_added"
     // database.ref().orderByChild("dateAdded").limitToLast(1).on("child_added", function(snapshot) {
       // storing the snapshot.val() in a variable for convenience
@@ -256,6 +275,9 @@ $(document).on("click", ".recipe-display", function() {
         var responseObject = JSON.parse(response);
         var newDiv = $("<div>");
         $("#recipe-modal-title").text(responseObject.recipe.title);
+      newDiv.attr("data-recipe-id", responseObject.recipe.recipe_id);
+      newDiv.attr("class", "getRecipeId");
+
         newDiv.html('<img src="' + responseObject.recipe.image_url + '"><hr class="red-rule"/><br><h3>' + responseObject.recipe.title + '</h3><br><p>Recipe Brought To You By: <span class="response-text">' + responseObject.recipe.publisher + '</span></p><h5>Ingredients:</h5>');
         var newList = $("<ul>");
         responseObject.recipe.ingredients.forEach(function(ingredient) {
@@ -276,6 +298,7 @@ $(document).on("click", ".recipe-display", function() {
 $("#save-recipe-button").on("click", function(){
   console.log("Save button was pressed");
   //console.log(database.ref().child("users").val);
+  console.log($(".getRecipeId").attr("data-recipe-id"));
   userRef.orderByChild("username").equalTo("Shrimp").on("child_added", function(snapshot) {
     console.log();
     console.log("The user name is ", snapshot.val().username); // here's your data object
