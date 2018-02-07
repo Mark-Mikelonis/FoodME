@@ -1,4 +1,4 @@
-@import url(http://fonts.googleapis.com/css?family=Roboto);
+@import url(https://fonts.googleapis.com/css?family=Roboto);
 
 /* Recipe Rows */
 .recipe-display {
@@ -51,6 +51,24 @@
   color: red;
 }
 
+#search-input span {
+    font-weight:bold;
+    text-transform:uppercase;
+}
+
+#search-input{
+    color:#444;
+    border-radius:10px;
+    font-family:Tahoma,Geneva,Arial,sans-serif;font-size:11px;
+    padding:10px 10px 10px 36px;
+    margin:10px;
+}
+
+.invalid-error {
+  background:#ffecec url('../images/error_icon.png') no-repeat 10px 50%;
+  border:1px solid #f5aca6;
+}
+
 hr.red-rule {
   height: 3px;
   border: 0.5;
@@ -60,6 +78,16 @@ hr.red-rule {
   -ms-border-radius: 1.5px;
   -o-border-radius: 1.5px;
   border-radius: 1.5px;
+}
+/*End of Recipe Modal*/
+
+/*Parsley Input Divs*/
+.hidden-content{
+  display: none;
+}
+
+.displayed-content{
+  display: block;
 }
 
 #logo {
@@ -87,6 +115,14 @@ hr.red-rule {
 
 #login {
   margin-top: 40px;
+  float: left;
+  color:white;
+}
+
+#sign-up{
+  margin-left: 40px;
+  margin-top: 40px;
+  float: left;
   color:white;
 }
 
@@ -120,6 +156,7 @@ input[type="text"]:focus {
 @media only screen and (max-width: 640px) {
   
 .recipe-display {
+  text-align: center;
   height: 300px;
   overflow: auto;
  }
@@ -133,7 +170,7 @@ input[type="text"]:focus {
  }
 
  .recipe-display h3{
-  font-size: 1.2em;
+    font-size: 1.2em;
  }
 
  .recipe-display p{
@@ -141,5 +178,4 @@ input[type="text"]:focus {
  }
 
 }
-
 

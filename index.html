@@ -23,6 +23,7 @@
             <div class="row">
                 <div class="col-md-12 ">    
                     <button class="btn btn-Danger" id="login" data-toggle="modal" data-target="#modalLoginForm">Login</button>
+                    <button class="btn btn-Danger" id="sign-up" data-toggle="modal" data-target="#modalSignUpForm">Sign Up</button>
                 </div>
             </div>
 
@@ -36,10 +37,10 @@
             </div>
 
             <!-- The search bar -->
-                <div class="row">
-                    <div class="col-md-12 ">     
+            <div class="row">
+                <div class="col-md-12 ">     
                     <div class="form-group">
-                         <p id="bad-input" class="hidden-content"> You entered Incorrect Input!!</p>   
+                         <p id="search-input" class="hidden-content invalid-error"><span>Error:</span>You entered Incorrect Input!!</p>   
                         <input class="form-control form-control-lg" id="searchTerm" type="text" data-parsley-pattern="/^[a-zA-Z ]+$/g"  placeholder="I have a craving for: "/>
                     </div> 
                 </div>
@@ -99,10 +100,14 @@
                             <!-- <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button> -->
                             <button type="button" class="btn btn-primary" data-dismiss="modal" id="save-recipe-button">Save Recipe</button>
                         </div>
+                        <div class="col-xs-3 mx-auto"> 
+                            <a href="#display">
+                            <img id="deliverit-img"  class="image" src="assets/images/deliver.png"  alt="deliverit"></a>
+                        </div>
                     </div>
                 </div>
             </div>
-
+   
 
             <!-- Login Modal -->
             <div class="modal fade" id="modalLoginForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -117,19 +122,50 @@
                         <div class="modal-body mx-3">
                             <div class="md-form">
                                 <i class="fa fa-envelope prefix grey-text"></i>
-                                <input type="text" id="usernameInput" class="form-control validate">
+                                <input type="text" id="username-login-input" class="form-control validate">
                                 <label data-error="wrong" data-success="right" for="defaultForm-email">Your Username</label>
                             </div>
 
                             <div class="md-form">
                                 <i class="fa fa-lock prefix grey-text"></i>
-                                <input type="password" id="defaultForm-pass" class="form-control validate">
+                                <input type="password" id="pass-login-input" class="form-control validate">
                                 <label data-error="wrong" data-success="right" for="defaultForm-pass">Your password</label>
                             </div>
 
                         </div>
                         <div class="modal-footer d-flex justify-content-center">
                             <button id="login-btn" data-dismiss="modal" class="btn btn-default" >Login</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Sign Up Modal -->
+            <div class="modal fade" id="modalSignUpForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header text-center">
+                            <h4 class="modal-title w-100 font-bold">Sign Up</h4>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body mx-3">
+                            <div class="md-form">
+                                <i class="fa fa-envelope prefix grey-text"></i>
+                                <input type="text" id="username-signup-input" class="form-control validate">
+                                <label data-error="wrong" data-success="right" for="defaultForm-email">Your Username</label>
+                            </div>
+
+                            <div class="md-form">
+                                <i class="fa fa-lock prefix grey-text"></i>
+                                <input type="password" id="pass-signup-input" class="form-control validate">
+                                <label data-error="wrong" data-success="right" for="defaultForm-pass">Your password</label>
+                            </div>
+
+                        </div>
+                        <div class="modal-footer d-flex justify-content-center">
+                            <button id="sign-up-btn" data-dismiss="modal" class="btn btn-default" >Sign Up</button>
                         </div>
                     </div>
                 </div>
@@ -163,7 +199,7 @@
         </div>
 
         <div id="footer">
-            <a href=""><p>Back To Top</p></a>
+            <a href="#login"><p>Back To Top</p></a>
         	<p>&copy Copyright -  2018<p>
         </div>
 
