@@ -2,206 +2,223 @@
 
 <html lang="en-us">
 
-<head>
-	<meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <!-- Boostrap Stylesheet -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-    <!-- Optional theme -->
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>    
-    <!-- Our own css style sheet -->
-    <link rel="stylesheet" href="assets/css/style.css" media="screen">
-    <!-- put logo in browser tabs-->
-    <title>Food Me</title> 
-      <link rel="shortcut icon" type="image/x-icon" href="favicon.ico" />
+    <head>
+    	<meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <!-- Boostrap Stylesheet -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+        <!-- Our own css style sheet -->
+        <link rel="stylesheet" href="assets/css/style.css" media="screen">
+        <!-- put logo in browser tabs-->
+        <link rel="shortcut icon" type="image/x-icon" href="favicon.ico" />
+        <title>Food Me</title> 
+    </head>
 
+    <body>
 
-</head>
+        <div class="container">
 
-<body>
-
-<div class="container">
-
-<!-- login button -->
-        <div class="row">
-            <div class="col-md-12 ">    
-                <button class="btn btn-Danger" id="login" data-toggle="modal" data-target="#modalLoginForm">Login</button>
+            <!-- login button -->
+            <div class="row">
+                <div class="col-md-12 ">    
+                    <button class="btn btn-Danger" id="login" data-toggle="modal" data-target="#modalLoginForm">Login</button>
+                    <button class="btn btn-Danger" id="sign-up" data-toggle="modal" data-target="#modalSignUpForm">Sign Up</button>
+                </div>
             </div>
-        </div>
 
-<!-- Logo point to main page, put my github for now     -->
-	    <div class="row" >
-            <div class="mx-auto">
-                    <a href="https://github.com/ouyangtt"> 
-                        <img src="assets/images/logo.png" id="logo" alt="logo"> 
-                    </a>
+            <!-- Logo point to main page, put my github for now     -->
+            <div class="row" >
+                <div class="mx-auto">
+                        <a href="https://github.com/ouyangtt"> 
+                            <img src="assets/images/logo.png" id="logo" alt="logo"> 
+                        </a>
+                </div>
             </div>
-        </div>
-<!-- The search bar -->
- 	    <div class="row">
- 	        <div class="col-md-12 ">     
-                <div class="form-group">
-                     <p id="bad-input" class="hidden-content"> You entered Incorrect Input!!</p>   
-                    <input class="form-control form-control-lg" id="searchTerm" type="text" data-parsley-pattern="/^[a-zA-Z ]+$/g"  placeholder="I have a craving for: "/>
+
+            <!-- The search bar -->
+            <div class="row">
+                <div class="col-md-12 ">     
+                    <div class="form-group">
+                         <p id="search-input" class="hidden-content invalid-error"><span>Error:</span>You entered Incorrect Input!!</p>   
+                        <input class="form-control form-control-lg" id="searchTerm" type="text" data-parsley-pattern="/^[a-zA-Z ]+$/g"  placeholder="I have a craving for: "/>
+                    </div> 
+                </div>
+            </div>
+
+
+            <!-- Three image buttons -->
+            <div class="row">
+                <div class="col-xs-3 mx-auto"> 
+                    <a href="#display">
+                    <img id="makeit-img"  class="image" src="assets/images/make.png" alt="makeit"></a>
+                </div>
+                   
+                <div class="col-xs-3 mx-auto"> 
+                     <a href="#display"></a>
+                    <!-- <img id="findit-img" class="image" src="assets/images/find.png"  data-toggle="modal" data-target="#modalAddressForm"alt="findit"></a>-->
+                    <img id="findit-img" class="image" src="assets/images/find.png" alt="findit">
+                </div>
+                <div class="col-xs-3 mx-auto"> 
+                    <a href="#display">
+                    <img id="deliverit-img"  class="image" src="assets/images/deliver.png" data-toggle="modal" data-target="#modalAddressForm" alt="deliverit"></a>
+                </div>
+            </div>
+           
+
+        <!-- To display the results. -->
+        	<div class="row">
+                <div class="col-md-12">
+                    <div class="card border-danger mb-3" style="max-width: 100rem;">
+                        <div class="card-header" id="display">Display</div>
+                            <div class="card-body text-danger">
+                                <table class="table">
+                                    <tbody id="table-body">
+                                    </tbody>
+                                </table> 
+                            </div>
+                        </div>
+                    </div>
                 </div> 
             </div>
-        </div>
 
+            <!-- Modals -->
 
-<!-- Three image buttons -->
-        <div class="row">
-            <div class="col-xs-3 mx-auto"> 
-                <a href="#display">
-                <img id="makeit-img"  class="image" src="assets/images/make.png" alt="makeit"></a>
-            </div>
-               
-            <div class="col-xs-3 mx-auto"> 
-                 <a href="#display"></a>
-                <!-- <img id="findit-img" class="image" src="assets/images/find.png"  data-toggle="modal" data-target="#modalAddressForm"alt="findit"></a>-->
-                <img id="findit-img" class="image" src="assets/images/find.png" alt="findit">
-
-            </div>
-
-            <div class="col-xs-3 mx-auto"> 
-                <a href="#display">
-
-                <img id="deliverit-img"  class="image" src="assets/images/deliver.png"  alt="deliverit"></a>
-
-            </div>
-        </div>
-   
-
-<!-- To display the results. -->
-	<div class="row">
-        <div class="col-md-12">
-            <div class="card border-danger mb-3" style="max-width: 100rem;">
-                <div class="card-header" id="display">Display</div>
-                    <div class="card-body text-danger">
-                        <table class="table">
-                            <tbody id="table-body">
-
-                            </tbody>
-                        </table> 
+            <!-- regular Modal example -->
+            <div class="modal fade" id="recipe-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="recipe-modal-title"></h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                        </div>
+                        <div class="modal-body" id="recipe-results">
+                        </div>
+                        <div class="modal-footer">
+                            <!-- <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button> -->
+                            <button type="button" class="btn btn-primary" data-dismiss="modal" id="save-recipe-button">Save Recipe</button>
+                        </div>
+                        <div class="col-xs-3 mx-auto"> 
+                            <a href="#display">
+                            <img id="deliverit-img"  class="image" src="assets/images/deliver.png"  alt="deliverit"></a>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-        
-				   
-</div>
+   
 
+            <!-- Login Modal -->
+            <div class="modal fade" id="modalLoginForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header text-center">
+                            <h4 class="modal-title w-100 font-bold">Sign in</h4>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body mx-3">
+                            <div class="md-form">
+                                <i class="fa fa-envelope prefix grey-text"></i>
+                                <input type="text" id="username-login-input" class="form-control validate">
+                                <label data-error="wrong" data-success="right" for="defaultForm-email">Your Username</label>
+                            </div>
 
+                            <div class="md-form">
+                                <i class="fa fa-lock prefix grey-text"></i>
+                                <input type="password" id="pass-login-input" class="form-control validate">
+                                <label data-error="wrong" data-success="right" for="defaultForm-pass">Your password</label>
+                            </div>
 
-
-
-
-<!-- Modals -->
-
-<!-- regular Modal example -->
-    <div class="modal fade" id="recipe-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="recipe-modal-title"></h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
+                        </div>
+                        <div class="modal-footer d-flex justify-content-center">
+                            <button id="login-btn" data-dismiss="modal" class="btn btn-default" >Login</button>
+                        </div>
+                    </div>
                 </div>
-            <div class="modal-body" id="recipe-results">
             </div>
-            <div class="modal-footer">
-                <!-- <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button> -->
-                <button type="button" class="btn btn-primary" data-dismiss="modal" id="save-recipe-button">Save Recipe</button>
-            </div>
-            </div>
-        </div>
-    </div>
 
+            <!-- Sign Up Modal -->
+            <div class="modal fade" id="modalSignUpForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header text-center">
+                            <h4 class="modal-title w-100 font-bold">Sign Up</h4>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body mx-3">
+                            <div class="md-form">
+                                <i class="fa fa-envelope prefix grey-text"></i>
+                                <input type="text" id="username-signup-input" class="form-control validate">
+                                <label data-error="wrong" data-success="right" for="defaultForm-email">Your Username</label>
+                            </div>
 
-<!-- Login Modal -->
-<div class="modal fade" id="modalLoginForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header text-center">
-                <h4 class="modal-title w-100 font-bold">Sign in</h4>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body mx-3">
-                <div class="md-form">
-                    <i class="fa fa-envelope prefix grey-text"></i>
-                    <input type="text" id="usernameInput" class="form-control validate">
-                    <label data-error="wrong" data-success="right" for="defaultForm-email">Your Username</label>
+                            <div class="md-form">
+                                <i class="fa fa-lock prefix grey-text"></i>
+                                <input type="password" id="pass-signup-input" class="form-control validate">
+                                <label data-error="wrong" data-success="right" for="defaultForm-pass">Your password</label>
+                            </div>
+
+                        </div>
+                        <div class="modal-footer d-flex justify-content-center">
+                            <button id="sign-up-btn" data-dismiss="modal" class="btn btn-default" >Sign Up</button>
+                        </div>
+                    </div>
                 </div>
+            </div>
+            
+            <!-- Address modal  -->
+            <div class="modal fade" id="modalAddressForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header text-center">
+                            <h4 class="modal-title w-100 font-bold">Address Required</h4>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body mx-3">
+                            <div class="md-form">
+                                <i class="fa fa-envelope prefix grey-text"></i>
+                                <input type="text" id="addressInput" class="form-control validate">
+                                <label data-error="wrong" data-success="right" for="defaultForm-email">Your Address</label>
+                            </div>
 
-                <div class="md-form">
-                    <i class="fa fa-lock prefix grey-text"></i>
-                    <input type="password" id="defaultForm-pass" class="form-control validate">
-                    <label data-error="wrong" data-success="right" for="defaultForm-pass">Your password</label>
+                        </div>
+                        <div class="modal-footer d-flex justify-content-center">
+                            <button class="btn btn-default">Submit</button>
+                        </div>
+                    </div>
                 </div>
+            </div>
 
-            </div>
-            <div class="modal-footer d-flex justify-content-center">
-                <button id="login-btn" data-dismiss="modal" class="btn btn-default" >Login</button>
-            </div>
         </div>
-    </div>
-</div>
 
-    
-<!-- Address modal  -->
-<div class="modal fade" id="modalAddressForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header text-center">
-                <h4 class="modal-title w-100 font-bold">Address Required</h4>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body mx-3">
-                <div class="md-form">
-                    <i class="fa fa-envelope prefix grey-text"></i>
-                    <input type="text" id="addressInput" class="form-control validate">
-                    <label data-error="wrong" data-success="right" for="defaultForm-email">Your Address</label>
-                </div>
-
-            </div>
-            <div class="modal-footer d-flex justify-content-center">
-                <button class="btn btn-default">Submit</button>
-            </div>
+        <div id="footer">
+            <a href="#login"><p>Back To Top</p></a>
+        	<p>&copy Copyright -  2018<p>
         </div>
-    </div>
-</div>
 
+        <div id="map"></div>
 
-</div>
+        <!-- jQuery CDN -->
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        <!-- Google API -->
+        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAC1wTUBSAAKhd2TdMwN0HEQ-Ni7T9fSy4&libraries=places&callback=initMap" async defer></script>
+        <!-- Firebase -->
+        <script src="https://www.gstatic.com/firebasejs/3.6.0/firebase.js"></script>
+        <!--Ajax popper JS -->
+         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>  
+         <!--Bootstrap JS file --> 
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>  
+         <!-- Parsley -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/parsley.js/2.8.1/parsley.min.js"></script>
+        <!-- Javascripts -->
+        <script type="text/javascript" src="assets/javascript/app.js"></script>
 
-
-
-
-<div id="footer">
-    <a href=""><p>Back To Top</p></a>
-	<p>&copy Copyright -  2018<p>
-</div>
-
- 
-    <!-- jQuery CDN -->
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <!-- Parsley -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/parsley.js/2.8.1/parsley.min.js"></script>
-    <!-- Firebase -->
-    <script src="https://www.gstatic.com/firebasejs/3.6.0/firebase.js"></script>
-    <!-- Javascripts -->
-
-     <div id="map"></div>
-    <script type="text/javascript" src="assets/javascript/app.js"></script>
-    <!-- Google API -->
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAC1wTUBSAAKhd2TdMwN0HEQ-Ni7T9fSy4&libraries=places&callback=initMap" async defer></script>
-
-</body>
+    </body>
 </html>

@@ -12,84 +12,78 @@ var geoAllowed = false;
 
 //////////Tung Tung - firebase/////////
 // Initialize Firebase
-  var config = {
-    apiKey: "AIzaSyBqXH2dyl-dMJagS_0_FPDw7hmGhJhoibQ",
-    authDomain: "foodme-51ff9.firebaseapp.com",
-    databaseURL: "https://foodme-51ff9.firebaseio.com",
-    projectId: "foodme-51ff9",
-    storageBucket: "foodme-51ff9.appspot.com",
-    messagingSenderId: "105401566238"
-  };
-  firebase.initializeApp(config);
+var config = {
+  apiKey: "AIzaSyBqXH2dyl-dMJagS_0_FPDw7hmGhJhoibQ",
+  authDomain: "foodme-51ff9.firebaseapp.com",
+  databaseURL: "https://foodme-51ff9.firebaseio.com",
+  projectId: "foodme-51ff9",
+  storageBucket: "foodme-51ff9.appspot.com",
+  messagingSenderId: "105401566238"
+};
+
+var validUser = false; 
+
+firebase.initializeApp(config);
 
 
-    // Create a variable to reference the database.
-    var database = firebase.database();
+// Create a variable to reference the database.
+var database = firebase.database();
 
-    // Initial Values
-    var username = "";
-    var password = "";
-    var userRef = database.ref("/users");
-
-
-    // Capture Button Click
-    $("#login-btn").on("click", function(event) {
-      event.preventDefault();
-
-      // Grabbed values from text boxes
-      username = $("#usernameInput").val().trim();
-      password = $("#defaultForm-pass").val().trim();
-
-      // Code for handling the push
-      database.ref('/users').push({
-        username: username,
-        password: password,
-        dateAdded: firebase.database.ServerValue.TIMESTAMP
-      });
-
-      // $('#modalLoginForm').modal('hide');
-              $("#login-btn").trigger("reset");
-              // $("#myform")[0].reset();
-
-    });
-
-    // Firebase watcher + initial loader + order/limit HINT: .on("child_added"
-    database.ref().orderByChild("dateAdded").limitToLast(1).on("child_added", function(snapshot) {
-      // storing the snapshot.val() in a variable for convenience
-      var sv = snapshot.val();
-
-      // Console.loging the last user's data
-      console.log(sv.username);
-      console.log(sv.password);
+// Initial Values
+var username = "";
+var password = "";
+var userRef = database.ref("/users");
 
 
-      // Change the HTML to reflect
-      $("#name-display").text(sv.name);
-      $("#email-display").text(sv.email);
-      $("#age-display").text(sv.age);
-      $("#comment-display").text(sv.comment);
+// Capture Button Click For Signing Up
+$("#sign-up-btn").on("click", function(event) {
+  event.preventDefault();
 
-      // Handle the errors
-    }, function(errorObject) {
-      console.log("Errors handled: " + errorObject.code);
-    });
+  // Grabbed values from text boxes
+  username = $("#username-signup-input").val().trim();
+  password = $("#pass-signup-input").val().trim();
 
-// Auth users
-//     firebase.auth().signInWithCustomToken(token).catch(function(error) {
-//   // Handle Errors here.
-//   var errorCode = error.code;
-//   var errorMessage = error.message;
-//   // ...
-// });
+  $("#usernameInput").val("");
+  $("#defaultForm-pass").val("");
 
-// // Sign out
-// firebase.auth().signOut().then(function() {
-//   // Sign-out successful.
-// }).catch(function(error) {
-//   // An error happened.
-// });
+  // Code for handling the push
+  database.ref('/users').push({
+    username: username,
+    password: password,
+    dateAdded: firebase.database.ServerValue.TIMESTAMP
+  });
+
+});
 
 
+// Capture Button Click for Logging In 
+$("#login-btn").on("click", function(event) {
+  event.preventDefault();
+
+  validUser = false; 
+  var user = "";
+  var pass = "";
+
+  // Grabbed values from text boxes
+  userNameInput = $("#username-login-input").val().trim();
+  passWordInput = $("#pass-login-input").val().trim();
+
+  console.log("The userName input is "+ userNameInput);
+  userRef.orderByChild("username").equalTo(userNameInput).on("child_added", function(snapshot) {
+    console.log("The username was in the database");
+    user = snapshot.val().username; 
+    pass = snapshot.val().password; 
+
+    if (passWordInput == pass){
+      validUser = true; 
+      console.log("Valid User");
+    }else{
+      console.log("Invalid User");
+    }
+
+  });
+
+});
 
 //////////////Pedram//////////
 //////////////////// Recipe (Food 2 Fork) API Variables and functions //////////////////////////////////
@@ -109,7 +103,7 @@ $("#makeit-img").on("click", function(){
 
     if(parsleyInstance.isValid()){
 
-        $("#bad-input").addClass("hidden-content");
+        $("#search-input").addClass("hidden-content");
 
         $("#table-body").empty();
         
@@ -141,14 +135,13 @@ $("#makeit-img").on("click", function(){
                 } 
               }
               else {
-          $("#contact").modal("show");
                 console.log("We did not find any results for that search");
               }
         });
     }
     else{
         console.log("You did not enter good input");
-        $("#bad-input").removeClass("hidden-content");
+        $("#search-input").removeClass("hidden-content");
     }
 
 });
@@ -186,12 +179,22 @@ $(document).on("click", ".recipe-display", function(){
 
         newDiv.append(newList);
         newDiv.append('<p>See Whole Recipe at: <span class="response-text"><a href="' 
-          + responseObject.recipe.source_url + '">' 
+          + responseObject.recipe.source_url + '" target="_blank">' 
           + responseObject.recipe.source_url +'</a></span></p>')
         $("#recipe-results").append(newDiv);
     });
 });
 
+
+$("#save-recipe-button").on("click", function(){
+  console.log("Save button was pressed");
+  //console.log(database.ref().child("users").val);
+  userRef.orderByChild("username").equalTo("Shrimp").on("child_added", function(snapshot) {
+    console.log();
+    console.log("The user name is ", snapshot.val().username); // here's your data object
+  });
+  //orderByChild('username').equalTo(username);;
+});
 
 
 
