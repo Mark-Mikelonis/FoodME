@@ -1,27 +1,87 @@
-@import url(http://fonts.googleapis.com/css?family=Roboto);
+@import url(https://fonts.googleapis.com/css?family=Roboto);
+
+/* Recipe Rows */
+.recipe-display {
+  overflow: auto;
+  height: 200px;
+  margin: 10px 0;
+  border-top: 2px solid #B31E1E;
+  border-bottom: 2px solid #B31E1E;
+ }
+
+ .recipe-display img{
+    margin-top: 20px;
+    float: left;
+    height: 80%;
+    padding-right: 15px;
+ }
+
+.response-text{
+  color: black;
+}
+
+.recipe-display p:first-child{
+  margin-top: 40px;
+}
+
+/* Recipe Results Modal*/
+#recipe-results{
+  border-top: 2px solid #B31E1E;
+  border-bottom: 2px solid #B31E1E;
+  overflow: auto;
+}
+
+#recipe-results img {
+  margin-left: 10%;
+  width: 80%;
+}
+
+#recipe-results h3{
+  text-align: center;
+  color: red;
+}
+
+#recipe-results h5{
+  text-align: left;
+  color: red;
+}
+
+#recipe-results p{
+  text-align: left;
+  color: red;
+}
+
+hr.red-rule {
+  height: 3px;
+  border: 0.5;
+  box-shadow: inset 0 3px 3px -1px rgba(179, 30, 30, 0.8);
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 1.5px;
+  -ms-border-radius: 1.5px;
+  -o-border-radius: 1.5px;
+  border-radius: 1.5px;
+}
 
 #logo {
-	    width: 300px;
+      width: 300px;
       height: 300px;
       margin-top:40px;
 }
 
-
 #box {
     text-align: center;
-
+}
+#autocomplete {
+  margin-top:10px;
 }
 
 .image {
   width: 100px;
   height: 100px;
-   
-  
-
 }
-.display {
-	  margin-top: 50px;
 
+.display {
+    margin-top: 50px;
 }
 
 .icon {
@@ -52,41 +112,38 @@ input[type="text"]:focus {
 
 }
 
+#footer {
+  margin-top:20px;
+  text-align: center;
+}
 
+
+/*Media Queries */
+
+@media only screen and (max-width: 640px) {
+  
 .recipe-display {
+  height: 300px;
   overflow: auto;
-  height: 200px;
-  margin: 10px 0;
-  border-top: 2px solid #B31E1E;
-  border-bottom: 2px solid #B31E1E;
  }
 
  .recipe-display img{
-    margin-top: 20px;
-    line-height: 200px;
-    vertical-align: middle;
-    float: left;
-    width: 200px;
-    height: 200px;
-    height: 80%;
-    padding-right: 15px;
+    display: block;
+    height: 50%;
+    margin: auto;
+    margin-top: 10px;
+    float: none;
  }
 
-.response-text{
-  color: black;
+ .recipe-display h3{
+  font-size: 1.2em;
+ }
+
+ .recipe-display p{
+  font-size: 0.8em;
+ }
+
 }
-
-.recipe-display p:first-child{
-  margin-top: 40px;
-}
-
-
-#footer {
-  margin-top:20px;
-			text-align: center;
-    }
-
-
 
 
 
