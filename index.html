@@ -8,9 +8,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <!-- Boostrap Stylesheet -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-    <!-- Optional theme -->
-  <!--   <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-  -->    <!-- Our own css style sheet -->
+   <!-- Our own css style sheet -->
     <link rel="stylesheet" href="assets/css/style.css" media="screen">
     <!-- put logo in browser tabs-->
     <title>Food Me</title> 
@@ -44,6 +42,10 @@
                 <div class="form-group">
                      <p id="bad-input" class="hidden-content"> You entered Incorrect Input!!</p>   
                     <input class="form-control form-control-lg" id="searchTerm" type="text" data-parsley-pattern="/^[a-zA-Z ]+$/g"  placeholder="I have a craving for: "/>
+                    <div id="locationField">
+                    <input id="autocomplete" placeholder="Enter your address" onFocus="geolocate()" type="text"></input>
+                    </div>
+
                 </div> 
             </div>
         </div>
@@ -65,11 +67,11 @@
 
             <div class="col-xs-3 mx-auto"> 
                 <a href="#display">
-                <img id="deliverit-img"  class="image" src="assets/images/deliver.png" data-toggle="modal" data-target="#modalAddressForm" alt="deliverit"></a>
+                <img id="deliverit-img"  class="image" src="assets/images/deliver.png" alt="deliverit"></a>
             </div>
         </div>
    
-
+<!-- data-toggle="modal" data-target="#modalAddressForm" -->
 <!-- To display the results. -->
 	    <div class="row">
             <div class="col-md-12">
