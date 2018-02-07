@@ -223,7 +223,7 @@ $(document).on("click", ".recipe-display", function(){
 
     function error(errorObj) {
         console.log("in error:" + errorObj);
-        $("#modalAddressForm").modal("show");
+        // $("#modalAddressForm").modal("show");
         geoAllowed = false;
     }
 }
