@@ -97,7 +97,7 @@ function createPlaceList(place) {
     var newImg = $("<img>");
     if (!isGrub) {
         var reserveUrl = getReservation(restName);
-        
+        $("#header-one").text(searchTerm + " Restaurants");
         console.log("reserveUrl: " + reserveUrl);
         if (reserveUrl){
             console.log("in reserveUrl");
@@ -107,9 +107,11 @@ function createPlaceList(place) {
              newDiv.append("<h4>" + place.name + "</h4>" + "Rating: " + place.rating + " (" + place.reviews.length + " reviews)<br>Price range: " + dollarSigns + "<br>" + place.adr_address + "<br> Phone: " + place.formatted_phone_number + "<br><a href=" + place.url + " target='_bla nk'>Open in Google Places</a><hr>");
    
         }
+
     } else if (isGrub) {
         console.log("in isGrub");
-        var url = grubHubUrl + grubTerm + restName + "&latitude=" + currLoc.lat + "&longitude=" + currLoc.lng;
+        $("#header-one").text(searchTerm + " Restaurants that deliver to you");
+        var url = grubHubUrl + restName + "&latitude=" + currLoc.lat + "&longitude=" + currLoc.lng;
         console.log(url);
         var newImg = $("<img>");
         newImg.attr("src", "assets/images/deliveryicon.png");
@@ -120,6 +122,7 @@ function createPlaceList(place) {
         
     } else {
         console.log("in no reserveUrl");
+        $("#header-one").text(searchTerm + " Restaurants");
         console.log(place);
         newDiv.append("<h4>" + place.name + "</h4>" + "Rating: " + place.rating + " (" + place.reviews.length + " reviews)<br>Price range: " + dollarSigns + "<br>" + place.adr_address + "<br> Phone: " + place.formatted_phone_number + "<br><a href=" + place.url + " target='_blank'>Open in Google Places</a><hr>");
     }
@@ -174,7 +177,7 @@ $("#deliverit-img").on("click", function() {
         initMap();
     }, 3000);
 });
-$("#header-one").text("NOTE: These results are not formatted yet")
+// $("#header-one").text("NOTE: These results are not formatted yet")
 
 function getReservation(name) {
     $.ajax({
