@@ -130,17 +130,12 @@ function fillInAddress() {
 }
 // Pull the user's lat, long by address
 // 
-function geolocate(address) {
-    var geocoder = new google.maps.Geocoder();
+function locateByAddress(address) {
+    var service = new google.maps.places.PlacesService();
     // var address = address;
-    geocoder.geocode({ "address" : address}, function(results, status){
-        if (status === google.maps.GeocoderStatus.OK){
-            var latitude = results[0].geometry.location.lat();
-            var longitiude = results[0].geometry.location.lng();
-            currLoc = {
-            lat: latitude,
-            lng: longitude
-            }
+    service.textSearch(address, function(results, status){
+        if (status === google.maps.PlacesServiceStatus.OK){
+            console.log(results);
         }
         
     });
@@ -424,19 +419,21 @@ $("#gobutton").on("click", function() {
         $("#table-body").empty();
         address = $("#searchTerm").val().trim();
         console.log(searchTerm);
-        geolocate(address);
+        locateByAddress(address);
         setTimeout(function() {
             initMap();
         }, 1000);
     } else if (!isGrub){
         $("#table-body").empty();
-    address = $("#searchTerm").val().trim();
-    isGrub = true;
-    geolocate(address);
-    setTimeout(function() {
-        initMap();
-    }, 1000);
+        address = $("#searchTerm").val().trim();
+        isGrub = true;
+        locateByAddress(address);
+        setTimeout(function() {
+            initMap();
+        }, 1000);
     }
+    $("#locationField").hide();
+    // $("#searchTerm").val("");
 });
 $("#findit-img").on("click", function() {
     isGrub = false;
