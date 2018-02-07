@@ -133,7 +133,7 @@ $("#makeit-img").on("click", function(){
                         var newRow = $("<tr>");
                         var newDiv = $("<div>");
                         //newDiv.attr("data-recipe-id", responseObject.recipes[i].recipe_id);
-                        newDiv.html('<div class="card"><div class="card-body"><div class="recipe-display" data-toggle="modal" data-target="#exampleModalCenter" data-recipe-id="' + 
+                        newDiv.html('<div class="card"><div class="card-body"><div class="recipe-display" data-toggle="modal" data-target="#recipe-modal" data-recipe-id="' + 
                             responseObject.recipes[i].recipe_id + '"><img src="' + responseObject.recipes[i].image_url + '"><br><h3>' 
                             + responseObject.recipes[i].title +'</h3><p>Recipe Brought To You By: <span class="response-text">'
                             + responseObject.recipes[i].publisher +'</span></p><br></div></div></div>');
@@ -159,7 +159,7 @@ $("#makeit-img").on("click", function(){
 ////Recipe ID Then Display info in the modal. 
 $(document).on("click", ".recipe-display", function(){
 
-    $("#search-results").empty();
+    $("#recipe-results").empty();
 
     var recipeId = $(this).attr("data-recipe-id");
     var getUrl = "http://food2fork.com/api/get?key=" + recipeApiKey + "&rId=" + recipeId;
@@ -172,9 +172,11 @@ $(document).on("click", ".recipe-display", function(){
         var responseObject = JSON.parse(response);
         var newDiv = $("<div>");
 
-        newDiv.html('<img src="' + responseObject.recipe.image_url + '"><br><p>Title:<span class="response-text">' 
-            + responseObject.recipe.title +'</span></p><br><br><p>URL: <span class="response-text">'
-            + responseObject.recipe.source_url +'</span></p><br></div></div></div>');
+        $("#recipe-modal-title").text(responseObject.recipe.title);
+
+        newDiv.html('<img src="' + responseObject.recipe.image_url + '"><hr class="red-rule"/><br><h3>' 
+            + responseObject.recipe.title +'</h3><br><p>Recipe Brought To You By: <span class="response-text">'
+            + responseObject.recipe.publisher +'</span></p><h5>Ingredients:</h5>');
 
         var newList = $("<ul>");
 
@@ -183,8 +185,12 @@ $(document).on("click", ".recipe-display", function(){
             newItem.text(ingredient); 
             newList.append(newItem);
         });
+
         newDiv.append(newList);
-        $("#search-results").append(newDiv);
+        newDiv.append('<p>See Whole Recipe at: <span class="response-text"><a href="' 
+          + responseObject.recipe.source_url + '">' 
+          + responseObject.recipe.source_url +'</a></span></p>')
+        $("#recipe-results").append(newDiv);
     });
 });
 
@@ -264,7 +270,7 @@ function getDetails() {
         initMap();
       }
       function error(errorObj){
-
+        $("#modalAddressForm").modal("show");
         console.log("in error:" + errorObj);
       }
  }
