@@ -295,12 +295,7 @@ $("#save-recipe-button").on("click", function(){
 
 
 ///////////////////// Mark's js Google API//////////////////
-function initialize() {
-    initializeGoogleApp();
-    initMap();
-}
 
-function initializeGoogleApp() {}
 
 function getGeo() {
     <!-- getting the user location -->
