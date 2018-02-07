@@ -99,7 +99,10 @@ var geoAllowed = false;
         country: 'long_name',
         postal_code: 'short_name'
       };
-
+      function initialize(){
+        initAutocomplete();
+        initMap();
+      }
       function initAutocomplete() {
         // Create the autocomplete object, restricting the search to geographical
         // location types.
