@@ -289,11 +289,6 @@ $("#save-recipe-button").on("click", function(){
   //orderByChild('username').equalTo(username);;
 });
 
-
-
-
-
-
 ///////////////////// Mark's js Google API//////////////////
 
 
@@ -424,7 +419,7 @@ $("#findit-img").on("click", function() {
 $("#deliverit-img").on("click", function() {
     $(this).attr("src", "assets/images/find.png");
 });
-$("gobutton").on("click", function() {
+$("#gobutton").on("click", function() {
     if (isgrub) {
         $("#table-body").empty();
         searchTerm = $("#searchTerm").val().trim();
