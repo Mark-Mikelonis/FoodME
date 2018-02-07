@@ -458,7 +458,6 @@ function getReservation(name) {
 }
 
 
-}
 
 
 
