@@ -8,6 +8,9 @@ var isGrub = false;
 var searchTerm;
 var currLoc;
 var geoAllowed = false;
+var reserveUrl;
+var placeSearch, autocomplete;
+
 //////////Tung Tung - firebase/////////
 // Initialize Firebase
 var config = {
@@ -67,58 +70,6 @@ database.ref().orderByChild("dateAdded").limitToLast(1).on("child_added", functi
 // Hide the location search bar first
 $("#locationField").hide();
 $("#address").hide();
-//////// Google autofill ////////////
-var placeSearch, autocomplete;
-
-
-function initialize() {
-    initAutocomplete();
-    initMap();
-}
-
-function initAutocomplete() {
-    // Create the autocomplete object, restricting the search to geographical
-    // location types.
-    autocomplete = new google.maps.places.Autocomplete(
-        /** @type {!HTMLInputElement} */
-        (document.getElementById('autocomplete')), {
-            types: ['address']
-        });
-    // When the user selects an address from the dropdown, populate the address
-    // fields in the form.
-    autocomplete.addListener('place_changed', fillInAddress);
-}
-
-function fillInAddress() {
-    // Get the place details from the autocomplete object.
-    var autoplace = autocomplete.getPlace();
-    // console.log("in fillInAddress");
-    // console.log(autoplace.formatted_address);
-    getGeoByAddress(autoplace.formatted_address);
-  
-}
-// Pull the user's lat, long by address
-// 
-function getGeoByAddress(address) {
-    var geocoder = new google.maps.Geocoder();
-    // var address = address;
-    geocoder.geocode({'address' :address}, function(results, status){
-        if (status === google.maps.GeocoderStatus.OK){
-            console.log(results);
-            var latitude = results[0].geometry.location.lat();
-            var longitude = results[0].geometry.location.lng();
-
-            console.log("lat: " + latitude +"lng: " + longitude);
-
-            currLoc = {
-            lat: latitude,
-            lng: longitude
-            };
-            initMap();
-        }
-        
-    });
-}
 
 
 
@@ -260,19 +211,71 @@ $("#save-recipe-button").on("click", function(){
     console.log();
     console.log("The user name is ", snapshot.val().username); // here's your data object
   });
-  //orderByChild('username').equalTo(username);;
+  
 });
 
 ///////////////////// Mark's js Google API//////////////////
 
+//////// Google autofill ////////////
 
+
+
+function initialize() {
+    initAutocomplete();
+    initMap();
+}
+
+function initAutocomplete() {
+    // Create the autocomplete object, restricting the search to geographical
+    // location types.
+    autocomplete = new google.maps.places.Autocomplete(
+        /** @type {!HTMLInputElement} */
+        (document.getElementById('autocomplete')), {
+            types: ['address']
+        });
+    // When the user selects an address from the dropdown, populate the address
+    // fields in the form.
+    autocomplete.addListener('place_changed', fillInAddress);
+}
+
+function fillInAddress() {
+    // Get the place details from the autocomplete object.
+    var autoplace = autocomplete.getPlace();
+    getGeoByAddress(autoplace.formatted_address);
+  
+}
+// Pull the user's lat, long by address
+// 
+function getGeoByAddress(address) {
+    var geocoder = new google.maps.Geocoder();
+    // var address = address;
+    geocoder.geocode({'address' :address}, function(results, status){
+        if (status === google.maps.GeocoderStatus.OK){
+            console.log(results);
+            var latitude = results[0].geometry.location.lat();
+            var longitude = results[0].geometry.location.lng();
+
+            console.log("lat: " + latitude +"lng: " + longitude);
+
+            currLoc = {
+            lat: latitude,
+            lng: longitude
+            };
+            initMap();
+        }
+        
+    });
+}
+
+
+// Get geolocation from browser if allowed by user otherwise trigger address field
 function getGeo() {
-    <!-- getting the user location -->
+    
     if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(success, error);
     } else {
         alert('geolocation not supported');
-        // geoAllowed = false;
+        
     }
 
     function success(position) {
@@ -309,6 +312,7 @@ function getDetails(placeId) {
     }, function(place, status) {
         if (status === google.maps.places.PlacesServiceStatus.OK) {
             console.log("in getDetails");
+            console.log(place);
             createPlaceList(place);
         }
     });
@@ -316,7 +320,7 @@ function getDetails(placeId) {
 
 function callback(results, status) {
     if (results.length === 0) {
-        $("#header-one").text("No results. Please try another search term.");
+        $("#display").text("No results. Please try another search term.");
     }
     var places = [];
     if (status === google.maps.places.PlacesServiceStatus.OK) {
@@ -336,18 +340,21 @@ function createPlaceList(place) {
         dollarSigns = priceLevel.repeat(place.price_level);
     }
     var restName = place.name.replace(/ /g, "+");
+    var restCity = place.address_components[3].long_name.replace(/ /g, "+");
     var newDiv = $("<div>");
     var newImg = $("<img>");
+
     if (!isGrub) {
-        var reserveUrl = getReservation(restName);
+        getReservation(restName, restCity);
         $("#display").text("Restaurants");
         console.log("reserveUrl: " + reserveUrl);
         if (reserveUrl) {
-            console.log("in reserveUrl");
+            console.log("in createPlaces reserveUrl");
             newDiv.append("<h4>" + place.name + "</h4>" + "Rating: " + place.rating + " (" + place.reviews.length + " reviews)<br>Price range: " + dollarSigns + "<br>" + place.adr_address + "<br> Phone: " + place.formatted_phone_number + "<br><a href=" + place.url + " target='_blank'>Open in Google Places</a><br><a href=" + reserveUrl + ">Reserve a Table</a><hr>");
+            reserveUrl = '';
         } else {
             console.log("in reserveUrl");
-            newDiv.append("<h4>" + place.name + "</h4>" + "Rating: " + place.rating + " (" + place.reviews.length + " reviews)<br>Price range: " + dollarSigns + "<br>" + place.adr_address + "<br> Phone: " + place.formatted_phone_number + "<br><a href=" + place.url + " target='_bla nk'>Open in Google Places</a><hr>");
+            newDiv.append("<h4>" + place.name + "</h4>" + "Rating: " + place.rating + " (" + place.reviews.length + " reviews)<br>Price range: " + dollarSigns + "<br>" + place.adr_address + "<br> Phone: " + place.formatted_phone_number + "<br><a href=" + place.url + " target='_blank'>Open in Google Places</a><hr>");
         }
     } else if (isGrub) {
         $("#display").text("Restaurants that deliver to you");
@@ -400,10 +407,10 @@ $("#gobutton").on("click", function() {
 });
 $("#findit-img").on("click", function() {
     var parsleyInstance = $("#searchTerm").parsley();
-
+    isGrub = false;
     if (parsleyInstance.isValid()) {
         $("#search-input").addClass("hidden-content");
-        isGrub = false;
+        
         $("#table-body").empty();
         searchTerm = $("#searchTerm").val().trim();
         if (!currLoc) {
@@ -438,18 +445,20 @@ $("#deliverit-img").on("click", function() {
     }
 });
 
-function getReservation(name) {
+function getReservation(name, city) {
     $.ajax({
-        url: opentableQuery + name,
+        url: opentableQuery + name + "&city=" + city,
         method: "GET"
     }).done(function(response) {
         console.log("in getReservation");
         if (response.restaurants.length !== 0) {
             console.log("in length !== 0")
             console.log(response);
-            var url = response.restaurants[0].reserve_url;
-            return url;
-            console.log(response.restaurants[0].reserve_url);
+            reserveUrl = response.restaurants[0].reserve_url;
+            
+            console.log("getReservation reserveurl: " + reserveUrl);
+        } else {
+             console.log("in length === 0");
         }
     });
 }
