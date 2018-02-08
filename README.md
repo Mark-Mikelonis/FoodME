@@ -3,7 +3,9 @@
 
 Food Me was built as part of a project for UC Berkeley Coding Boot Camp. The purpose of the program is to allow users a way to fulfill their cravings for specific food. It is broken down into three primary categories. **Make It**, **Find It** and **Deliver It.**
 
-![alt text](https://github.com/Mark-Mikelonis/FoodME/blob/david/assets/images/mainpageshot.png)
+![Home page image of Food Me](https://github.com/Mark-Mikelonis/FoodME/blob/david/assets/images/mainpageshot.png)
+
+*Home page of Food Me*
 
 
 ## Live Link
@@ -17,10 +19,16 @@ Food Me is comprised of three primary subsections. Here's a closer look at each:
 
 After submitting the dish of choice into the input tab, the user can select to look for recipes for the item they choose. Once they hit it, up to 10 recipes will be returned. Once clicking on a dish they want to explore further, a modal of the recipe appears. At the bottom of the model, there's a button where the user can chose to save the food item.
 
-![alt text](https://github.com/Mark-Mikelonis/FoodME/blob/david/assets/images/Recipecardshot.png)
+![Recipe Choices when Make It clicked](https://github.com/Mark-Mikelonis/FoodME/blob/david/assets/images/Recipecardshot.png)
 
-![alt text](https://github.com/Mark-Mikelonis/FoodME/blob/david/assets/images/Recipe2shot.png)
+(photo above) *Recipe Choices When Make It Clicked*
 
+
+
+
+![Once you choose recipe, form with ingredients appears](https://github.com/Mark-Mikelonis/FoodME/blob/david/assets/images/Recipe2shot.png)
+
+(photo above) *Exact recipe ingredients appears when meal of choice is selected.*
 
 
 
@@ -28,13 +36,17 @@ After submitting the dish of choice into the input tab, the user can select to l
 
 The user that chooses to go to a restaurant that serves the dish would use the **Find It** button on the app. Once they click the button, a list of restaurants appear utilizing the Google Places API. The information returned to the user include Rating, Price Range, Address, and Phone Number. There's also a link that will open the place directly in Google Places where other information and options provided by Google Places is provided.
 
-![alt text](https://github.com/Mark-Mikelonis/FoodME/blob/david/assets/images/Finditpageshot.png)
+![Click Find it and get restaurants that serve your craving](https://github.com/Mark-Mikelonis/FoodME/blob/david/assets/images/Finditpageshot.png)
+
+*Find the restaurant that serves dish when Find it is clicked*
 
 ### Deliver It
 
 The user that wishes to have the food delivered to them can click on the **Deliver It** link which will give them a list of restaurants that deliver and links to GrubHub where people can get the food they want sent directly to them.
 
-![alt text](https://github.com/Mark-Mikelonis/FoodME/blob/david/assets/images/Deliveritpageshot.png)
+![When deliver it is clicked, you will be shown how to get the food to you](https://github.com/Mark-Mikelonis/FoodME/blob/david/assets/images/Deliverypageshot.png)
+
+*When deliver it is clicked you will be shown how to get the food to you*
 
 
 ## Other Highlights of App
