@@ -1,4 +1,5 @@
 # Food Me
+#### version 1.0.0
 
 Food Me was built as part of a project for UC Berkeley Coding Boot Camp. The purpose of the program is to allow users a way to fulfill their cravings for specific food. It is broken down into three primary categories. **Make It**, **Find It** and **Deliver It.**
 
@@ -40,6 +41,16 @@ The user that wishes to have the food delivered to them can click on the **Deliv
 + Food 2 Fork -- http://food2fork.com/about/api
 + Google Maps -- https://developers.google.com/maps/
 + Google Places API -- https://developers.google.com/places/
+
+## Plans for future versions
+
++ Better Recipe API’s that will return more data such as ingredients and nutritional data.
++ Multiple delivery portals beyond GrubHub.
++ User customizable sorting options such as distance, price range, ratings and review count.
++ Add spell checker for input box
++ Verify username is not taken
++ Sharing recipes and locations on social media platforms such as Facebook, Instagram, Twitter.
+
 
 
 ## Authors
