@@ -82,7 +82,7 @@ $("#sign-up-btn").on("click", function(event) {
 $("#login-btn").on("click", function(event) {
   event.preventDefault();
 
-  debugger;
+ 
   validUser = false; 
   var user = "";
   var pass = "";
