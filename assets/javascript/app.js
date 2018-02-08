@@ -92,17 +92,29 @@ function initAutocomplete() {
 function fillInAddress() {
     // Get the place details from the autocomplete object.
     var autoplace = autocomplete.getPlace();
-    console.log(autoplace);
+    // console.log("in fillInAddress");
+    // console.log(autoplace.formatted_address);
+    getGeoByAddress(autoplace.formatted_address);
   
 }
 // Pull the user's lat, long by address
 // 
-function locateByAddress(address) {
-    var service = new google.maps.places.PlacesService();
+function getGeoByAddress(address) {
+    var geocoder = new google.maps.Geocoder();
     // var address = address;
-    service.textSearch(address, function(results, status){
-        if (status === google.maps.PlacesServiceStatus.OK){
+    geocoder.geocode({'address' :address}, function(results, status){
+        if (status === google.maps.GeocoderStatus.OK){
             console.log(results);
+            var latitude = results[0].geometry.location.lat();
+            var longitude = results[0].geometry.location.lng();
+
+            console.log("lat: " + latitude +"lng: " + longitude);
+
+            currLoc = {
+            lat: latitude,
+            lng: longitude
+            };
+            initMap();
         }
         
     });
@@ -193,7 +205,7 @@ $("#makeit-img").on("click", function() {
                     } else {
                         var newRow = $("<tr>");
                         var newDiv = $("<div>");
-                        //newDiv.attr("data-recipe-id", responseObject.recipes[i].recipe_id);
+                        
                         newDiv.html('<div class="card"><div class="card-body"><div class="recipe-display" data-toggle="modal" data-target="#recipe-modal" data-recipe-id="' + responseObject.recipes[i].recipe_id + '"><img src="' + responseObject.recipes[i].image_url + '"><br><h3>' + responseObject.recipes[i].title + '</h3><p>Recipe Brought To You By: <span class="response-text">' + responseObject.recipes[i].publisher + '</span></p><br></div></div></div>');
                         newRow.append(newDiv);
                         $("#table-body").append(newRow);
@@ -382,25 +394,9 @@ $("#deliverit-img").on("click", function() {
     $(this).attr("src", "assets/images/find.png");
 });
 $("#gobutton").on("click", function() {
-    if (isGrub) {
-        $("#table-body").empty();
-        address = $("#searchTerm").val().trim();
-        console.log(searchTerm);
-        locateByAddress(address);
-        setTimeout(function() {
-            initMap();
-        }, 1000);
-    } else if (!isGrub){
-        $("#table-body").empty();
-        address = $("#searchTerm").val().trim();
-        isGrub = true;
-        locateByAddress(address);
-        setTimeout(function() {
-            initMap();
-        }, 1000);
-    }
+    $("#locationField").val("");
     $("#locationField").hide();
-    // $("#searchTerm").val("");
+   
 });
 $("#findit-img").on("click", function() {
     var parsleyInstance = $("#searchTerm").parsley();
