@@ -219,7 +219,7 @@ $("#save-recipe-button").on("click", function(){
 //////// Google autofill ////////////
 
 
-
+/// Callback function that calls Google maps and places services
 function initialize() {
     initAutocomplete();
     initMap();
@@ -245,17 +245,15 @@ function fillInAddress() {
   
 }
 // Pull the user's lat, long by address
-// 
+ 
 function getGeoByAddress(address) {
     var geocoder = new google.maps.Geocoder();
-    // var address = address;
+    
     geocoder.geocode({'address' :address}, function(results, status){
         if (status === google.maps.GeocoderStatus.OK){
-            console.log(results);
+            
             var latitude = results[0].geometry.location.lat();
             var longitude = results[0].geometry.location.lng();
-
-            console.log("lat: " + latitude +"lng: " + longitude);
 
             currLoc = {
             lat: latitude,
@@ -273,10 +271,7 @@ function getGeo() {
     
     if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(success, error);
-    } else {
-        alert('geolocation not supported');
-        
-    }
+    } 
 
     function success(position) {
         geoAllowed = true;
@@ -289,7 +284,7 @@ function getGeo() {
     }
 
     function error(errorObj) {
-        console.log("in error:" + errorObj);
+        
         $("#locationField").show();
         geoAllowed = false;
     }
@@ -353,7 +348,7 @@ function createPlaceList(place) {
             newDiv.append("<h4>" + place.name + "</h4>" + "Rating: " + place.rating + " (" + place.reviews.length + " reviews)<br>Price range: " + dollarSigns + "<br>" + place.adr_address + "<br> Phone: " + place.formatted_phone_number + "<br><a href=" + place.url + " target='_blank'>Open in Google Places</a><br><a href=" + reserveUrl + ">Reserve a Table</a><hr>");
             reserveUrl = '';
         } else {
-            console.log("in reserveUrl");
+           
             newDiv.append("<h4>" + place.name + "</h4>" + "Rating: " + place.rating + " (" + place.reviews.length + " reviews)<br>Price range: " + dollarSigns + "<br>" + place.adr_address + "<br> Phone: " + place.formatted_phone_number + "<br><a href=" + place.url + " target='_blank'>Open in Google Places</a><hr>");
         }
     } else if (isGrub) {
@@ -365,9 +360,8 @@ function createPlaceList(place) {
         newDiv.append(newImg);
         newDiv.append("<h4>" + place.name + "</h4><a href=" + url + " target='_blank'>Deliver through Grubhub</a><hr>");
     } else {
-        console.log("in no reserveUrl");
+        
         $("#display").text("Restaurants");
-        console.log(place);
         newDiv.append("<h4>" + place.name + "</h4>" + "Rating: " + place.rating + " (" + place.reviews.length + " reviews)<br>Price range: " + dollarSigns + "<br>" + place.adr_address + "<br> Phone: " + place.formatted_phone_number + "<br><a href=" + place.url + " target='_blank'>Open in Google Places</a><hr>");
     }
     $("#table-body").append(newDiv);
@@ -416,7 +410,7 @@ $("#findit-img").on("click", function() {
         if (!currLoc) {
             getGeo();
         }
-        console.log(searchTerm);
+        
         setTimeout(function() {
             initMap();
         }, 3000);
@@ -450,15 +444,15 @@ function getReservation(name, city) {
         url: opentableQuery + name + "&city=" + city,
         method: "GET"
     }).done(function(response) {
-        console.log("in getReservation");
+        // console.log("in getReservation");
         if (response.restaurants.length !== 0) {
-            console.log("in length !== 0")
-            console.log(response);
-            reserveUrl = response.restaurants[0].reserve_url;
+            // console.log("in length !== 0")
+            // console.log(response);
+            reserveUrl = response.restaurants[0].mobile_reserve_url;
             
-            console.log("getReservation reserveurl: " + reserveUrl);
+            // console.log("getReservation reserveurl: " + reserveUrl);
         } else {
-             console.log("in length === 0");
+             // console.log("in length === 0");
         }
     });
 }
