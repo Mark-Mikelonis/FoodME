@@ -3,7 +3,8 @@
 
 Food Me was built as part of a project for UC Berkeley Coding Boot Camp. The purpose of the program is to allow users a way to fulfill their cravings for specific food. It is broken down into three primary categories. **Make It**, **Find It** and **Deliver It.**
 
-(Picture of front page of app)
+![alt text](https://github.com/Mark-Mikelonis/FoodME/blob/david/assets/images/mainpageshot.png)
+
 
 ## Live Link
 https://mark-mikelonis.github.io/FoodME
@@ -15,6 +16,12 @@ Food Me is comprised of three primary subsections. Here's a closer look at each:
 ### Make It
 
 After submitting the dish of choice into the input tab, the user can select to look for recipes for the item they choose. Once they hit it, up to 10 recipes will be returned. Once clicking on a dish they want to explore further, a modal of the recipe appears. At the bottom of the model, there's a button where the user can chose to save the food item.
+
+![alt text](https://github.com/Mark-Mikelonis/FoodME/blob/david/assets/images/Recipecardshot.png)
+
+![alt text](https://github.com/Mark-Mikelonis/FoodME/blob/david/assets/images/
+
+
 
 ### Find It
 
