@@ -19,7 +19,8 @@ After submitting the dish of choice into the input tab, the user can select to l
 
 ![alt text](https://github.com/Mark-Mikelonis/FoodME/blob/david/assets/images/Recipecardshot.png)
 
-![alt text](https://github.com/Mark-Mikelonis/FoodME/blob/david/assets/images/
+![alt text](https://github.com/Mark-Mikelonis/FoodME/blob/david/assets/images/Recipe2shot.png)
+
 
 
 
@@ -27,9 +28,13 @@ After submitting the dish of choice into the input tab, the user can select to l
 
 The user that chooses to go to a restaurant that serves the dish would use the **Find It** button on the app. Once they click the button, a list of restaurants appear utilizing the Google Places API. The information returned to the user include Rating, Price Range, Address, and Phone Number. There's also a link that will open the place directly in Google Places where other information and options provided by Google Places is provided.
 
+![alt text](https://github.com/Mark-Mikelonis/FoodME/blob/david/assets/images/Finditpageshot.png)
+
 ### Deliver It
 
 The user that wishes to have the food delivered to them can click on the **Deliver It** link which will give them a list of restaurants that deliver and links to GrubHub where people can get the food they want sent directly to them.
+
+![alt text](https://github.com/Mark-Mikelonis/FoodME/blob/david/assets/images/Deliveritpageshot.png)
 
 
 ## Other Highlights of App
