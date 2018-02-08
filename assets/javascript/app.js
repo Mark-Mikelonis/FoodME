@@ -320,7 +320,7 @@ function getDetails(placeId) {
 
 function callback(results, status) {
     if (results.length === 0) {
-        $("#header-one").text("No results. Please try another search term.");
+        $("#display").text("No results. Please try another search term.");
     }
     var places = [];
     if (status === google.maps.places.PlacesServiceStatus.OK) {
@@ -351,7 +351,7 @@ function createPlaceList(place) {
         if (reserveUrl) {
             console.log("in createPlaces reserveUrl");
             newDiv.append("<h4>" + place.name + "</h4>" + "Rating: " + place.rating + " (" + place.reviews.length + " reviews)<br>Price range: " + dollarSigns + "<br>" + place.adr_address + "<br> Phone: " + place.formatted_phone_number + "<br><a href=" + place.url + " target='_blank'>Open in Google Places</a><br><a href=" + reserveUrl + ">Reserve a Table</a><hr>");
-            reserveUrl ='';
+            reserveUrl = '';
         } else {
             console.log("in reserveUrl");
             newDiv.append("<h4>" + place.name + "</h4>" + "Rating: " + place.rating + " (" + place.reviews.length + " reviews)<br>Price range: " + dollarSigns + "<br>" + place.adr_address + "<br> Phone: " + place.formatted_phone_number + "<br><a href=" + place.url + " target='_blank'>Open in Google Places</a><hr>");
