@@ -45,17 +45,15 @@ $("#login-btn").on("click", function(event) {
         password: password,
         dateAdded: firebase.database.ServerValue.TIMESTAMP
     });
-    // $('#modalLoginForm').modal('hide');
+    
     $("#login-btn").trigger("reset");
-    // $("#myform")[0].reset();
+   
 });
 // Firebase watcher + initial loader + order/limit HINT: .on("child_added"
 database.ref().orderByChild("dateAdded").limitToLast(1).on("child_added", function(snapshot) {
     // storing the snapshot.val() in a variable for convenience
     var sv = snapshot.val();
-    // Console.loging the last user's data
-    console.log(sv.username);
-    console.log(sv.password);
+    
     // Change the HTML to reflect
     $("#name-display").text(sv.name);
     $("#email-display").text(sv.email);
@@ -65,31 +63,13 @@ database.ref().orderByChild("dateAdded").limitToLast(1).on("child_added", functi
 }, function(errorObject) {
     console.log("Errors handled: " + errorObject.code);
 });
-// Auth users
-//     firebase.auth().signInWithCustomToken(token).catch(function(error) {
-//   // Handle Errors here.
-//   var errorCode = error.code;
-//   var errorMessage = error.message;
-//   // ...
-// });
-// // Sign out
-// firebase.auth().signOut().then(function() {
-//   // Sign-out successful.
-// }).catch(function(error) {
-//   // An error happened.
-// });
+
 // Hide the location search bar first
 $("#locationField").hide();
 $("#address").hide();
 //////// Google autofill ////////////
 var placeSearch, autocomplete;
-// var componentForm = {
-//     route: 'long_name',
-//     locality: 'long_name',
-//     administrative_area_level_1: 'short_name',
-//     country: 'long_name',
-//     postal_code: 'short_name'
-// };
+
 
 function initialize() {
     initAutocomplete();
@@ -113,20 +93,7 @@ function fillInAddress() {
     // Get the place details from the autocomplete object.
     var autoplace = autocomplete.getPlace();
     console.log(autoplace);
-    // for (var component in componentForm) {
-    //     console.log(component);
-    //     document.getElementById(component).value = '';
-    //     document.getElementById(component).disabled = false;
-    // }
-    // // Get each component of the address from the autoplace details place
-    // // and fill the corresponding field on the form.
-    // for (var i = 0; i < autoplace.address_components.length; i++) {
-    //     var addressType = autoplace.address_components[i].types[0];
-    //     if (componentForm[addressType]) {
-    //         var val = autoplace.address_components[i][componentForm[addressType]];
-    //         document.getElementById(addressType).value = val;
-    //     }
-    // }
+  
 }
 // Pull the user's lat, long by address
 // 
