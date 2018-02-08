@@ -36,22 +36,6 @@ var database = firebase.database();
 var username = "";
 var password = "";
 
-// Capture Button Click
-$("#login-btn").on("click", function(event) {
-    event.preventDefault();
-    // Grabbed values from text boxes
-    username = $("#usernameInput").val().trim();
-    password = $("#defaultForm-pass").val().trim();
-    // Code for handling the push
-    database.ref('/users').push({
-        username: username,
-        password: password,
-        dateAdded: firebase.database.ServerValue.TIMESTAMP
-    });
-    
-    $("#login-btn").trigger("reset");
-   
-});
 // Firebase watcher + initial loader + order/limit HINT: .on("child_added"
 database.ref().orderByChild("dateAdded").limitToLast(1).on("child_added", function(snapshot) {
     // storing the snapshot.val() in a variable for convenience
@@ -81,8 +65,8 @@ $("#sign-up-btn").on("click", function(event) {
   username = $("#username-signup-input").val().trim();
   password = $("#pass-signup-input").val().trim();
 
-  $("#usernameInput").val("");
-  $("#defaultForm-pass").val("");
+  $("#username-signup-input").val("");
+  $("#pass-signup-input").val("");
 
   // Code for handling the push
   database.ref('/users').push({
@@ -97,6 +81,7 @@ $("#sign-up-btn").on("click", function(event) {
 // Capture Button Click for Logging In 
 $("#login-btn").on("click", function(event) {
   event.preventDefault();
+
   debugger;
   validUser = false; 
   var user = "";
@@ -105,6 +90,10 @@ $("#login-btn").on("click", function(event) {
   // Grabbed values from text boxes
   userNameInput = $("#username-login-input").val().trim();
   passWordInput = $("#pass-login-input").val().trim();
+
+  $("#login").text("Logout");
+  $("#username-login-input").val("");
+  $("#pass-login-input").val("");
 
   console.log("The userName input is "+ userNameInput);
   userRef.orderByChild("username").equalTo(userNameInput).on("child_added", function(snapshot) {
@@ -306,9 +295,7 @@ function getDetails(placeId) {
         placeId: placeId
     }, function(place, status) {
         if (status === google.maps.places.PlacesServiceStatus.OK) {
-            console.log("in getDetails");
-            console.log(place);
-            createPlaceList(place);
+           createPlaceList(place);
         }
     });
 }
@@ -342,9 +329,9 @@ function createPlaceList(place) {
     if (!isGrub) {
         getReservation(restName, restCity);
         $("#display").text("Restaurants");
-        ///console.log("reserveUrl: " + reserveUrl);
+        
         if (reserveUrl) {
-            ///console.log("in createPlaces reserveUrl");
+            
             newDiv.append("<h4>" + place.name + "</h4>" + "Rating: " + place.rating + " (" + place.reviews.length + " reviews)<br>Price range: " + dollarSigns + "<br>" + place.adr_address + "<br> Phone: " + place.formatted_phone_number + "<br><a href=" + place.url + " target='_blank'>Open in Google Places</a><br><a href=" + reserveUrl + ">Reserve a Table</a><hr>");
             reserveUrl = '';
         } else {
@@ -444,15 +431,12 @@ function getReservation(name, city) {
         url: opentableQuery + name + "&city=" + city,
         method: "GET"
     }).done(function(response) {
-        // console.log("in getReservation");
+       
         if (response.restaurants.length !== 0) {
-            // console.log("in length !== 0")
-            // console.log(response);
+            
             reserveUrl = response.restaurants[0].mobile_reserve_url;
             
-            // console.log("getReservation reserveurl: " + reserveUrl);
-        } else {
-             // console.log("in length === 0");
-        }
+            
+        } 
     });
 }
