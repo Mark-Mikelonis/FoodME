@@ -45,17 +45,15 @@ $("#login-btn").on("click", function(event) {
         password: password,
         dateAdded: firebase.database.ServerValue.TIMESTAMP
     });
-    // $('#modalLoginForm').modal('hide');
+    
     $("#login-btn").trigger("reset");
-    // $("#myform")[0].reset();
+   
 });
 // Firebase watcher + initial loader + order/limit HINT: .on("child_added"
 database.ref().orderByChild("dateAdded").limitToLast(1).on("child_added", function(snapshot) {
     // storing the snapshot.val() in a variable for convenience
     var sv = snapshot.val();
-    // Console.loging the last user's data
-    console.log(sv.username);
-    console.log(sv.password);
+    
     // Change the HTML to reflect
     $("#name-display").text(sv.name);
     $("#email-display").text(sv.email);
@@ -65,31 +63,13 @@ database.ref().orderByChild("dateAdded").limitToLast(1).on("child_added", functi
 }, function(errorObject) {
     console.log("Errors handled: " + errorObject.code);
 });
-// Auth users
-//     firebase.auth().signInWithCustomToken(token).catch(function(error) {
-//   // Handle Errors here.
-//   var errorCode = error.code;
-//   var errorMessage = error.message;
-//   // ...
-// });
-// // Sign out
-// firebase.auth().signOut().then(function() {
-//   // Sign-out successful.
-// }).catch(function(error) {
-//   // An error happened.
-// });
+
 // Hide the location search bar first
 $("#locationField").hide();
 $("#address").hide();
 //////// Google autofill ////////////
 var placeSearch, autocomplete;
-// var componentForm = {
-//     route: 'long_name',
-//     locality: 'long_name',
-//     administrative_area_level_1: 'short_name',
-//     country: 'long_name',
-//     postal_code: 'short_name'
-// };
+
 
 function initialize() {
     initAutocomplete();
@@ -112,30 +92,29 @@ function initAutocomplete() {
 function fillInAddress() {
     // Get the place details from the autocomplete object.
     var autoplace = autocomplete.getPlace();
-    console.log(autoplace);
-    // for (var component in componentForm) {
-    //     console.log(component);
-    //     document.getElementById(component).value = '';
-    //     document.getElementById(component).disabled = false;
-    // }
-    // // Get each component of the address from the autoplace details place
-    // // and fill the corresponding field on the form.
-    // for (var i = 0; i < autoplace.address_components.length; i++) {
-    //     var addressType = autoplace.address_components[i].types[0];
-    //     if (componentForm[addressType]) {
-    //         var val = autoplace.address_components[i][componentForm[addressType]];
-    //         document.getElementById(addressType).value = val;
-    //     }
-    // }
+    // console.log("in fillInAddress");
+    // console.log(autoplace.formatted_address);
+    getGeoByAddress(autoplace.formatted_address);
+  
 }
 // Pull the user's lat, long by address
 // 
-function locateByAddress(address) {
-    var service = new google.maps.places.PlacesService();
+function getGeoByAddress(address) {
+    var geocoder = new google.maps.Geocoder();
     // var address = address;
-    service.textSearch(address, function(results, status){
-        if (status === google.maps.PlacesServiceStatus.OK){
+    geocoder.geocode({'address' :address}, function(results, status){
+        if (status === google.maps.GeocoderStatus.OK){
             console.log(results);
+            var latitude = results[0].geometry.location.lat();
+            var longitude = results[0].geometry.location.lng();
+
+            console.log("lat: " + latitude +"lng: " + longitude);
+
+            currLoc = {
+            lat: latitude,
+            lng: longitude
+            };
+            initMap();
         }
         
     });
@@ -208,7 +187,7 @@ $("#makeit-img").on("click", function() {
     var parsleyInstance = $("#searchTerm").parsley();
 
     if (parsleyInstance.isValid()) {
-        $("#bad-input").addClass("hidden-content");
+        $("#search-input").addClass("hidden-content");
 
         $("#table-body").empty();
         var query = $("#searchTerm").val().trim();
@@ -226,7 +205,7 @@ $("#makeit-img").on("click", function() {
                     } else {
                         var newRow = $("<tr>");
                         var newDiv = $("<div>");
-                        //newDiv.attr("data-recipe-id", responseObject.recipes[i].recipe_id);
+                        
                         newDiv.html('<div class="card"><div class="card-body"><div class="recipe-display" data-toggle="modal" data-target="#recipe-modal" data-recipe-id="' + responseObject.recipes[i].recipe_id + '"><img src="' + responseObject.recipes[i].image_url + '"><br><h3>' + responseObject.recipes[i].title + '</h3><p>Recipe Brought To You By: <span class="response-text">' + responseObject.recipes[i].publisher + '</span></p><br></div></div></div>');
                         newRow.append(newDiv);
                         $("#table-body").append(newRow);
@@ -235,8 +214,8 @@ $("#makeit-img").on("click", function() {
                 }
             } else {
                 $("#contact").modal("show");
-b
-                console.log("We did not find any results for that search");
+
+                $("#display").text("We did not find any results for that search");
             }
         });
     } else {
@@ -415,48 +394,48 @@ $("#deliverit-img").on("click", function() {
     $(this).attr("src", "assets/images/find.png");
 });
 $("#gobutton").on("click", function() {
-    if (isGrub) {
-        $("#table-body").empty();
-        address = $("#searchTerm").val().trim();
-        console.log(searchTerm);
-        locateByAddress(address);
-        setTimeout(function() {
-            initMap();
-        }, 1000);
-    } else if (!isGrub){
-        $("#table-body").empty();
-        address = $("#searchTerm").val().trim();
-        isGrub = true;
-        locateByAddress(address);
-        setTimeout(function() {
-            initMap();
-        }, 1000);
-    }
+    $("#locationField").val("");
     $("#locationField").hide();
-    // $("#searchTerm").val("");
+   
 });
 $("#findit-img").on("click", function() {
-    isGrub = false;
-    $("#table-body").empty();
-    searchTerm = $("#searchTerm").val().trim();
-    if (!currLoc) {
-        getGeo();
-    }
-    console.log(searchTerm);
-    setTimeout(function() {
-        initMap();
-    }, 3000);
+    var parsleyInstance = $("#searchTerm").parsley();
+
+    if (parsleyInstance.isValid()) {
+        $("#search-input").addClass("hidden-content");
+        isGrub = false;
+        $("#table-body").empty();
+        searchTerm = $("#searchTerm").val().trim();
+        if (!currLoc) {
+            getGeo();
+        }
+        console.log(searchTerm);
+        setTimeout(function() {
+            initMap();
+        }, 3000);
+     } else {
+        console.log("You did not enter good input");
+        $("#search-input").removeClass("hidden-content");
+    }   
 });
 $("#deliverit-img").on("click", function() {
-    $("#table-body").empty();
-    grubTerm = $("#searchTerm").val().trim();
-    isGrub = true;
-    if (!currLoc) {
-        getGeo();
+   var parsleyInstance = $("#searchTerm").parsley();
+
+    if (parsleyInstance.isValid()) {
+        $("#search-input").addClass("hidden-content");
+        $("#table-body").empty();
+        grubTerm = $("#searchTerm").val().trim();
+        isGrub = true;
+        if (!currLoc) {
+            getGeo();
+        }
+        setTimeout(function() {
+            initMap();
+        }, 3000);
+    } else {
+        console.log("You did not enter good input");
+        $("#search-input").removeClass("hidden-content");
     }
-    setTimeout(function() {
-        initMap();
-    }, 3000);
 });
 
 function getReservation(name) {
