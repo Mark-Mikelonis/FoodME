@@ -342,9 +342,9 @@ function createPlaceList(place) {
     if (!isGrub) {
         getReservation(restName, restCity);
         $("#display").text("Restaurants");
-        console.log("reserveUrl: " + reserveUrl);
+        ///console.log("reserveUrl: " + reserveUrl);
         if (reserveUrl) {
-            console.log("in createPlaces reserveUrl");
+            ///console.log("in createPlaces reserveUrl");
             newDiv.append("<h4>" + place.name + "</h4>" + "Rating: " + place.rating + " (" + place.reviews.length + " reviews)<br>Price range: " + dollarSigns + "<br>" + place.adr_address + "<br> Phone: " + place.formatted_phone_number + "<br><a href=" + place.url + " target='_blank'>Open in Google Places</a><br><a href=" + reserveUrl + ">Reserve a Table</a><hr>");
             reserveUrl = '';
         } else {
