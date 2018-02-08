@@ -32,6 +32,7 @@ var geoAllowed = false;
     var userRef = database.ref("/users");
     // var recipeRef = database.ref("/users/recipes");
     var validUser = false; 
+    var favRecipe ="";
 
 
 ///Golbal
@@ -47,6 +48,7 @@ var validPW = "";
       // Grabbed values from text boxes
       username = $("#username-signup-input").val().trim();
       password = $("#pass-signup-input").val().trim();
+      recipe = "";
 
       $("#usernameInput").val("");
       $("#defaultForm-pass").val("");
@@ -56,12 +58,12 @@ var validPW = "";
       database.ref('/users').push({
         username: username,
         password: password,
+        recipe: recipe,
         dateAdded: firebase.database.ServerValue.TIMESTAMP
       });
         // $("#login-btn").trigger("reset");
    
     });
-
 
 // Capture Button Click for Logging In 
 $("#login-btn").on("click", function(event) {
@@ -97,6 +99,7 @@ $("#login-btn").on("click", function(event) {
 });
 
 
+firebase.database().ref("-foodme-51ff9/-users/-L4m8tOFD_8DRGu7K2df").update({ recipe: "favRecipe"});
 
 // $("#save-recipe-button").on("click", function(){
 //   console.log("Save button was pressed");
@@ -302,12 +305,22 @@ $("#save-recipe-button").on("click", function(){
   userRef.orderByChild("username").equalTo("Shrimp").on("child_added", function(snapshot) {
     console.log();
     console.log("The user name is ", snapshot.val().username); // here's your data object
+  set.
+  console.log("favRecipe");
+ favRecipe = $(".getRecipeId").attr("data-recipe-id");
+userRef.set({username:"123",password:"321",recipe:"favRecipe"});
+firebase.database().ref("-foodme-51ff9/-users/-L4m8tOFD_8DRGu7K2df").update({ recipe: "favRecipe"});
+
   });
   //orderByChild('username').equalTo(username);;
 });
 
 ///////////////////// Mark's js Google API//////////////////
 
+
+
+///////Try to add value to a exsiting firebase user data...
+firebase.database().ref("-foodme-51ff9/-users/-L4m8tOFD_8DRGu7K2df").update({ recipe: "favRecipe"});
 
 function getGeo() {
     <!-- getting the user location -->
